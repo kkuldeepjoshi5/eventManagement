@@ -6,6 +6,7 @@
 			function() {
 
 				var EventCtrl = function($scope,$http, $location, $state, $rootScope, i18nNotifications) {
+					$scope.event=[];
 					$scope.redirect=function(contact){
 						$scope.setBG(contact);
 						$location.path(contact);
@@ -13,8 +14,8 @@
 
 					$scope.saveEvent=function(){
 						var eventVO={
-								 eventTitle:"kuldeep",
-								 eventDesc:'desc'
+								 eventTitle:$scope.event.title,
+								 eventDesc:$scope.event.des
 								 
 						};
 						$http.post('/rest/event/insert',eventVO)

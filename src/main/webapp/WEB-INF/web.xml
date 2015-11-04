@@ -3,7 +3,7 @@
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
-	<display-name>EventManagment</display-name>
+	<display-name>EventManagement</display-name>
 	<welcome-file-list>
 		<welcome-file>welcome.html</welcome-file>
 
@@ -38,10 +38,10 @@
 <!--
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
-		<url-pattern>/eventManagment/js/*</url-pattern>
-		<url-pattern>/eventManagment/css/*</url-pattern>
-		<url-pattern>/eventManagment/library/*</url-pattern>
-		<url-pattern>/eventManagment/lib/*</url-pattern>
+		<url-pattern>/eventManagement/js/*</url-pattern>
+		<url-pattern>/eventManagement/css/*</url-pattern>
+		<url-pattern>/eventManagement/library/*</url-pattern>
+		<url-pattern>/eventManagement/lib/*</url-pattern>
 	</servlet-mapping>
  -->
 </web-app>

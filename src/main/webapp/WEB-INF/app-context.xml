@@ -16,7 +16,7 @@
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/eventmanagment" />
+		<property name="url" value="jdbc:mysql://localhost:3306/eventmanagement" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
@@ -26,18 +26,18 @@
 		<property name="prefix" value="/webapp/" />
 		<property name="suffix" value=".html" />
 	</bean>
-	 <bean lazy-init="true"  id="eventService" class="com.eventManagment.Service.Impl.EventServiceImpl">
+	 <bean lazy-init="true"  id="eventService" class="com.eventManagement.service.impl.EventServiceImpl">
 	</bean>
-	<bean lazy-init="true"  id="contactUsManager" class="com.eventManagment.Manager.ContactUsManager">
+	<bean lazy-init="true"  id="contactUsManager" class="com.eventManagement.manager.ContactUsManager">
 	</bean>
 
-	<bean  id="eventManager" class="com.eventManagment.Manager.EventManager">
+	<bean  id="eventManager" class="com.eventManagement.manager.EventManager">
 	    <property name="eventService" ref="eventService"></property>
 	</bean>
-	<bean  id="contactUsController" class="com.eventManagment.Controller.ContactUsController">
+	<bean  id="contactUsController" class="com.eventManagement.controller.ContactUsController">
 	    <property name="contactUsManager" ref="contactUsManager"></property>
 	</bean>
-	<bean  id="eventController" class="com.eventManagment.Controller.EventController">
+	<bean  id="eventController" class="com.eventManagement.controller.EventController">
 	    <property name="eventManager" ref="eventManager"></property>
 	</bean>
 </beans>

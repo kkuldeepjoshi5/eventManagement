@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 	http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.eventManagment</groupId>
-	<artifactId>evnetManagment</artifactId>
+	<groupId>com.eventManagement</groupId>
+	<artifactId>evnetManagement</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>event Managment</name>
+	<name>event Management</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<jdk.version>1.7</jdk.version>
@@ -17,7 +17,7 @@
 		<logback.version>1.0.13</logback.version>
 		<jcl-over-slf4j.version>1.7.5</jcl-over-slf4j.version>
 		 <spring.profiles>dev</spring.profiles>
-        <database.url>mysql://root:mysql@jdbc:mysql://localhost:3306/eventmanagment</database.url>
+        <database.url>mysql://root:mysql@jdbc:mysql://localhost:3306/eventmanagement</database.url>
 	</properties>
 
 	<dependencies>
@@ -152,7 +152,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>eventManagment</finalName>
+		<finalName>eventManagement</finalName>
  <plugins>
 
 		    <!-- Eclipse project -->

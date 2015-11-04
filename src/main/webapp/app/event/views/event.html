@@ -8,6 +8,12 @@
 		THIS PAGE IS UNDER CONSTRUCTION PLEASE VISIT LATER OR <a href="#" ng-click="redirect('/contact')">CONTACT US.</a>
 
 		</div>
-		<button ng-click="saveEvent()">save Event</button>
+		<div class="col-md-3">
+			Title: <input type="text" class="form-control" ng-model="event.title"><br/>
+			Description: <input type="text" class="form-control" ng-model="event.des"><br/><br/>
+			
+			<button ng-click="saveEvent()">save Event</button>
+		</div>
+		
 	</div>
 </div>
