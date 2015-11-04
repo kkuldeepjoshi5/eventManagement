@@ -1,0 +1,9 @@
+WARNING=DO NOT MODIFY THIS FILE IF YOU DON'T UNDERSTAND
+defaultDestination=C\:/Users/Admin27/Desktop
+defaultVariables=src/main/webapp/app/app-module.js
+eclipse.preferences.version=1
+includeTeamPrivateFiles=false
+map|0=sql|,|,|,|,
+map|1=src|,|,|,|,
+map|2=target|,|,|,|,
+useCurrentDateForDestinationFiles=false

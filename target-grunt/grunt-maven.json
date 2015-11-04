@@ -1,0 +1,10 @@
+{
+    "filesToWatch": "D:/eventManagement/MyNewRepository/trunk/src/main/webapp/src/main/webapp/app/**",
+    "directoryToWatch": "D:/eventManagement/MyNewRepository/trunk/src/main/webapp/src/main/webapp/app",
+    "projectRootPath": "D:/eventManagement/MyNewRepository/trunk",
+    "targetPath": "D:/eventManagement/MyNewRepository/trunk/target",
+    "sourceDirectory": "src/main/webapp",
+    "jsSourceDirectory": "src/main/webapp/app",
+    "warTargetDirectory": "src/main/webapp/app",
+    "filteredFiles": ["**/node_modules.tar", "maven-properties.json"]
+}

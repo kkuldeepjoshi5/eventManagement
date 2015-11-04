@@ -1,0 +1,35 @@
+{
+	"contacts":[{
+			"name":"Hemraj Basita",
+			"imageUrl":"imageMin/contactImages/raj.jpg",
+			"faceBookName":"raj basita",
+			"faceBookUrl":"https://www.facebook.com/hemraj.basita?fref=ts",
+			"mobile":"+91-8107105745",
+			"email":"kkuldeepjoshi5@gmail.com",
+			"tag":"Fashion Support"
+				},{
+			"name":"Divaker Singh rajput",
+			"imageUrl":"imageMin/contactImages/divaker.jpg",
+			"faceBookName":"Divaker Singh",
+			"faceBookUrl":"https://www.facebook.com/drona.daksh?fref=ts",
+			"mobile":"+91-8432394244",
+			"email":"drona.daksh@gmail.com",
+			"tag":"Sr. Management"
+				},{
+			"name":"arpit kumar joshi",
+			"imageUrl":"imageMin/contactImages/arpit.jpg",
+			"faceBookName":"arpit joshi",
+			"faceBookUrl":"https://www.facebook.com/arpitkumar.joshi.9?fref=ts",
+			"mobile":"+91-8003103081",
+			"email":"arpitjoshi5@gmail.com",
+			"tag":"Sr. Co-ordinator"
+				},{
+			"name":"salag sharma",
+			"imageUrl":"imageMin/contactImages/salag.jpg",
+			"faceBookName":"salag sharma",
+			"faceBookUrl":"https://www.facebook.com/salagram.sharma?fref=ts",
+			"mobile":"+91-9772443462",
+			"email":"sharma.salagram@gmail.com",
+			"tag":"Director"
+				}]
+}

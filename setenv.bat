@@ -1,0 +1,5 @@
+set JAVA_HOME=C:\jdk1.7.0_04
+set IPATSHALA_DEV_HOME=D:\M
+set EXTERNAL_HOME=%IPATSHALA_DEV_HOME%\external
+set ANT_HOME=%EXTERNAL_HOME%\tools\ant
+set PATH=%JAVA_HOME%\bin;%ANT_HOME%\bin;%PATH%

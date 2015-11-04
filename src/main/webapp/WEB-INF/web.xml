@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>EventManagment</display-name>
+	<welcome-file-list>
+		<welcome-file>welcome.html</welcome-file>
+
+	</welcome-file-list>
+
+
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/app-context.xml</param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>dispatcher-servlet</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/app-context.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>dispatcher-servlet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping>
+
+
+<!--
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
+		<url-pattern>/eventManagment/js/*</url-pattern>
+		<url-pattern>/eventManagment/css/*</url-pattern>
+		<url-pattern>/eventManagment/library/*</url-pattern>
+		<url-pattern>/eventManagment/lib/*</url-pattern>
+	</servlet-mapping>
+ -->
+</web-app>
