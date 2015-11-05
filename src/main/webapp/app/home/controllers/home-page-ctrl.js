@@ -5,8 +5,18 @@
 			[],
 			function() {
 
-				var HomePageCtrl = function($scope,$http, $location, $state, $rootScope, i18nNotifications) {
+				var HomePageCtrl = function($scope,$http, $location, $state, $rootScope,HomePageService, i18nNotifications) {
 
+					$scope.login=function(){
+						HomePageService.login(obj)
+							.success(function(res){
+								console.log(res);
+							})
+							.error(function(res){
+								console.log(res);
+							});
+					};
+					
 					$scope.postData=function(){
 						$http.post('/eventManagment/dataFile/contacts.json',{
 							params:{
@@ -21,7 +31,7 @@
 						});
 					}
 				};
-				return [ '$scope','$http', '$location', '$state', '$rootScope', 'i18nNotifications', HomePageCtrl ];
+				return [ '$scope','$http', '$location', '$state', '$rootScope','HomePageService', 'i18nNotifications', HomePageCtrl ];
 			});
 
 }(define));
