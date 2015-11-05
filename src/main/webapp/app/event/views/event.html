@@ -3,17 +3,14 @@
 		<h1><i class="fa fa-fire fa-lg"></i> EVENT </h1>
 	</div>
 	<div class="col-md-12 col-sm-12">
-
-		<div class="margin-top-10" style="text-align:center;font-size:2em;">
-		THIS PAGE IS UNDER CONSTRUCTION PLEASE VISIT LATER OR <a href="#" ng-click="redirect('/contact')">CONTACT US.</a>
-
-		</div>
 		<div class="col-md-3">
 			Title: <input type="text" class="form-control" ng-model="event.title"><br/>
-			Description: <input type="text" class="form-control" ng-model="event.des"><br/><br/>
-			
-			<button ng-click="saveEvent()">save Event</button>
+			Description: <input type="text" class="form-control" ng-model="event.description"><br/>
+			From Date: <input class="datepicker form-control" ng-model="event.fromDate" data-date-format="mm/dd/yyyy"><br/>
+			To Date: <input class="datepicker form-control" ng-model="event.toDate" data-date-format="mm/dd/yyyy">
+			Photo Url:  <input type="text" class="form-control" ng-model="event.photoUrl"><br/><br/>
+			<button class="form-control" ng-click="saveEvent()">save Event</button>
 		</div>
-		
+
 	</div>
 </div>

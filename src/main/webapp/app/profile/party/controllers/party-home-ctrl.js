@@ -8,7 +8,7 @@
 				var PartyHomeCtrl = function($scope,$http, $location, $state, $rootScope, i18nNotifications) {
 
 					$scope.postData=function(){
-						$http.post('/eventManagment/dataFile/contacts.json',{
+						$http.post('/eventManagement/dataFile/contacts.json',{
 							params:{
 								name:"kuldeep"
 							}
@@ -19,11 +19,11 @@
 						.error(function(response){
 							console.log(response);
 						});
-						
+
 						$scope.createPage=function(){
-							
+
 							$location.path('/party/create');
-							
+
 						};
 						$scope.pagingOptions = {
 						        pageSizes: [40,50,70],
@@ -105,7 +105,7 @@
 										],
 
 							};
-						
+
 						function checkEmptyGrid(){
 							if(_.isEmpty($scope.locationData) || $scope.locationData==null){
 								$scope.isGridDataEmpty=true;
@@ -158,7 +158,7 @@
 							}
 						};
 
-						
+
 					}
 				};
 				return [ '$scope','$http', '$location', '$state', '$rootScope', 'i18nNotifications', PartyHomeCtrl ];

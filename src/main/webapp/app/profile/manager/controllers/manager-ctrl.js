@@ -8,7 +8,7 @@
 				var HomePageCtrl = function($scope,$http, $location, $state, $rootScope, i18nNotifications) {
 
 					$scope.postData=function(){
-						$http.post('/eventManagment/dataFile/contacts.json',{
+						$http.post('/eventManagement/dataFile/contacts.json',{
 							params:{
 								name:"kuldeep"
 							}

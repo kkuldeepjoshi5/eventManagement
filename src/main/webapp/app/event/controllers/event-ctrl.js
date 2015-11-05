@@ -14,9 +14,9 @@
 
 					$scope.saveEvent=function(){
 						var eventVO={
-								 eventTitle:$scope.event.title,
-								 eventDesc:$scope.event.des
-								 
+								title:'kul',
+								description:'descerr'
+
 						};
 						$http.post('/rest/event/insert',eventVO)
 						.success(function(res){

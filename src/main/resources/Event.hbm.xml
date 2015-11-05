@@ -1,19 +1,21 @@
-<!-- <?xml version='1.0' encoding='UTF-8'?>  
-<!DOCTYPE hibernate-mapping PUBLIC  
- "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
- "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
-  
- <hibernate-mapping>  
-  <class name="com.eventManagment.Entity.Event" table="event">  
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+ <hibernate-mapping>
+  <class name="com.eventManagement.entity.Event" table="event">
       <meta attribute="class-description">       This class contains the employee detail.   </meta>
-    	<id name="eventId" type="long" column="id">   <generator class="native"/>    </id>
-            
-    <property name="eventTitle" column="title" type="string" ></property>  
-    <property name="eventDesc" column="description" type="string"></property>  
-    <property name="eventDate" column="Edate" type="string"></property>  
-    <property name="photo" column="photo" type="string"></property>  
-    <property name="dir" column="dir" type="string"></property>  
-            
-  </class>  
-            
- </hibernate-mapping>  -->
+    	<id name="id" type="long" column="id">   <generator class="native"/>    </id>
+
+    <property name="title" column="title" type="string" ></property>
+    <property name="description" column="description" type="string"></property>
+    <property name="fromDate" column="fromDate" type="date"></property>
+    <property name="toDate" column="toDate" type="date"></property>
+    <property name="photoUrl" column="photoUrl" type="string"></property>
+    <property name="isDeleted" column="isDeleted" type="true/false"></property>
+    <property name="requestId" column="request_id" type="long"></property>
+
+  </class>
+
+ </hibernate-mapping>

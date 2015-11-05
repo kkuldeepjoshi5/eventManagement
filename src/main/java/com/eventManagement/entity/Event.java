@@ -3,87 +3,117 @@ package com.eventManagement.entity;
 
 import java.sql.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.eventManagement.vo.EventVO;
 
-
-
-@Entity
-@Table(name = "event")
 public class Event {
 
-	@Id @GeneratedValue
-	@Column(name="id")
-	private Long eventId;
-	
-	@Column(name="title")
-	private String eventTitle;
-	
-	@Column(name="description")
-	private String eventDesc;
-	
-	@Column(name="Edate")
-	private Date eventDate;
-	
-	@Column(name="photo")
-	private String photo;
-	
-	@Column(name="dir")
-	private String dir;
+	private Long id;
 
-	public Long getEventId() {
-		return eventId;
+	private String title;
+
+	private String description;
+
+	private Date fromDate;
+
+	private Date toDate;
+
+	private String photoUrl;
+
+	private Boolean isDeleted;
+
+	private Long requestId;
+
+	public Event(){
+
+	}
+	public Event(EventVO eventVO){
+		if(eventVO.getId()!=null){
+			this.id=eventVO.getId();
+		}
+		if(eventVO.getTitle()!=null){
+			this.title=eventVO.getTitle();
+		}
+		if(eventVO.getDescription()!=null){
+			this.description=eventVO.getDescription();
+		}
+		if(eventVO.getFromDate()!=null){
+			this.fromDate=eventVO.getFromDate();
+		}
+		if(eventVO.getToDate()!=null){
+			this.toDate=eventVO.getToDate();
+		}
+		if(eventVO.getPhotoUrl()!=null){
+			this.photoUrl=eventVO.getPhotoUrl();
+		}
+		if(eventVO.getRequestId()!=null){
+			this.requestId=eventVO.getRequestId();
+		}
+		if(eventVO.getIsDeleted()!=null){
+			this.isDeleted=eventVO.getIsDeleted();
+		}
+	}
+	public Long getId() {
+		return id;
 	}
 
-	public void setEventId(Long eventId) {
-		this.eventId = eventId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getEventTitle() {
-		return eventTitle;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setEventTitle(String eventTitle) {
-		this.eventTitle = eventTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getEventDesc() {
-		return eventDesc;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setEventDesc(String eventDesc) {
-		this.eventDesc = eventDesc;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public Date getEventDate() {
-		return eventDate;
+	public Date getFromDate() {
+		return fromDate;
 	}
 
-	public void setEventDate(Date eventDate) {
-		this.eventDate = eventDate;
+	public void setFromDate(Date fromDate) {
+		this.fromDate = fromDate;
 	}
 
-	public String getPhoto() {
-		return photo;
+	public Date getToDate() {
+		return toDate;
 	}
 
-	public void setPhoto(String photo) {
-		this.photo = photo;
+	public void setToDate(Date toDate) {
+		this.toDate = toDate;
 	}
 
-	public String getDir() {
-		return dir;
+	public String getPhotoUrl() {
+		return photoUrl;
 	}
 
-	public void setDir(String dir) {
-		this.dir = dir;
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}
 
-	
+	public Boolean getIsDeleted() {
+		return isDeleted;
+	}
 
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
+	}
 
+	public Long getRequestId() {
+		return requestId;
+	}
+
+	public void setRequestId(Long requestId) {
+		this.requestId = requestId;
+	}
 
 }

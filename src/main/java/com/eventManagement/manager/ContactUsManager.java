@@ -1,10 +1,8 @@
 package com.eventManagement.manager;
 
-import com.eventManagement.utility.Mail;
-
 public class ContactUsManager {
 
-	/*public Mail createMailFromVO(com.eventManagment.vo.MailVO mailVO) {
+	/*public Mail createMailFromVO(com.eventManagement.vo.MailVO mailVO) {
 		Mail mail=new Mail();
 		mail.setTo(mailVO.getTo());
 		mail.setFrom(mailVO.getSenderEmail());
@@ -14,5 +12,5 @@ public class ContactUsManager {
 		return mail;
 	}
 */
-	
+
 }

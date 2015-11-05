@@ -19,16 +19,16 @@ public abstract class AbstractDAOImpl<E> {
 
 	@Autowired
 	private DataSource dataSource;
-	
+
 	private Connection connection;
 	protected CallableStatement stmt;
 	private ResultSet resultSet;
 	private Message message=new Message();
-	
+
 	protected abstract CallableStatement createQuery(String string, E e);
 	protected abstract E mapper(ResultSet resultSet);
 	protected abstract void saveImage(E e) throws IOException;
-	
+
 	public DataSource getDataSource() {
 		return dataSource;
 	}
@@ -38,7 +38,7 @@ public abstract class AbstractDAOImpl<E> {
 			connection=dataSource.getConnection();
 			System.out.println("connection"+getConnection());
 		}catch(SQLException sqlException) {
-			
+
 		}
 	}
 	public Connection getConnection() {
@@ -49,7 +49,7 @@ public abstract class AbstractDAOImpl<E> {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return connection;
 	}
 	public void setConnection(Connection connection) {
@@ -57,21 +57,21 @@ public abstract class AbstractDAOImpl<E> {
 	}
 
 
-	
 
-	
+
+
 	public Message insert(E e)  {
-		
+
 		message.setMessageString("fail to insert data...");
-	
+
 		stmt = createQuery("insert", e);
-	
+
 		try {
 			if (stmt.executeUpdate() > 0) {
 				/*try {
 					saveImage(e);
 				} catch (IOException e1) {
-					
+
 					message.setMessageString(e1.getMessage());
 				}*/
 				message.setMessageString("data successfully inserted!!!");
@@ -87,13 +87,13 @@ public abstract class AbstractDAOImpl<E> {
 		return message;
 	}
 
-	
 
-	
+
+
 	public Message delete(Long eventId) {
 		message.setMessageString("fail to delete data...");
 		Event event=new Event();
-		event.setEventId(eventId);
+		event.setId(eventId);
 		stmt = createQuery("delete", (E) event);
 		try {
 			if (stmt.executeUpdate() > 0) {
@@ -131,7 +131,7 @@ public abstract class AbstractDAOImpl<E> {
 	public E getById(Long eventId) {
 		Event event =new Event();
 		E e=null;
-		event.setEventId(eventId);
+		event.setId(eventId);
 		stmt = createQuery("getById", (E) event);
 		try {
 			resultSet = stmt.executeQuery();

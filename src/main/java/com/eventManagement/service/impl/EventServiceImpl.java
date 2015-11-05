@@ -15,7 +15,7 @@ public class EventServiceImpl implements EventService {
 
 	@Autowired
 	private EventDAO eventDAO;
-	
+
 	public EventDAO getEventDAO() {
 		return eventDAO;
 	}
@@ -26,8 +26,8 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public Message delete(long eventId) {
-		
-		return eventDAO.delete(eventId);
+
+		return eventDAO.remove(eventId,Event.class);
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public Event getById(long eventId) {
-		return eventDAO.getById(eventId);
+		return eventDAO.getById(eventId,Event.class);
 	}
 
 }

@@ -11,7 +11,7 @@
          *
          * @type {Array}
          */
-		var app, appName = "app.eventManagment";
+		var app, appName = "app.eventManagement";
 
 		/**
          * Start the main application

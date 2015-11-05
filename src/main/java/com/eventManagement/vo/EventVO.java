@@ -2,51 +2,115 @@ package com.eventManagement.vo;
 
 import java.sql.Date;
 
+import com.eventManagement.entity.Event;
+
 
 public class EventVO{
-	
-	private Long eventId;
-	private String eventTitle;
-	private String eventDesc;
-	private Date eventDate;
-	private String  photoUrl;
-	private Boolean deleted;
-	
-	public Long getEventId() {
-		return eventId;
+
+	private Long id;
+
+	private String title;
+
+	private String description;
+
+	private Date fromDate;
+
+	private Date toDate;
+
+	private String photoUrl;
+
+	private Boolean isDeleted;
+
+	private Long requestId;
+
+	public EventVO(Event event){
+		if(event.getId()!=null){
+			this.id=event.getId();
+		}
+		if(event.getTitle()!=null){
+			this.title=event.getTitle();
+		}
+		if(event.getDescription()!=null){
+			this.description=event.getDescription();
+		}
+		if(event.getFromDate()!=null){
+			this.fromDate=event.getFromDate();
+		}
+		if(event.getToDate()!=null){
+			this.toDate=event.getToDate();
+		}
+		if(event.getPhotoUrl()!=null){
+			this.photoUrl=event.getPhotoUrl();
+		}
+		if(event.getRequestId()!=null){
+			this.requestId=event.getRequestId();
+		}
+		if(event.getIsDeleted()!=null){
+			this.isDeleted=event.getIsDeleted();
+		}
 	}
-	public void setEventId(Long eventId) {
-		this.eventId = eventId;
+	public Long getId() {
+		return id;
 	}
-	public String getEventTitle() {
-		return eventTitle;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public void setEventTitle(String eventTitle) {
-		this.eventTitle = eventTitle;
+
+	public String getTitle() {
+		return title;
 	}
-	public String getEventDesc() {
-		return eventDesc;
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public void setEventDesc(String eventDesc) {
-		this.eventDesc = eventDesc;
+
+	public String getDescription() {
+		return description;
 	}
-	public Date getEventDate() {
-		return eventDate;
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
-	public void setEventDate(Date eventDate) {
-		this.eventDate = eventDate;
+
+	public Date getFromDate() {
+		return fromDate;
 	}
+
+	public void setFromDate(Date fromDate) {
+		this.fromDate = fromDate;
+	}
+
+	public Date getToDate() {
+		return toDate;
+	}
+
+	public void setToDate(Date toDate) {
+		this.toDate = toDate;
+	}
+
 	public String getPhotoUrl() {
 		return photoUrl;
 	}
+
 	public void setPhotoUrl(String photoUrl) {
 		this.photoUrl = photoUrl;
 	}
-	public Boolean getDeleted() {
-		return deleted;
+
+	public Boolean getIsDeleted() {
+		return isDeleted;
 	}
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
+
+	public void setIsDeleted(Boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
-	
+
+	public Long getRequestId() {
+		return requestId;
+	}
+
+	public void setRequestId(Long requestId) {
+		this.requestId = requestId;
+	}
+
 }

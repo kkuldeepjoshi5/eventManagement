@@ -10,10 +10,6 @@ import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
-
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +27,7 @@ import com.eventManagement.vo.EventVO;
 @RequestMapping("/event")
 public class EventController implements ServletContextAware {
 
-	
+
 	private EventManager eventManager;
 
 	public EventManager getEventManager() {
@@ -69,8 +65,7 @@ public class EventController implements ServletContextAware {
 	public  Message insert(@RequestBody EventVO eventVO,HttpServletRequest request)	throws IOException {
 
 		System.out.println("in insert mode::");
-		Event event=eventManager.craeteEventFromVO(eventVO);
-
+		Event event=new Event(eventVO);
 		return eventManager.insert(event);
 	}
 
@@ -82,7 +77,7 @@ public class EventController implements ServletContextAware {
 		List<EventVO> eventVOs=new ArrayList<EventVO>();
 		List<Event> events=eventManager.getAll();
 		for (Event event : events) {
-			EventVO eventVO=eventManager.craeteVOFromEvent(event);
+			EventVO eventVO=new EventVO(event);
 			eventVOs.add(eventVO);
 		}
 		resultMap.put("eventVOs", eventVOs);
@@ -92,7 +87,7 @@ public class EventController implements ServletContextAware {
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public @ResponseBody Message update(@RequestBody EventVO eventVO) {
 
-		Event event=eventManager.craeteEventFromVO(eventVO);
+		Event event=new Event(eventVO);
 		return eventManager.update(event);
 	}
 
