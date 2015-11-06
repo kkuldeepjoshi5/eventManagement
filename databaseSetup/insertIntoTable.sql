@@ -8,11 +8,11 @@ insert into user(firstName,lastName,email,role,dob,photoUrl,request_id,isDeleted
 insert into user(firstName,lastName,email,role,dob,photoUrl,request_id,isDeleted) values('raghu','birla','raghu.birla@gmail','CUSTOMER','1993-02-10','/raghu.jpg',1,'N'); 
 insert into user(firstName,lastName,email,role,dob,photoUrl,request_id,isDeleted) values('salagram','sharma','sharma.salagram1@gmail','MANAGER','1990-06-07','/salag.jpg',null,'N'); 
 
-insert into eventUser(user_id,event_id,userName,eventTitle,isDeleted) values(2,2,'salagram sharma','raman birthDay','N'); 
-insert into eventUser(user_id,event_id,userName,eventTitle,isDeleted) values(1,2,'raghu birla','raman birthDay','N'); 
-insert into eventUser(user_id,event_id,userName,eventTitle,isDeleted) values(3,2,'kuldeep joshi','raman birthDay','N'); 
-insert into eventUser(user_id,event_id,userName,eventTitle,isDeleted) values(2,4,'salagram sharma','brothers marriage','N'); 
-insert into eventUser(user_id,event_id,userName,eventTitle,isDeleted) values(3,4,'kuldeep joshi','brothers marriage','N'); 
+insert into eventUser(user_id,event_id,userName,eventTitle,isDeleted) values(3,1,'salagram sharma','raman birthDay','N'); 
+insert into eventUser(user_id,event_id,userName,eventTitle,isDeleted) values(2,1,'raghu birla','raman birthDay','N'); 
+insert into eventUser(user_id,event_id,userName,eventTitle,isDeleted) values(1,1,'kuldeep joshi','raman birthDay','N'); 
+insert into eventUser(user_id,event_id,userName,eventTitle,isDeleted) values(3,2,'salagram sharma','brothers marriage','N'); 
+insert into eventUser(user_id,event_id,userName,eventTitle,isDeleted) values(1,2,'kuldeep joshi','brothers marriage','N'); 
 
 
 //--- delete from event where id='1'

@@ -5,7 +5,7 @@
 			[],
 			function() {
 
-				var EventCtrl = function($scope,$http, $location, $state, $rootScope, i18nNotifications) {
+				var EventCtrl = function($scope,$http, $location, $state, $rootScope,EventData, i18nNotifications) {
 					$scope.event=[];
 					 $scope.isAdmin=true;
 					$scope.eventGridData=[
@@ -16,47 +16,40 @@
 					var deleteBtn='<a ng-click="deleteConfirmation(row)" tooltip-placement="auto" tooltip="Delete" tooltip-append-to-body="true" data-toggle="modal" data-target="#deleteModel" style="margin-left:8px;"><i class="fa fa-trash-o fa-lg text-danger"></i></a>';
 					var editBtn='<a ng-click="editPage(row)" tooltip-placement="auto" tooltip="Edit" tooltip-append-to-body="true" style="margin-left:4px;"><i class="fa fa-pencil-square-o fa-lg text-info" style="margin-top:3px;"></i></a>';
 				
-					$scope.gridOptions = {data : 'eventGridData'};
-					$scope.gridOptions2 = {
+					$scope.getRow=function(row){
+						console.log(row);
+					};
+				/*	$scope.gridOptions = {data : 'eventGridData'};*/
+					$scope.gridOptions = {
 							multiSelect : false,
 							data : 'eventGridData',
 							enableColumnResize:true,
 							enableHighlighting : true,
 							columnDefs : [
 									{
-										field : 'id',
-										visible : false
-									},
-									{
-										field: '',
-										displayName: '',
-										cellTemplate: '<div align="center" class="ngCellText">{{row.rowIndex + 1}}</div>',
-										sortable : false
-										
+										name: 's.no',
+										cellTemplate: '<div align="center" class="ngCellText">{{grid.renderContainers.body.visibleRowCache.indexOf(row) +1}}</div>',
+										enableSorting : false,
+										width:60
 									},
 									{
 										field : 'title',
-										displayName : 'Title'
+											
 									},
 									{
 										field : 'fromDate',
-										sortable:false,
-										displayName : 'From Date'
 									},
 									{
 										field : 'toDate',
-										sortable:false,
-										displayName : 'To Date'
 									},
 									{
-										field:'',
-										displayName:' ',
+										field:'  ',
+										displayName:'  ',
+										name:' ',
+										enableSorting : false,
 										visible :  $scope.isAdmin,
 										cellTemplate:'<div class="btn-group btn-group-xs">'+editBtn+deleteBtn+'</div>'
 									}
-
-
-
 									],
 
 						};
@@ -83,7 +76,7 @@
 					}
 
 				};
-				return [ '$scope','$http', '$location', '$state', '$rootScope', 'i18nNotifications', EventCtrl ];
+				return [ '$scope','$http', '$location', '$state', '$rootScope', 'EventData','i18nNotifications', EventCtrl ];
 			});
 
 }(define));

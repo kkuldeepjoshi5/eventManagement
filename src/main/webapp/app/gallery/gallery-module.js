@@ -8,7 +8,7 @@
 			function(common, GalleryRoute, GalleryCtrl, GalleryService) {
 		
 		var moduleName = 'galleryPage';
-		angular.module(moduleName, [common, 'ngGrid', 'restResource', 'services.i18nNotifications'])
+		angular.module(moduleName, [common, 'ui.grid', 'restResource', 'services.i18nNotifications'])
 				.config(GalleryRoute)
 				.controller('GalleryCtrl', GalleryCtrl)
 				.factory('GalleryService', GalleryService);

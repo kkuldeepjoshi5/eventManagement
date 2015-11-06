@@ -8,7 +8,7 @@
 			function(common, AboutRoute, AboutCtrl, AboutService) {
 		
 		var moduleName = 'aboutPage';
-		angular.module(moduleName, [common, 'ngGrid', 'restResource', 'services.i18nNotifications'])
+		angular.module(moduleName, [common, 'ui.grid', 'restResource', 'services.i18nNotifications'])
 				.config(AboutRoute)
 				.controller('AboutCtrl', AboutCtrl)
 				.factory('AboutService', AboutService);

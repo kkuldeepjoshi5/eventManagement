@@ -2,16 +2,16 @@
 .gridStyle {
     border: 1px solid rgb(212,212,212);
     width: 100%; 
-    height: 300px;
+    color:Black !important;
 }
 </style>
-<div class="container-fluid "><!-- --transparent -->
+<div class="container-fluid transparent">
 	<div class="col-md-12 col-sm-12" style="border-bottom: 1px solid #eee;">
 		<h1><i class="fa fa-fire fa-lg"></i> EVENT </h1>
 	</div>
-	<div class="col-md-12 col-sm-12">
-		 <div class="gridStyle" ng-grid="gridOptions">
-        </div>
+	<div class="col-md-12 col-sm-12" style="margin-top:1%;">
+		<div ui-grid="gridOptions" class="gridStyle">
+    </div>
 	</div>
 </div>
 

@@ -26,6 +26,7 @@ public class EventDAOImpl extends AbstractDAOImpl<Event> implements EventDAO {
 
 	@Override
 	public List<Event> getAll() {
+		
 		return super.getAll();
 	}
 

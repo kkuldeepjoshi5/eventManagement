@@ -8,6 +8,13 @@
 	            url:'/event',
 	            templateUrl: 'app/event/views/event.html',
 	            controller: 'EventCtrl',
+	            resolve: {
+					EventData : ['EventService','$stateParams', function (EventService,$stateParams) {
+                    	return EventService.getEventForGrid().$promise.then(function(response){
+                    		return response.data;
+                    	});
+                    }]
+                },
 	            data: {
                     displayName: 'Event'
                 }

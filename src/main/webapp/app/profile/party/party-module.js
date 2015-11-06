@@ -9,7 +9,7 @@
 			function(common, PartyRoute, PartyHomeCtrl,PartyCreateEditCtrl,PartyService) {
 		
 		var moduleName = 'party';
-		angular.module(moduleName, [common, 'ngGrid', 'restResource', 'services.i18nNotifications'])
+		angular.module(moduleName, [common, 'ui.grid', 'restResource', 'services.i18nNotifications'])
 				.config(PartyRoute)
 				.controller('PartyHomeCtrl', PartyHomeCtrl)
 				.controller('PartyCreateEditCtrl',PartyCreateEditCtrl)

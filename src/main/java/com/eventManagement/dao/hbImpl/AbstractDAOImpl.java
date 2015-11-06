@@ -2,6 +2,7 @@ package com.eventManagement.dao.hbImpl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -51,12 +52,16 @@ public abstract class AbstractDAOImpl<E> {
 	}
 
 	public List<E> getAll() {
-
+		
 		List<E> list = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-	         list = session.createQuery("from Person").list();
-
+			Transaction trans=session.beginTransaction();
+			String hql = "FROM Event";
+			Query query = session.createQuery(hql);
+			List results = query.list();
+	         list = session.createQuery("From Event").list();
+	         trans.commit();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

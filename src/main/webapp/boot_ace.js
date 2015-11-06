@@ -2,7 +2,7 @@
  *  Use aysnc script loader, configure the application module (for AngularJS)
  *  and initialize the application ( which configures routing )
  *
- *  @author Vijay Soni
+ *  @author 
  */
 
 (function(window, head) {
@@ -10,7 +10,7 @@
 var root="";
     head.js(
     	// Pre-load these for splash-screen progress bar...
-    	{ ace : root+"/lib/ace.js"},
+    	
     	{ jquery     : root+"/lib/jquery.js"},
     	{ bootstrap  : root+"/lib/bootstrap.js"},
     	{ angular    : root+"/lib/angular.js"},
@@ -19,15 +19,18 @@ var root="";
     	{ angularIdle: root+"/lib/angular-idle.js"},
     	{ angularTranslate : root+"/lib/angular-translate.js"},
     	{ uiRouter   : root+"/lib/angular-ui.js"},
-    	{ ngGrid     : root+"/lib/ng-grid.js"},
+    	/*{  ngGrid    : root+"/lib/ng-grid.js"},*/
+    	{  uiGrid    : root+"/angular-ui-grid/ui-grid.min.js"},
     	{ uiBootstrap: root+"/lib/bootstrap_tpls.js"},
     	{ uiSelect2  : root+"/lib/select2.min.js"},
+    	{ ace : root+"/lib/ace.js"},
     	{ datepicker : root+"/lib/datepicker.js"},
     	{ textAngular : root+"/lib/text-angular.js"},
     	{ angularFileUpload : root+"/lib/angular-file-upload.js"},
     	{ ngDragDrop: root+"/lib/angular-dragdrop.min.js"}/*,
     	{angularApp:root+"/angular-app.min.js"}*/
-
+       
+ 
     )
     .ready("ALL", function() {
 

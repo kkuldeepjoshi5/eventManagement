@@ -4,14 +4,14 @@
 	define([], function() {
 
 		var EventService = function($resource, $interpolate) {
-			var data = $resource('/rest/Event/:operation',{
+			var data = $resource('/rest/event/:operation',{
 				operation:"@operation"
 			},
 			{
 				getEventForGrid:{
 					method : 'GET',
 					params : {
-						operation : 'data.do'
+						operation : 'getAll'
 					}
 				},
 				getEventForEdit:{

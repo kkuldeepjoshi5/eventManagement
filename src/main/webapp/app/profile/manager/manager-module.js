@@ -8,7 +8,7 @@
 			function(common, ManagerRoute, ManagerCtrl, ManagerService) {
 		
 		var moduleName = 'manager';
-		angular.module(moduleName, [common, 'ngGrid', 'restResource', 'services.i18nNotifications'])
+		angular.module(moduleName, [common, 'ui.grid', 'restResource', 'services.i18nNotifications'])
 				.config(ManagerRoute)
 				.controller('ManagerCtrl', ManagerCtrl)
 				.factory('ManagerService', ManagerService);

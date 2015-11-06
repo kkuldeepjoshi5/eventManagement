@@ -41,7 +41,7 @@
 
 		// Common Module which includes all common services/modules required for app
 		var moduleName = 'app.common';
-		var commonModule = angular.module(moduleName, ['angular-underscore', 'pascalprecht.translate', 'ngGrid', 'ngRoute', 'ngResource', 'ui.router', 'ui.bootstrap', 'ui.select2', 'ngIdle', 'datePicker','ngSanitize', 'textAngular'
+		var commonModule = angular.module(moduleName, ['angular-underscore', 'pascalprecht.translate', 'ui.grid', 'ngRoute', 'ngResource', 'ui.router', 'ui.bootstrap', 'ui.select2', 'ngIdle', 'datePicker','ngSanitize', 'textAngular'
 		                                               ,'angularFileUpload','ngDragDrop', breadcrumb, header, loading, tree, collapsetab, slider, i18nNotifications, restResource, easyPieChart, uiBreadcrumbs, listValues]);
 		commonModule.run(RunManager);
 		commonModule.config(ConfigManager);

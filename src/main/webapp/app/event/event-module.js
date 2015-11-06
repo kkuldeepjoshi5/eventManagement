@@ -8,7 +8,7 @@
 			function(common, EventRoute, EventCtrl, EventService) {
 
 		var moduleName = 'event';
-		angular.module(moduleName, [common, 'ngGrid', 'restResource', 'services.i18nNotifications'])
+		angular.module(moduleName, [common, 'ui.grid', 'restResource', 'services.i18nNotifications'])
 				.config(EventRoute)
 				.controller('EventCtrl', EventCtrl)
 				.factory('EventService', EventService);

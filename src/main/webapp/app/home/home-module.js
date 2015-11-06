@@ -8,7 +8,7 @@
 			function(common, HomeRoute, HomePageCtrl, HomePageService) {
 		
 		var moduleName = 'homePage';
-		angular.module(moduleName, [common, 'ngGrid', 'restResource', 'services.i18nNotifications'])
+		angular.module(moduleName, [common, 'ui.grid', 'restResource', 'services.i18nNotifications'])
 				.config(HomeRoute)
 				.controller('HomePageCtrl', HomePageCtrl)
 				.factory('HomePageService', HomePageService);

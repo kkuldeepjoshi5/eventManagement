@@ -9,7 +9,7 @@
 			function(common, ProfileRoute,ProfileCtrl,ProfileService,party) {
 
 		var moduleName = 'profile';
-		angular.module(moduleName, [common, 'ngGrid', 'restResource', 'services.i18nNotifications',party])
+		angular.module(moduleName, [common, 'ui.grid', 'restResource', 'services.i18nNotifications',party])
 				.config(ProfileRoute)
 				.controller('ProfileCtrl', ProfileCtrl)
 				.factory('ProfileService', ProfileService);
