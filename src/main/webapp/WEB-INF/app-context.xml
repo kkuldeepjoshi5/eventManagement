@@ -42,8 +42,10 @@
 		<property name="prefix" value="/webapp/" />
 		<property name="suffix" value=".html" />
 	</bean>
-	 
+
 	 <bean lazy-init="true"  id="eventService" class="com.eventManagement.service.impl.EventServiceImpl">
+	</bean>
+	 <bean lazy-init="true"  id="userService" class="com.eventManagement.service.impl.UserServiceImpl">
 	</bean>
 	<bean lazy-init="true"  id="contactUsManager" class="com.eventManagement.manager.ContactUsManager">
 	</bean>
@@ -51,6 +53,10 @@
 	<bean  id="eventManager" class="com.eventManagement.manager.EventManager">
 	    <property name="eventService" ref="eventService"></property>
 	</bean>
+	<bean  id="userManager" class="com.eventManagement.manager.UserManager">
+	    <property name="userService" ref="userService"></property>
+	</bean>
+
 	<bean  id="contactUsController" class="com.eventManagement.controller.ContactUsController">
 	    <property name="contactUsManager" ref="contactUsManager"></property>
 	</bean>
@@ -58,4 +64,7 @@
 	    <property name="eventManager" ref="eventManager"></property>
 	</bean>
 
+	<bean  id="userController" class="com.eventManagement.controller.UserController">
+	    <property name="userManager" ref="userManager"></property>
+	</bean>
 </beans>

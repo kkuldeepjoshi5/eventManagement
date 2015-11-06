@@ -10,6 +10,7 @@
 var root="";
     head.js(
     	// Pre-load these for splash-screen progress bar...
+    	{ ace : root+"/lib/ace.js"},
     	{ jquery     : root+"/lib/jquery.js"},
     	{ bootstrap  : root+"/lib/bootstrap.js"},
     	{ angular    : root+"/lib/angular.js"},
@@ -17,12 +18,10 @@ var root="";
     	{ loadingBar : root+"/lib/loading-bar.js"},
     	{ angularIdle: root+"/lib/angular-idle.js"},
     	{ angularTranslate : root+"/lib/angular-translate.js"},
-    	{ ngGrid     : root+"/lib/ng-grid.js"},
     	{ uiRouter   : root+"/lib/angular-ui.js"},
+    	{ ngGrid     : root+"/lib/ng-grid.js"},
     	{ uiBootstrap: root+"/lib/bootstrap_tpls.js"},
     	{ uiSelect2  : root+"/lib/select2.min.js"},
-    	{ ngIdle : root+"/lib/angular-idle.js"},
-		{ ace : root+"/lib/ace.js"},
     	{ datepicker : root+"/lib/datepicker.js"},
     	{ textAngular : root+"/lib/text-angular.js"},
     	{ angularFileUpload : root+"/lib/angular-file-upload.js"},

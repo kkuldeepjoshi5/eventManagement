@@ -36,7 +36,7 @@ public abstract class AbstractDAOImpl<E> {
 		return message;
 	}
 
-	public Message remove(Long id,Class<Event> tempClass) {
+	public Message remove(Long id,Class<E> tempClass) {
 		Message message=new Message();
 		try {
 			 Session session = this.sessionFactory.getCurrentSession();
@@ -65,7 +65,7 @@ public abstract class AbstractDAOImpl<E> {
 
 
 
-	public E getById(Long id,Class<Event> tempClass) {
+	public E getById(Long id,Class<E> tempClass) {
 		E e=null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();

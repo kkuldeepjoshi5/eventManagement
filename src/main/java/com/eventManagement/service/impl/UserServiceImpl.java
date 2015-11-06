@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDAO userDAO;
-	
+
 	public UserDAO getUserDAO() {
 		return userDAO;
 	}
@@ -25,9 +25,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Message delete(long userId) {
-		
-		return userDAO.delete(userId);
+	public Message remove(Long userId) {
+
+		return userDAO.remove(userId,User.class);
 	}
 
 	@Override
@@ -47,8 +47,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getById(long userId) {
-		return userDAO.getById(userId);
+	public User getById(Long userId) {
+		return userDAO.getById(userId,User.class);
 	}
 
 }
