@@ -9,8 +9,10 @@ import com.eventManagement.dao.EventDAO;
 import com.eventManagement.entity.Event;
 import com.eventManagement.utility.Message;
 
-@Repository
+@Repository("eventDao")
 public class EventDAOImpl extends AbstractDAOImpl<Event> implements EventDAO {
+
+
 
 	@Override
 	public Message insert(Event event) {

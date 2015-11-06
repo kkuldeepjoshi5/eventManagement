@@ -1,9 +1,8 @@
 package com.eventManagement.vo;
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.eventManagement.entity.Event;
-
 
 public class EventVO{
 
@@ -19,9 +18,13 @@ public class EventVO{
 
 	private String photoUrl;
 
-	private Boolean isDeleted;
+	private Boolean deleted;
 
 	private Long requestId;
+
+	public EventVO(){
+
+	}
 
 	public EventVO(Event event){
 		if(event.getId()!=null){
@@ -46,7 +49,7 @@ public class EventVO{
 			this.requestId=event.getRequestId();
 		}
 		if(event.getIsDeleted()!=null){
-			this.isDeleted=event.getIsDeleted();
+			this.deleted=event.getIsDeleted();
 		}
 	}
 	public Long getId() {
@@ -97,12 +100,12 @@ public class EventVO{
 		this.photoUrl = photoUrl;
 	}
 
-	public Boolean getIsDeleted() {
-		return isDeleted;
+	public Boolean getDeleted() {
+		return deleted;
 	}
 
-	public void setIsDeleted(Boolean isDeleted) {
-		this.isDeleted = isDeleted;
+	public void setDeleted(Boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	public Long getRequestId() {

@@ -4,19 +4,20 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.eventManagement.entity.Event;
 import com.eventManagement.utility.Message;
 
-
 public abstract class AbstractDAOImpl<E> {
 
 
-	private static SessionFactory sessionFactory;
+	 @Autowired
+    private SessionFactory sessionFactory;
 
-	 public void setSessionFactory(SessionFactory sf){
-	        this.sessionFactory = sf;
-	 }
+    protected Session getSession(){
+        return sessionFactory.getCurrentSession();
+    }
 
 	public Message insert(E e)  {
 		Message message=new Message();

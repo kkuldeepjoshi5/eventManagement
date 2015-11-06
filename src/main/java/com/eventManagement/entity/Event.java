@@ -1,7 +1,7 @@
 package com.eventManagement.entity;
 
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.eventManagement.vo.EventVO;
 
@@ -48,8 +48,8 @@ public class Event {
 		if(eventVO.getRequestId()!=null){
 			this.requestId=eventVO.getRequestId();
 		}
-		if(eventVO.getIsDeleted()!=null){
-			this.isDeleted=eventVO.getIsDeleted();
+		if(eventVO.getDeleted()!=null){
+			this.isDeleted=eventVO.getDeleted();
 		}
 	}
 	public Long getId() {

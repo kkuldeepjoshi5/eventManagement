@@ -1,7 +1,6 @@
 package com.eventManagement.controller;
 
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,7 +61,7 @@ public class EventController implements ServletContextAware {
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	@ResponseBody
-	public  Message insert(@RequestBody EventVO eventVO,HttpServletRequest request)	throws IOException {
+	public  Message insert( @RequestBody EventVO eventVO,HttpServletRequest request){
 
 		System.out.println("in insert mode::");
 		Event event=new Event(eventVO);
