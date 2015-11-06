@@ -13,7 +13,7 @@
     <property name="fromDate" column="fromDate" type="date"></property>
     <property name="toDate" column="toDate" type="date"></property>
     <property name="photoUrl" column="photoUrl" type="string"></property>
-    <property name="isDeleted" column="isDeleted" type="true/false"></property>
+    <property name="isDeleted" column="isDeleted" type="boolean"></property>
     <property name="requestId" column="request_id" type="long"></property>
 
   </class>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.eventManagement.entity.Event;
@@ -24,7 +25,9 @@ public abstract class AbstractDAOImpl<E> {
 		message.setMessageString("fail to insert data...");
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-	        session.persist(e);
+			Transaction trans=session.beginTransaction();
+			session.save(e);
+			trans.commit();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			message.setMessageString(ex.getMessage());
