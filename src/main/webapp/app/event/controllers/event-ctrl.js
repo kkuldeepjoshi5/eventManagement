@@ -28,11 +28,11 @@
 								console.log(error);
 							});
 					};
+					 $scope.gridOptions = {  };
+					  $scope.gridOptions.enableCellEditOnFocus = true;
 					$scope.gridOptions = {
 							multiSelect : false,
 							data : 'eventGridData',
-							enableColumnResize:true,
-							enableHighlighting : true,
 							columnDefs : [
 									{
 										name: 's.no',
@@ -41,27 +41,46 @@
 										width:60
 									},
 									{
-										field : 'title',
-											
+										name : 'title',
+										enableCellEdit: true,
+										width:300
 									},
 									{
 										field : 'fromDate',
+										type: 'date',
+										enableCellEdit: true, 
+										cellFilter: 'date:"dd-MMM-yyyy"'
 									},
 									{
 										field : 'toDate',
+										type: 'date',
+										enableCellEdit: true, 
+										cellFilter: 'date:"dd-MMM-yyyy"'
 									},
 									{
 										field:'  ',
 										displayName:'  ',
 										name:' ',
+										enableCellEdit: false, 
 										enableSorting : false,
 										visible :  $scope.isAdmin,
-										cellTemplate:'<div class="btn-group btn-group-xs">'+editBtn+deleteBtn+'</div>'
+										cellTemplate:'<div class="btn-group btn-group-xs" style="padding-top: 1%;">'+editBtn+deleteBtn+'</div>'
 									}
 									],
 
 						};
-
+					$scope.currentFocused = "";
+					 
+				    $scope.getCurrentFocus = function(){
+				      var rowCol = $scope.gridApi.cellNav.getFocusedCell();
+				      if(rowCol !== null) {
+				          $scope.currentFocused = 'Row Id:' + rowCol.row.entity.id + ' col:' + rowCol.col.colDef.name;
+				      }
+				    }
+				 
+				    $scope.gridOptions.onRegisterApi = function(gridApi){
+				       $scope.gridApi = gridApi;
+				    };	
 					
 					$scope.redirect=function(contact){
 						$scope.setBG(contact);
