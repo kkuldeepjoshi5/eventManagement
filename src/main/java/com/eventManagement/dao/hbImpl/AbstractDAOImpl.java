@@ -2,13 +2,11 @@ package com.eventManagement.dao.hbImpl;
 
 import java.util.List;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.eventManagement.entity.Event;
 import com.eventManagement.utility.Message;
 
 public abstract class AbstractDAOImpl<E> {
@@ -51,16 +49,13 @@ public abstract class AbstractDAOImpl<E> {
 		return message;
 	}
 
-	public List<E> getAll() {
+	public List<E> getAll(String hql) {
 		
 		List<E> list = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			Transaction trans=session.beginTransaction();
-			String hql = "FROM Event";
-			Query query = session.createQuery(hql);
-			List results = query.list();
-	         list = session.createQuery("From Event").list();
+	         list = session.createQuery(hql).list();
 	         trans.commit();
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -74,7 +69,9 @@ public abstract class AbstractDAOImpl<E> {
 		E e=null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			  e = (E) session.load(tempClass, new Long(id));
+			Transaction trans=session.beginTransaction();
+			  e = (E) session.get(tempClass, id);
+			  trans.commit();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -88,7 +85,9 @@ public abstract class AbstractDAOImpl<E> {
 		message.setMessageString("fail to update data...");
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
+			Transaction trans=session.beginTransaction();
 	        session.update(e);
+	        trans.commit();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			message.setMessageString(ex.getMessage());

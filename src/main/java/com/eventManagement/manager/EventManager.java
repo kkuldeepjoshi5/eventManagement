@@ -2,8 +2,6 @@ package com.eventManagement.manager;
 
 import java.util.List;
 
-import javax.servlet.ServletContext;
-
 import com.eventManagement.entity.Event;
 import com.eventManagement.service.EventService;
 import com.eventManagement.utility.Message;
@@ -11,17 +9,6 @@ import com.eventManagement.utility.Message;
 public class EventManager{
 
 	private EventService eventService;
-
-	private ServletContext servletContext;
-
-
-	public ServletContext getServletContext() {
-		return servletContext;
-	}
-
-	public void setServletContext(ServletContext servletContext) {
-		this.servletContext = servletContext;
-	}
 
 	public EventService getEventService() {
 		return eventService;
@@ -33,7 +20,7 @@ public class EventManager{
 
 	public Message delete(Long eventId) {
 		Event event=eventService.getById(eventId);
-		//event.setDeleted(true);
+		event.setIsDeleted(Boolean.TRUE);
 		return eventService.update(event);
 	}
 

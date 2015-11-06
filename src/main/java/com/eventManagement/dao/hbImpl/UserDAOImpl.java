@@ -26,7 +26,8 @@ public class UserDAOImpl extends AbstractDAOImpl<User> implements UserDAO {
 
 	@Override
 	public List<User> getAll() {
-		return super.getAll();
+		String hql="From User";
+		return super.getAll(hql);
 	}
 
 	@Override

@@ -11,7 +11,7 @@
 	            resolve: {
 					EventData : ['EventService','$stateParams', function (EventService,$stateParams) {
                     	return EventService.getEventForGrid().$promise.then(function(response){
-                    		return response.data;
+                    		return response;
                     	});
                     }]
                 },
