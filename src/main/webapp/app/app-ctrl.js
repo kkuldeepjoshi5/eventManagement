@@ -93,6 +93,7 @@
 	        	$scope.service='';
 	        	$scope.profile='';
 	        	$scope.user='';
+	        	$scope.requester='';
 	        	switch(type){
 	        	case "/home":$scope.home='back-color';
 	        		break;
@@ -118,7 +119,7 @@
 	        		break;
 	        	case "/user":$scope.user='back-color';
         			break;
-	        	case "/requester":$scope.user='back-color';
+	        	case "/requester":$scope.requester='back-color';
 	        		break;
 	        	default:$location.path('/home');
 	        			$scope.home='back-color';
