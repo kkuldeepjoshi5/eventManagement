@@ -16,6 +16,8 @@ public interface CommanService<E> {
 	public Message update(E e);
 
 	public E getById(Long id);
+	
+	public List<E> getAllByIsDeleted(Boolean isDeleted);
 
 
 }

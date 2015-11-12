@@ -51,4 +51,14 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getById(userId,User.class);
 	}
 
+	@Override
+	public List<User> getAllByIsDeleted(Boolean isDeleted) {
+		return userDAO.getAllByIsDeleted(isDeleted);
+	}
+
+	@Override
+	public List<User> getUserByEmail(String email) {
+		return userDAO.getUserByEmail(email);
+	}
+
 }

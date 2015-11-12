@@ -92,6 +92,7 @@
 	        	$scope.event='';
 	        	$scope.service='';
 	        	$scope.profile='';
+	        	$scope.user='';
 	        	switch(type){
 	        	case "/home":$scope.home='back-color';
 	        		break;
@@ -114,6 +115,10 @@
 	        	case "/ourService":$scope.service='back-color';
 	        		break;
 	        	case "/profile":$scope.profile='back-color';
+	        		break;
+	        	case "/user":$scope.user='back-color';
+        			break;
+	        	case "/requester":$scope.user='back-color';
 	        		break;
 	        	default:$location.path('/home');
 	        			$scope.home='back-color';

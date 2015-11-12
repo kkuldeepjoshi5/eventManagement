@@ -19,7 +19,7 @@ public class Event {
 
 	private String photoUrl;
 
-	private Boolean isDeleted;
+	private Boolean isDeleted =Boolean.FALSE;
 
 	private Long requestId;
 

@@ -71,10 +71,15 @@ public class EventController implements ServletContextAware {
 
 	@RequestMapping("/getAll")
 	@ResponseBody
-	public Map<String,Object> getAll() {
+	public Map<String,Object> getAll(HttpServletRequest request) {
 		Map<String,Object> resultMap=new HashMap<String, Object>();
 		List<EventVO> eventVOs=new ArrayList<EventVO>();
-		List<Event> events=eventManager.getAll();
+		Boolean isDeleted=Boolean.FALSE;
+		if(request.getParameter("isDeleted")!=null){
+			isDeleted=Boolean.parseBoolean(request.getParameter("isDeleted"));
+		}
+		
+		List<Event> events=eventManager.getAllByIsDeleted(isDeleted );
 		for (Event event : events) {
 			EventVO eventVO=new EventVO(event);
 			eventVOs.add(eventVO);

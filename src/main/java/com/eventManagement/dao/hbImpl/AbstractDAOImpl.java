@@ -2,11 +2,13 @@ package com.eventManagement.dao.hbImpl;
 
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.eventManagement.entity.Event;
 import com.eventManagement.utility.Message;
 
 public abstract class AbstractDAOImpl<E> {
@@ -63,7 +65,20 @@ public abstract class AbstractDAOImpl<E> {
 		return list;
 	}
 
-
+	public List<E> getAllByIsDeleted(String hql, Boolean isDeleted) {
+		List<E> list = null;
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			Transaction trans=session.beginTransaction();
+			Query query = session.createQuery(hql);
+			query.setParameter("isDeleted", isDeleted);
+	         list = query.list();
+	         trans.commit();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return list;
+	}
 
 	public E getById(Long id,Class<E> tempClass) {
 		E e=null;
@@ -94,7 +109,5 @@ public abstract class AbstractDAOImpl<E> {
 		}
 		return message;
 	}
-
-
 
 }

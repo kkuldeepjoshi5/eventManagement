@@ -1,4 +1,4 @@
-package com.eventManagement.dao.impl;
+/*package com.eventManagement.dao.impl;
 
 import java.io.IOException;
 import java.sql.CallableStatement;
@@ -68,12 +68,12 @@ public abstract class AbstractDAOImpl<E> {
 
 		try {
 			if (stmt.executeUpdate() > 0) {
-				/*try {
+				try {
 					saveImage(e);
 				} catch (IOException e1) {
 
 					message.setMessageString(e1.getMessage());
-				}*/
+				}
 				message.setMessageString("data successfully inserted!!!");
 			}else{
 				message.setMessageString("database error...");
@@ -159,3 +159,4 @@ public abstract class AbstractDAOImpl<E> {
 
 
 }
+*/

@@ -1,91 +1,79 @@
 (function(define) {
 	"use strict";
 
-	define(
-			[],
-			function() {
+	define([], function() {
 
-				var EventCtrl = function($scope,$http, $location, $state, $rootScope, i18nNotifications) {
-					$scope.event=[];
-					
-					$scope.eventGridOptions = {
+		var EventManager = function(EventService,$http,i18nNotifications) {
+			var deleteBtn='<a ng-click="grid.appScope.deleteConfirmation(row)" style="cursor:pointer;margin-left:2%" tooltip-placement="auto" tooltip="Delete" tooltip-append-to-body="true" data-toggle="modal" data-target="#deleteModel" ><i class="fa fa-trash-o fa-lg text-danger"></i></a>';
+			var editBtn='<a ng-click="grid.appScope.editPage(row)" style="cursor:pointer;margin-left:2%" tooltip-placement="auto" tooltip="Edit" tooltip-append-to-body="true"><i class="fa fa-pencil-square-o fa-lg text-info"></i></a>';
+			var isAdmin=true;
+			var data={
+					 isAdmin:true,
+					 saveEvent:function(eventVO){
+								$http.post('/rest/event/insert',eventVO)
+								.success(function(res){
+									alert("success::"+res);
+								})
+								.error(function(){
+									alert("error::"+res);
+								});
+							},
+					deleteEvent:function(eventGridData,obj){
+									EventService.deleteEvent(obj,function(response){
+										i18nNotifications.removeAll();
+										i18nNotifications.pushForCurrentRoute('event.delete.success', 'success', {}, {});
+										var deleteIndex=eventGridData.indexOf(deleteRow);
+										eventGridData.splice(deleteIndex, 1);
+									},function(error){
+										console.log(error);
+									});
+							},
+					gridOptions : {
 							multiSelect : false,
+							enableCellEditOnFocus : true,
 							data : 'eventGridData',
-							enableColumnResize:true,
-							enableHighlighting : true,
 							columnDefs : [
 									{
-										field : 'id',
-										visible : false
+										name: 's.no',
+										cellTemplate: '<div align="center" style="padding-top: 6%;" class="ngCellText">{{grid.renderContainers.body.visibleRowCache.indexOf(row) +1}}</div>',
+										enableSorting : false,
+										width:60
 									},
 									{
-										field: '',
-										displayName: '',
-										cellTemplate: '<div align="center" class="ngCellText">{{row.rowIndex + 1}}</div>',
-										sortable : false,
-										width : '6%'
+										name : 'title',
+										enableCellEdit: true,
+										width:300
 									},
 									{
-										field : 'title',
-										displayName : 'Title',
-										width:'30%',
-										cellTemplate: '<div class="ngCellText"><a tooltip-placement="auto" tooltip="{{row.entity.title}}" tooltip-append-to-body="true" ng-click="detailPage(row)">{{resizeTitle(row.entity.title)}}</a></div>'
+										field : 'fromDate',
+										type: 'date',
+										enableCellEdit: true, 
+										cellFilter: 'date:"dd-MMM-yyyy"'
 									},
 									{
-										field : 'fromDate.dateStr',
-										sortable:false,
-										displayName : 'From Date'
+										field : 'toDate',
+										type: 'date',
+										enableCellEdit: true, 
+										cellFilter: 'date:"dd-MMM-yyyy"'
 									},
 									{
-										field : 'toDate.dateStr',
-										sortable:false,
-										displayName : 'To Date'
-									},
-									{
-										field:'eventForName',
-										visible : $scope.isAdmin,
-										displayName : 'Event For'
-									},
-									{
-										field : 'postedBy',
-										displayName : 'Posted By'
-									},
-									{
-										field:'',
-										displayName:' ',
-										visible : $scope.isTeacher || $scope.isAdmin,
-										cellTemplate:'  <div class="btn-group btn-group-xs" ng-hide="isHide(row)"><a ng-click="editPage(row)" tooltip-placement="auto" tooltip="Edit" tooltip-append-to-body="true" style="margin-left:4px;"><i class="fa fa-pencil-square-o fa-lg text-info" style="margin-top:3px;"></i></a><a ng-click="deleteConfirmation(row)" tooltip-placement="auto" tooltip="Delete" tooltip-append-to-body="true" data-toggle="modal" data-target="#deleteModel" style="margin-left:8px;"><i class="fa fa-trash-o fa-lg text-danger"></i></a></div>'
+										field:'  ',
+										displayName:'  ',
+										name:' ',
+										enableCellEdit: false, 
+										enableSorting : false,
+										visible : isAdmin,
+										cellTemplate:'<div class="" style="padding-top: 1%;">'+editBtn+deleteBtn+'</div>'
 									}
-
-
-
 									],
 
-						};
+						}
+				};	
+			return data;
+			};
+		
+		
 
-					
-					$scope.redirect=function(contact){
-						$scope.setBG(contact);
-						$location.path(contact);
-					};
-
-					$scope.saveEvent=function(){
-						var eventVO={
-								 eventTitle:$scope.event.title,
-								 eventDesc:$scope.event.des
-								 
-						};
-						$http.post('/rest/event/insert',eventVO)
-						.success(function(res){
-							alert("success::"+res);
-						})
-						.error(function(){
-							alert("error::"+res);
-						});
-					}
-
-				};
-				return [ '$scope','$http', '$location', '$state', '$rootScope', 'i18nNotifications', EventCtrl ];
-			});
-
+		return [ 'EventService','$http','i18nNotifications',EventManager  ];
+	});
 }(define));

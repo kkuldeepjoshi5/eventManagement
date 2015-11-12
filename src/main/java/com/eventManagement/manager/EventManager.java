@@ -63,5 +63,9 @@ public class EventManager{
 		return eventService.update(event);
 	}
 
+	public List<Event> getAllByIsDeleted(Boolean isDeleted) {
+		return eventService.getAllByIsDeleted(isDeleted);
+	}
+
 
 }

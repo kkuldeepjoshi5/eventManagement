@@ -4,10 +4,42 @@
     width: 100%; 
     color:Black !important;
 }
+.editable-clear-x:before{
+	margin-top: -15px !important;
+	z-index : 100 !important;
+	top : 50px !important;
+	right : 6px !important;
+}
+.btn{
+	margin-right:1%;
+	}
+
+
+sup{
+color:RED;
+}
+.profile-info-name{
+	width:20%;
+	float:left;
+	text-align: right;
+    padding: 1%;
+    font-weight: 600;
+}
+.profile-info-value{
+	width:80%;
+	float:left;
+}
+.profile-info-row{
+	height: 36px;
+	margin:1%;
+}
 </style>
 <div class="container-fluid transparent">
 	<div class="col-md-12 col-sm-12" style="border-bottom: 1px solid #eee;">
 		<h1><i class="fa fa-fire fa-lg"></i> EVENT </h1>
+	</div>
+	<div class="col-md-12 col-sm-12" style="margin-top:1%;">
+		<button class="btn btn-plus btn-white" data-toggle="modal" data-target="#createModel">Add Event</button>
 	</div>
 	<div class="col-md-12 col-sm-12" style="margin-top:1%;">
 		<div ui-grid="gridOptions" class="gridStyle"  ui-grid-auto-resize  ui-grid-edit  ui-grid-cellnav>
@@ -16,12 +48,146 @@
 </div>
 
 <!-- create event pop up -->
+<div class="modal fade" id="createModel" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog model-large">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" >
+					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Create Event</h4>
+			</div>
+			<div class="modal-body" style="color:Black;height: 200px;">
+				<div class="profile-info-row">
+					<div class="profile-info-name">Title<sup>*</sup>:</div>
+					<div class="profile-info-value">
+						<input  type="text" class="form-control" required ng-required="true" ng-model="newEvent.title" placeholder="Enter Title" />
+					</div>
+				</div>
+				<div class="profile-info-row">
+					<div class="profile-info-name">From Date<sup>*</sup>:</div>
+					<div class="profile-info-value">
+						<div class="input-group">
+							<input type="text" class="form-control"
+								datepicker-popup="dd/MM/yyyy" data-ng-model="newEvent.fromDate" is-open="isFromDateOpened"
+							 min-date="fromDateMin" ng-required="true" show-weeks="false"
+								close-text="Close"  ng-click="fromDateOpen($event)" /> 
+							
+							<div class="input-group-btn" style="vertical-align: top;">
+								<button type="button" class="btn btn-round btn-white"
+									ng-click="fromDateOpen($event)">
+									<i class="ace-icon fa fa-calendar"></i>
+								</button>
+							</div>
+						</div>	
+					</div>
+				</div>
+				<div class="profile-info-row">
+					<div class="profile-info-name">To Date<sup>*</sup>:</div>
+					<div class="profile-info-value">
+						<div class="input-group">
+							<input type="text" class="form-control"
+								datepicker-popup="dd/MM/yyyy" data-ng-model="newEvent.toDate" is-open="isToDateOpened"
+							 min-date="toDateMin" ng-required="true" show-weeks="false"
+								close-text="Close"  ng-click="toDateOpen($event)" /> 
+							
+							<div class="input-group-btn" style="vertical-align: top;">
+								<button type="button" class="btn btn-round btn-white"
+									ng-click="toDateOpen($event)">
+									<i class="ace-icon fa fa-calendar"></i>
+								</button>
+							</div>
+						</div>	
+					</div>
+				</div>
+				<div class="profile-info-row">
+					<div class="profile-info-name">Description:</div>
+					<div class="profile-info-value">
+						<input  type="text" class="form-control" required ng-required="true" ng-model="newEvent.description" placeholder="Enter description" />
+					</div>
+				</div>
+				
+				<!-- add user in event -->
+				<hr>
+	
+			 <ul style="list-style:none;">
+	              <li class="span3 col-md-5 col-sm-5" style='display:inline-block;'>
+	             	 <div class="widget-header widget-header-small">
+	             	 <div class="col-md-3 col-sm-3 label label-warning pull-right" style="border-radius: 4px 4px 4px 4px;height: 28px;">
+	             	 	<font size="4">{{waitList.length}}</font></div>
+						<h4 class="widget-title smaller">
+							Select Student to Add.
+						</h4>
+					</div>
+					 <div class="thumbnail" style="height:400px;margin-top:1%;overflow:auto;" >
+	                    <div class="btn btn-info btn-round btn-draggable" ng-repeat="item in waitList" ng-animate=" {enter: 'animate-enter', leave: 'animate-leave'}  " ng-show="item.firstNameUpperCase"
+	                   	 ng-model="waitList" style="width:98%;margin:1%;" ng-click="addToNewAddList(item,$index)">
+	
+	
+	                 	<div  style="width:90%;white-space: normal; float:left;">  {{item.firstNameUpperCase}} ( {{item.enrollmentNumber}} ) </div>
+	                <div class="pull-right" style="display:inline-block;"> <i class="fa fa-plus-circle fa-lg text-info pull-right" style="margin-top:1%;"></i> </div>
+	                </div>
+	
+	                   </div>
+	              </li>
+	              <li class="span3 col-md-1 col-sm-1" style='display:inline-block;height:350px;padding:12% 0 0 2%;'>
+		             	 <button ng-show="isForward" class="btn btn-white btn-round"
+							tooltip-placement="auto" tooltip="Add All" ng-click="addAllStudent()">
+							<i class="fa fa-arrow-right fa-lg text-success"></i>
+						</button>
+						<button  ng-show="isReverse" class="btn btn-white btn-round" style="margin-top:21%;"
+							tooltip-placement="auto" tooltip="Remove All" ng-click="removeAllStudent()">
+							<i class="fa fa-arrow-left fa-lg text-success"></i>
+						</button>
+	              </li>
+	              <li class="span3 col-md-5 col-sm-5" style='display:inline-block;'>
+		             <div class="widget-header widget-header-small">
+		              <div class="col-md-3 col-sm-3 label label-warning pull-right" style="border-radius: 4px 4px 4px 4px;  height: 28px">
+	             	 	<font size="4">{{newAddedList.length}}</font></div>
+	
+	             	 	<div class="col-md-9 col-sm-9" style=" white-space: nowrap;height:23px;overflow: hidden;text-overflow: ellipsis;"
+							 tooltip-placement="auto" tooltip="{{batchName}}">
+	
+						<font size="3" class="widget-title smaller">
+							<span>Batch :{{batchName}}</span>
+						</font>
+						</div>
+					</div>
+	                <div class="thumbnail" style="height:400px;margin-top:1%;overflow:auto;" >
+	                    <div class="btn btn-success btn-round btn-draggable" ng-repeat="item in newAddedList" ng-animate=" {enter: 'animate-enter', leave: 'animate-leave'} " ng-show="item.firstNameUpperCase"
+	                     ng-model="newAddedList"  style="width:98%;margin:1%;" ng-click="addToWaitList(item,$index)">
+	
+	                  	<div  style="width:90%;white-space: normal; float:left;">   {{item.firstNameUpperCase}} ( {{item.enrollmentNumber}} )</div>
+	                  <div class="pull-right" style="display:inline-block;"> <i class="pull-right fa fa-minus-circle fa-lg text-info" style="margin-top:1%;"></i></div>
+	                  	 </div>
+	                  </div>
+	              </li>
+	          </ul>
+		</div>
+				
+				
+				
+
+			<div class="modal-footer">
+				<button type="button" tooltip-placement="auto" tooltip="Save" tooltip-append-to-body="true"
+				 class="btn btn-success btn-round" data-dismiss="modal"	ng-click="saveEvent()"><i class="fa fa-save fa-lg text-info"></i></button>
+					<button type="button" tooltip-placement="auto" tooltip="Close" tooltip-append-to-body="true" 
+					class="btn btn-danger btn-round" data-dismiss="modal" ><i class="fa fa-close fa-lg text-info"></i></button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!-- delete event pop up -->
 <div class="modal fade" id="deleteModel" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" ng-click="deleteRow()">
+				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 				</button>
 				<h4 class="modal-title" id="myModalLabel">Delete Event</h4>

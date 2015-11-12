@@ -86,6 +86,18 @@ public class UserManager{
 		
 		return userService.update(user);
 	}
+
+	public Message loginAction(User user) {
+		return userService.update(user);
+	}
+
+	public List<User> getUserByEmail(String email) {
+		return userService.getUserByEmail(email);
+	}
+
+	public List<User> getAllByIsDeleted(Boolean isDeleted) {
+		return userService.getAllByIsDeleted(isDeleted);
+	}
 	
 	
 }

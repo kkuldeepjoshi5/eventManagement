@@ -25,7 +25,7 @@
 		<property name="dataSource" ref="dataSource" />
 		 <property name="mappingResources">
 			<list>
-				<value>Event.hbm.xml </value>
+				<value>EntityClassMapping.hbm.xml </value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

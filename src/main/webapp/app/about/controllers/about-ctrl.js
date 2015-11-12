@@ -6,7 +6,7 @@
 				var AboutCtrl = function($scope,$http, $location,  i18nNotifications) {
 
 					$scope.getAll=function(){
-						$http.get('/eventManagement/rest/event/getAll')
+						$http.get('/rest/event/getAll')
 						.success(function(res){
 							alert(res);
 						})
@@ -15,7 +15,7 @@
 						});
 					};
 
-					$http({method:'GET',url:'/eventManagement/dataFile/about.json'})
+					$http({method:'GET',url:'/dataFile/about.json'})
 						.success(function(response){
 							$scope.abouts=response.abouts;
 						})

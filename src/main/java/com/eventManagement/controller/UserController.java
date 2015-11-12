@@ -71,16 +71,23 @@ public class UserController implements ServletContextAware  {
 
 	@RequestMapping("/getAll")
 	@ResponseBody
-	public Map<String,Object> getAll() {
+	public Map<String,Object> getAll(HttpServletRequest request) {
+		
 		Map<String,Object> resultMap=new HashMap<String, Object>();
 		List<UserVO> userVOs=new ArrayList<UserVO>();
-		List<User> users=userManager.getAll();
-		for (User user : users) {
+		Boolean isDeleted=Boolean.FALSE;
+		if(request.getParameter("isDeleted")!=null){
+			isDeleted=Boolean.parseBoolean(request.getParameter("isDeleted"));
+		}
+		
+		List<User> users=userManager.getAllByIsDeleted(isDeleted );
+		for (User user: users) {
 			UserVO userVO=new UserVO(user);
 			userVOs.add(userVO);
 		}
 		resultMap.put("userVOs", userVOs);
 		return resultMap;
+		
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -89,9 +96,17 @@ public class UserController implements ServletContextAware  {
 		User user=new User(userVO);
 		return userManager.update(user);
 	}
-
-
-
 	
-	
+	@RequestMapping(value = "/loginAction", method = RequestMethod.POST)
+	public @ResponseBody Message loginAction(@RequestBody UserVO userVO) {		
+		User newUser=new User(userVO);
+		List<User> user=userManager.getUserByEmail(newUser.getEmail());
+		if(user!=null){
+			
+		}else{
+			
+		}
+		return null;//userManager.loginAction(user);
+	}
+
 }

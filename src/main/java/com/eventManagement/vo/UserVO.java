@@ -45,9 +45,9 @@ public class UserVO{
 		if(user.getEmail()!=null){
 			this.email=user.getEmail();
 		}
-		if(user.getPassword()!=null){
+	/*	if(user.getPassword()!=null){
 			this.email=user.getPassword();
-		}
+		}*/
 		if(user.getRole()!=null){
 			this.role=user.getRole();
 		}

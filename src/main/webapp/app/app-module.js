@@ -2,8 +2,8 @@
 	"use strict";
 
 	define(['app-ctrl','home/home-module','contactUs/contactUs-module','about/about-module','gallery/gallery-module'
-	        ,'ourServices/ourServices-module','profile/profile-module','event/event-module'],
-			function(AppCtrl,homePage,contactUs,about,gallery,ourService,profile,event) {
+	        ,'ourServices/ourServices-module','profile/profile-module','event/event-module','user/user-module'],
+			function(AppCtrl,homePage,contactUs,about,gallery,ourService,profile,event,user) {
 
 		/**
          * Specify main application dependencies...
@@ -20,7 +20,7 @@
          * ( necessary to allow Loader splash pre-AngularJS activity to finish properly )
          */
 
-		app = angular.module(appName, ['ngRoute',/*'chieffancypants.loadingBar', */'ngAnimate',homePage,contactUs,about,gallery,ourService,profile,,event])
+		app = angular.module(appName, ['ngRoute',/*'chieffancypants.loadingBar', */'ngAnimate',homePage,contactUs,about,gallery,ourService,profile,event,user])
 		                               .controller('AppCtrl', AppCtrl);
 
 

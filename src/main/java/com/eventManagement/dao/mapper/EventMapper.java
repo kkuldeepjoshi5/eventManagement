@@ -1,4 +1,4 @@
-package com.eventManagement.dao.mapper;
+/*package com.eventManagement.dao.mapper;
 
 	
 public class EventMapper {
@@ -6,3 +6,4 @@ public class EventMapper {
 
 
 }
+*/

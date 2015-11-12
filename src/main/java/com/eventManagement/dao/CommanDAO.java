@@ -11,4 +11,5 @@ public interface CommanDAO<E> {
 	public List<E> getAll();
 	public E getById(Long id,Class<E> tempClass);
 	public Message update(E e);
+	public List<E> getAllByIsDeleted(Boolean isDeleted);
 }

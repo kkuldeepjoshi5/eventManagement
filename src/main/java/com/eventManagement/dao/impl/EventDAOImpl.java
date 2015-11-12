@@ -1,4 +1,4 @@
-package com.eventManagement.dao.impl;
+/*package com.eventManagement.dao.impl;
 
 
 import java.io.BufferedOutputStream;
@@ -96,7 +96,7 @@ public class EventDAOImpl extends AbstractDAOImpl<Event> implements EventDAO {
 
             query = "{call insertEvent('" + event.getTitle() + "','"
                     + event.getDescription() + "','" + event.getFromDate()+"','"+null+"','"+null+"')}";
-                    /*+ "','" + event.getPhoto().getEventPhoto().getOriginalFilename() + "','"+event.getPhoto().getPhotoDir()+"')}";*/
+                    + "','" + event.getPhoto().getEventPhoto().getOriginalFilename() + "','"+event.getPhoto().getPhotoDir()+"')}";
             System.out.println("query=" + query);
             try {
                 System.out.println(getConnection());
@@ -128,8 +128,8 @@ public class EventDAOImpl extends AbstractDAOImpl<Event> implements EventDAO {
     protected void saveImage(Event event) throws IOException {
 
          BufferedOutputStream stream=null;
-        /*	stream = new BufferedOutputStream( new FileOutputStream(event.getPhoto().getPhotoDir()));
-             stream.write(event.getPhoto().getEventPhoto().getBytes());*/
+        	stream = new BufferedOutputStream( new FileOutputStream(event.getPhoto().getPhotoDir()));
+             stream.write(event.getPhoto().getEventPhoto().getBytes());
          stream.close();
     }
 
@@ -150,3 +150,4 @@ public class EventDAOImpl extends AbstractDAOImpl<Event> implements EventDAO {
 
 
 }
+*/

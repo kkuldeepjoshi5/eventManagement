@@ -39,4 +39,11 @@ public class EventDAOImpl extends AbstractDAOImpl<Event> implements EventDAO {
 	public Message update(Event event) {
 		return super.update(event);
 	}
+
+	@Override
+	public List<Event> getAllByIsDeleted(Boolean isDeleted) {
+		
+		String hql="From Event WHERE isDeleted = :isDeleted";
+		return super.getAllByIsDeleted(hql,isDeleted);
+	}
 }
