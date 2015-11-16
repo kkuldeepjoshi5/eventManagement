@@ -25,8 +25,8 @@ public class EventUserDAOImpl extends AbstractDAOImpl<EventUser> implements Even
 	 }
 
 	@Override
-	public Message insert(EventUser eventUser) {
-		return super.insert(eventUser);
+	public Long insert(EventUser eventUser) {
+		return  super.insert(eventUser);
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class EventUserDAOImpl extends AbstractDAOImpl<EventUser> implements Even
 	}
 
 	@Override
-	public Message update(EventUser eventUser) {
+	public EventUser update(EventUser eventUser) {
 		return super.update(eventUser);
 	}
 

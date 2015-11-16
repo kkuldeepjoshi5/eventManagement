@@ -18,10 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.ServletContextAware;
 
 import com.eventManagement.entity.Event;
+import com.eventManagement.entity.EventUser;
 import com.eventManagement.manager.EventManager;
-import com.eventManagement.utility.Message;
 import com.eventManagement.vo.EventVO;
-import com.eventManagement.vo.UserVO;
 
 @Controller
 @RequestMapping("/event")
@@ -49,24 +48,32 @@ public class EventController implements ServletContextAware {
 
 	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
 	@ResponseBody
-	public  Message delete(HttpServletRequest request) {
+	public  String delete(HttpServletRequest request) {
 		try{
 			Long eventId =Long.parseLong(request.getParameter("eventId"));
-			return eventManager.delete(eventId);
+			Event event=eventManager.delete(eventId);
+			return "delete.success";
 		}catch(Exception e){
 			e.printStackTrace();
-			return (new Message("Exception:"+e));
+			return ("Exception:"+e);
 		}
 
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	@ResponseBody
-	public  Message insert( @RequestBody EventVO eventVO,HttpServletRequest request){
+	public  String insert( @RequestBody EventVO eventVO,HttpServletRequest request){
 
 		System.out.println("in insert mode::");
 		Event event=new Event(eventVO);
-		return eventManager.insert(event);
+		event=eventManager.insert(event);
+		if(event.getId()!=null){
+			eventVO.setId(event.getId());
+		}
+		if(eventVO.getEventUsers()!=null){
+			List<EventUser> eventUsers=eventManager.InsertEventUserFromEventVO(eventVO);
+		}
+		return "save.success";
 	}
 
 
@@ -90,18 +97,19 @@ public class EventController implements ServletContextAware {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public @ResponseBody Message update(@RequestBody EventVO eventVO) {
+	public @ResponseBody String update(@RequestBody EventVO eventVO) {
 
 		Event event=new Event(eventVO);
-		return eventManager.update(event);
+		event=eventManager.update(event);
+		return "update.success";
 	}
 
 	@RequestMapping(value="/beforeCreate",method=RequestMethod.GET)
 	@ResponseBody
 	public Map<String,Object> beforeCreate(HttpServletRequest request) {
 		Map<String,Object> resultMap=new HashMap<String, Object>();
-		List<UserVO> userVOs = eventManager.beforeCreate();
-		resultMap.put("AvailableUsers", userVOs);
+		List<EventUser> eventUser = eventManager.beforeCreate();
+		resultMap.put("availableUsers", eventUser);
 		return resultMap;
 	}
 

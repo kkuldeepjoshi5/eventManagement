@@ -41,9 +41,9 @@ public class UserManager{
 		this.userService = userService;
 	}
 
-	public Message delete(Long userId) {
+	public User delete(Long userId) {
 		User user=userService.getById(userId);
-		//user.setDeleted(true);
+		user.setIsDeleted(true);
 		return userService.update(user);
 	}
 
@@ -83,13 +83,12 @@ public class UserManager{
 
 
 
-	public Message update(User user) {
-
+	public User update(User user) {
 		return userService.update(user);
 	}
 
 	public Message loginAction(User user) {
-		return userService.update(user);
+		return null;
 	}
 
 	public List<User> getUserByEmail(String email) {

@@ -54,15 +54,41 @@
 						$scope.setBG(contact);
 						$location.path(contact);
 					};
-
+					$scope.addToList=function(item,index,type){
+						if(type=='newAdd'){
+							EventManager.addToList(item,index,$scope.newAddedList,$scope.waitList);
+						}else{
+							EventManager.addToList(item,index,$scope.waitList,$scope.newAddedList);
+						}
+						
+						EventManager.setAddRemoveBtn($scope.waitList,$scope.newAddedList,$scope);
+					};
+					
+					$scope.addAll=function(type){
+						if(type=='newAdd'){
+							EventManager.transferAll($scope.newAddedList,$scope.waitList);
+						}else{
+							EventManager.transferAll($scope.waitList,$scope.newAddedList);	
+						}
+						EventManager.setAddRemoveBtn($scope.waitList,$scope.newAddedList,$scope);
+					};
+					
 					$scope.beforeCreate=function(){
 
 						$scope.newEvent=[];
 						$scope.newEvent.fromDate = new Date();
 						$scope.newEvent.toDate = new Date();
+						$scope.waitList=[];
+						$scope.newAddedList=[];
+						$scope.isForward=false;
+						$scope.isReverse=false;
 						EventService.beforeCreate(function(response){
-									$scope.createrData=angular.copy(response);
-
+									
+									if(response!=null && response.availableUsers!=null){
+										$scope.createrData=angular.copy(response.availableUsers);
+										EventManager.loadList($scope.createrData,$scope.waitList);
+										EventManager.setAddRemoveBtn($scope.waitList,$scope.newAddedList,$scope);
+									}
 								},function(error){
 									console.log(error);
 									return null;
@@ -77,7 +103,8 @@
 							title:$scope.newEvent.title,
 							description:$scope.newEvent.description,
 							fromDate:$scope.newEvent.fromDate,
-								toDate:$scope.newEvent.toDate
+							toDate:$scope.newEvent.toDate,
+							eventUsers:EventManager.getEventUserList($scope.createrData,$scope.newAddedList)
 						};
 						console.log(eventVO);
 						EventManager.saveEvent(path,eventVO);

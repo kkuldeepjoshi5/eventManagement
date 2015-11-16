@@ -33,9 +33,11 @@ public class EventUserServiceImpl implements EventUserService {
 	}
 
 	@Override
-	public Message insert(EventUser eventUser) {
+	public EventUser insert(EventUser eventUser) {
 		System.out.println("in service");
-		return eventUserDAO.insert(eventUser);
+		Long id = eventUserDAO.insert(eventUser);
+		eventUser.setId(id);
+		return eventUser;
 	}
 
 	@Override
@@ -49,7 +51,7 @@ public class EventUserServiceImpl implements EventUserService {
 	}
 
 	@Override
-	public Message update(EventUser eventUser) {
+	public EventUser update(EventUser eventUser) {
 		return eventUserDAO.update(eventUser);
 	}
 

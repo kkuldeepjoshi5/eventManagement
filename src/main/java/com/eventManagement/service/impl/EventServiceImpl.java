@@ -33,9 +33,11 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public Message insert(Event event) {
+	public Event insert(Event event) {
 		System.out.println("in service");
-		return eventDAO.insert(event);
+		Long id=eventDAO.insert(event);
+		event.setId(id);
+		return event;
 	}
 
 	@Override
@@ -49,7 +51,7 @@ public class EventServiceImpl implements EventService {
 	}
 	
 	@Override
-	public Message update(Event event) {
+	public Event update(Event event) {
 		return eventDAO.update(event);
 	}
 

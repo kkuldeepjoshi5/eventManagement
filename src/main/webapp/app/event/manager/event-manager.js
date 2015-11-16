@@ -28,45 +28,54 @@
 										console.log(error);
 									});
 							},
-					addToWaitList:function(item,index,waitList,newAddedList){
-								waitList.unshift(item);
-								newAddedList.splice(index,1);
-								setAddRemoveBtn();
+					addToList:function(item,index,destList,sourceList){
+								destList.unshift(item);
+								sourceList.splice(index,1);
 							},
-					addToNewAddList:function(item,index,waitList,newAddedList){
-								$scope.newAddedList.unshift(item);
-								$scope.waitList.splice(index,1);
-								setAddRemoveBtn();
-							},
-					addToList:function (destination,source){
+					addAllToList:function (destination,source){
 								$.each(source,function(){
 									destination.push(this);
 								});
 							},
 					transferAll:function(destination,source){
 								var temp=angular.copy(source);
-								addToList(temp,destination);
+								this.addAllToList(destination,temp);
 								destination=temp;
-								source=[];
-								setAddRemoveBtn();
+								source.splice(0,source.length);
 							},
-					setAddRemoveBtn	:function (waitList,newAddedList,isForward,isReverse){
-								if(!_.isEmpty(waitList)){
-									isForward=true;
+					setAddRemoveBtn	:function (source,dest,scope){
+								if(!_.isEmpty(source)){
+									scope.isForward=true;
 								}else{
-									isForward=false;
+									scope.isForward=false;
 								}
-								if(!_.isEmpty(newAddedList)){
-									isReverse=true;
+								if(!_.isEmpty(dest)){
+									scope.isReverse=true;
 								}else{
-									isReverse=false;
+									scope.isReverse=false;
 								}
 							},
-					loadList:function(){
-							 var idList=_.pluck($scope.newAddedList,'id');
-				        	 if( ! _.contains(idList,item.id)){
-				        		 $scope.waitList.push({firstNameUpperCase: item.name, enrollmentNumber: item.enrollmentNumber,id:item.id});
-				        	 }
+					getEventUserList:function(listData,uiList){
+						var eventUsers=[];
+									var filterData=_.filter(listData,function(item){
+										var found=false;
+										$.each(uiList,function(k,v){
+											if(v.id==item.userId){
+												found=true;
+												return true;
+											}
+										});
+										if(found){
+											return true;
+										}
+									});
+									eventUsers=filterData;
+								return eventUsers;
+							},
+					loadList:function(ListData,destList){
+								$.each(ListData,function(){
+									destList.push({id:this.userId,primary:this.userName,secondry:this.role});
+								});
 							},
 					gridOptions : {
 							multiSelect : false,

@@ -26,7 +26,7 @@ public class UserDAOImpl extends AbstractDAOImpl<User> implements UserDAO {
 	 }
 
 	@Override
-	public Message insert(User user) {
+	public Long insert(User user) {
 		return super.insert(user);
 	}
 
@@ -47,7 +47,7 @@ public class UserDAOImpl extends AbstractDAOImpl<User> implements UserDAO {
 	}
 
 	@Override
-	public Message update(User user) {
+	public User update(User user) {
 		return super.update(user);
 	}
 

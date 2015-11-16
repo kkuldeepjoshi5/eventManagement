@@ -21,20 +21,18 @@ public abstract class AbstractDAOImpl<E> {
         return sessionFactory.getCurrentSession();
     }
 
-	public Message insert(E e)  {
-		Message message=new Message();
-		message.setMessageString("fail to insert data...");
+	public Long insert(E e)  {
+		Long created=null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			Transaction trans=session.beginTransaction();
-			session.save(e);
+			 created= (Long) session.save(e);
 			trans.commit();
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			message.setMessageString(ex.getMessage());
 		}
 
-		return message;
+		return created;
 	}
 
 	public Message remove(Long id,Class<E> tempClass) {
@@ -95,19 +93,18 @@ public abstract class AbstractDAOImpl<E> {
 
 
 
-	public Message update(E e) {
-		Message message=new Message();
-		message.setMessageString("fail to update data...");
+	public E update(E e) {
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			Transaction trans=session.beginTransaction();
-	        session.update(e);
+			session.update(e);
 	        trans.commit();
+	        return e;
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			message.setMessageString(ex.getMessage());
+			return null;
 		}
-		return message;
+		
 	}
 
 }

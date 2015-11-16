@@ -10,8 +10,7 @@ import com.eventManagement.entity.EventUser;
 import com.eventManagement.entity.User;
 import com.eventManagement.enums.UserRoleType;
 import com.eventManagement.service.EventService;
-import com.eventManagement.utility.Message;
-import com.eventManagement.vo.UserVO;
+import com.eventManagement.vo.EventVO;
 
 public class EventManager{
 
@@ -46,7 +45,7 @@ public class EventManager{
 		this.eventService = eventService;
 	}
 
-	public Message delete(Long eventId) {
+	public Event delete(Long eventId) {
 		Event event=eventService.getById(eventId);
 		event.setIsDeleted(Boolean.TRUE);
 		return eventService.update(event);
@@ -78,7 +77,7 @@ public class EventManager{
 		return event;
 	}*/
 
-	public Message insert(Event event) {
+	public Event insert(Event event) {
 		return eventService.insert(event);
 	}
 
@@ -86,7 +85,7 @@ public class EventManager{
 		return eventService.getAll();
 	}
 
-	public Message update(Event event) {
+	public Event update(Event event) {
 
 		return eventService.update(event);
 	}
@@ -95,24 +94,36 @@ public class EventManager{
 		return eventService.getAllByIsDeleted(isDeleted);
 	}
 
-	public List<UserVO> beforeCreate() {
-		List<UserVO> userVOs=new ArrayList<UserVO>();
+	public List<EventUser> beforeCreate() {
+		List<EventUser> eventUserVOs=new ArrayList<EventUser>();
 		List<User> users=userManager.getAllByIsDeleted(false );
 		userManager.filterFromRole(users,UserRoleType.ADMIN.name());
 		for (User user : users) {
-			UserVO userVO=new UserVO(user);
-			userVOs.add(userVO);
+			EventUser eventUser=new EventUser();
+			eventUser.setUserId(user.getId());
+			eventUser.setRole(user.getRole());
+			eventUser.setUserName(user.getFirstName()+" "+user.getLastName());
+			eventUserVOs.add(eventUser);
 		}
-		return userVOs;
+		return eventUserVOs;
 	}
 
 	public Map<String, Object> beforeEdit(Long eventID) {
 		Map<String,Object> resultMap=new HashMap<String, Object>();
-		List<UserVO> availableUsers=beforeCreate();
+		List<EventUser> availableUsers=beforeCreate();
 		List<EventUser> existingUsers=eventUserManager.getByEventId(eventID);
 		resultMap.put("availableUsers", availableUsers);
 		resultMap.put("existingUsers", existingUsers);
 		return resultMap;
+	}
+
+	public List<EventUser> InsertEventUserFromEventVO(EventVO eventVO) {
+		List<EventUser> eventUserList=eventVO.getEventUsers();
+		for (EventUser eventUser : eventUserList) {
+			eventUser.setEventId(eventVO.getId());
+			eventUser.setEventTitle(eventVO.getTitle());
+		}
+		return eventUserManager.insertAll(eventUserList);
 	}
 
 

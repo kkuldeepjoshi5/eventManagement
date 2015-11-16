@@ -1,8 +1,10 @@
 package com.eventManagement.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import com.eventManagement.entity.Event;
+import com.eventManagement.entity.EventUser;
 
 public class EventVO{
 
@@ -21,6 +23,8 @@ public class EventVO{
 	private Boolean deleted;
 
 	private Long requestId;
+	
+	private List<EventUser> eventUsers; 
 
 	public EventVO(){
 
@@ -114,6 +118,14 @@ public class EventVO{
 
 	public void setRequestId(Long requestId) {
 		this.requestId = requestId;
+	}
+
+	public List<EventUser> getEventUsers() {
+		return eventUsers;
+	}
+
+	public void setEventUsers(List<EventUser> eventUsers) {
+		this.eventUsers = eventUsers;
 	}
 
 }

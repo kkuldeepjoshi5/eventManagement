@@ -31,9 +31,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Message insert(User user) {
-		System.out.println("in service");
-		return userDAO.insert(user);
+	public User insert(User user) {
+		Long id= userDAO.insert(user);
+		user.setId(id);
+		return user;
 	}
 
 	@Override
@@ -42,7 +43,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Message update(User user) {
+	public User update(User user) {
 		return userDAO.update(user);
 	}
 

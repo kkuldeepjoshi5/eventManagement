@@ -15,7 +15,7 @@ public class EventDAOImpl extends AbstractDAOImpl<Event> implements EventDAO {
 
 
 	@Override
-	public Message insert(Event event) {
+	public Long insert(Event event) {
 		return super.insert(event);
 	}
 
@@ -36,7 +36,7 @@ public class EventDAOImpl extends AbstractDAOImpl<Event> implements EventDAO {
 	}
 
 	@Override
-	public Message update(Event event) {
+	public Event update(Event event) {
 		return super.update(event);
 	}
 

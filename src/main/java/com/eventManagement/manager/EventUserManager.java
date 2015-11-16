@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.eventManagement.entity.EventUser;
 import com.eventManagement.service.EventUserService;
-import com.eventManagement.utility.Message;
 
 public class EventUserManager{
 
@@ -18,13 +17,13 @@ public class EventUserManager{
 		this.eventUserService = eventUserService;
 	}
 
-	public Message delete(Long eventUserId) {
+	public EventUser delete(Long eventUserId) {
 		EventUser eventUser=eventUserService.getById(eventUserId);
 		eventUser.setIsDeleted(Boolean.TRUE);
 		return eventUserService.update(eventUser);
 	}
 
-	public Message insert(EventUser eventUser) {
+	public EventUser insert(EventUser eventUser) {
 		return eventUserService.insert(eventUser);
 	}
 
@@ -32,8 +31,7 @@ public class EventUserManager{
 		return eventUserService.getAll();
 	}
 
-	public Message update(EventUser eventUser) {
-
+	public EventUser update(EventUser eventUser) {
 		return eventUserService.update(eventUser);
 	}
 
@@ -44,6 +42,10 @@ public class EventUserManager{
 	public List<EventUser> getByEventId(Long eventID) {
 
 		return eventUserService.getByEventId(eventID);
+	}
+
+	public List<EventUser> insertAll(List<EventUser> eventUserList) {
+		return eventUserService.insertAll(eventUserList);
 	}
 
 

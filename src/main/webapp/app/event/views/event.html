@@ -52,7 +52,7 @@ color:RED;
 <!-- create event pop up -->
 <div class="modal fade" id="createEditModel" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg" style="color:Black;height: 200px;">
+	<div class="modal-dialog modal-lg" style="color:Black;">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" >
@@ -109,10 +109,12 @@ color:RED;
 						<input  type="text" class="form-control" required ng-required="true" ng-model="newEvent.description" placeholder="Enter description" />
 					</div>
 				</div>
-
+<hr>
 				<!-- add user in event -->
-			 <ul style="list-style:none;">
-	              <li class="span3 col-md-5 col-sm-5" style='display:inline-block;'>
+			 <div class="" style="height: 445px;">
+			 	   <div class="col-md-1 col-sm-1" style="">
+			 		</div>
+	              <div class="col-md-5 col-sm-5" style="">
 	             	 <div class="widget-header widget-header-small">
 	             	 <div class="col-md-3 col-sm-3 label label-warning pull-right" style="border-radius: 4px 4px 4px 4px;height: 28px;">
 	             	 	<font size="4">{{waitList.length}}</font></div>
@@ -121,49 +123,46 @@ color:RED;
 						</h4>
 					</div>
 					 <div class="thumbnail" style="height:400px;margin-top:1%;overflow:auto;" >
-	                    <div class="btn btn-info btn-round btn-draggable" ng-repeat="item in waitList" ng-animate=" {enter: 'animate-enter', leave: 'animate-leave'}  " ng-show="item.firstNameUpperCase"
-	                   	 ng-model="waitList" style="width:98%;margin:1%;" ng-click="addToNewAddList(item,$index)">
+	                    <div class="btn btn-info btn-round btn-draggable" ng-repeat="item in waitList" ng-animate=" {enter: 'animate-enter', leave: 'animate-leave'}  " ng-show="item.primary"
+	                   	 ng-model="waitList" style="width:98%;margin:1%;" ng-click="addToList(item,$index,'newAdd')">
 
 
-	                 	<div  style="width:90%;white-space: normal; float:left;">  {{item.firstNameUpperCase}} ( {{item.enrollmentNumber}} ) </div>
+	                 	<div  style="width:90%;white-space: normal; float:left;">  {{ item.primary|uppercase }} <span ng-if="item.secondry">( {{item.secondry}} )</span> </div>
 	                <div class="pull-right" style="display:inline-block;"> <i class="fa fa-plus-circle fa-lg text-info pull-right" style="margin-top:1%;"></i> </div>
 	                </div>
 
 	                   </div>
-	              </li>
-	              <li class="span3 col-md-1 col-sm-1" style='display:inline-block;height:350px;padding:12% 0 0 2%;'>
+	              </div>
+	              <div class="col-md-1 col-sm-1" style="height:350px;padding:12% 0 0 2%;">
 		             	 <button ng-show="isForward" class="btn btn-white btn-round"
-							tooltip-placement="auto" tooltip="Add All" ng-click="addAllStudent()">
+							tooltip-placement="auto" tooltip="Add All" ng-click="addAll('newAdd')">
 							<i class="fa fa-arrow-right fa-lg text-success"></i>
 						</button>
 						<button  ng-show="isReverse" class="btn btn-white btn-round" style="margin-top:21%;"
-							tooltip-placement="auto" tooltip="Remove All" ng-click="removeAllStudent()">
+							tooltip-placement="auto" tooltip="Remove All" ng-click="addAll('wait')">
 							<i class="fa fa-arrow-left fa-lg text-success"></i>
 						</button>
-	              </li>
-	              <li class="span3 col-md-5 col-sm-5" style='display:inline-block;'>
+	              </div>
+	              <div class="col-md-5 col-sm-5" style="">
 		             <div class="widget-header widget-header-small">
 		              <div class="col-md-3 col-sm-3 label label-warning pull-right" style="border-radius: 4px 4px 4px 4px;  height: 28px">
 	             	 	<font size="4">{{newAddedList.length}}</font></div>
 
-	             	 	<div class="col-md-9 col-sm-9" style=" white-space: nowrap;height:23px;overflow: hidden;text-overflow: ellipsis;"
-							 tooltip-placement="auto" tooltip="{{batchName}}">
+	             		 <h4 class="widget-title smaller">
+							Event staff.
+						</h4>
 
-						<font size="3" class="widget-title smaller">
-							<span>Event staff</span>
-						</font>
-						</div>
 					</div>
 	                <div class="thumbnail" style="height:400px;margin-top:1%;overflow:auto;" >
-	                    <div class="btn btn-success btn-round btn-draggable" ng-repeat="item in newAddedList" ng-animate=" {enter: 'animate-enter', leave: 'animate-leave'} " ng-show="item.firstNameUpperCase"
-	                     ng-model="newAddedList"  style="width:98%;margin:1%;" ng-click="addToWaitList(item,$index)">
+	                    <div class="btn btn-success btn-round btn-draggable" ng-repeat="item in newAddedList" ng-animate=" {enter: 'animate-enter', leave: 'animate-leave'} " ng-show="item.primary"
+	                     ng-model="newAddedList"  style="width:98%;margin:1%;" ng-click="addToList(item,$index,'wait')">
 
-	                  	<div  style="width:90%;white-space: normal; float:left;">   {{item.firstNameUpperCase}} ( {{item.enrollmentNumber}} )</div>
-	                  <div class="pull-right" style="display:inline-block;"> <i class="pull-right fa fa-minus-circle fa-lg text-info" style="margin-top:1%;"></i></div>
+	                <div  style="width:90%;white-space: normal; float:left;">  {{item.primary|uppercase}} <span ng-if="item.secondry">( {{item.secondry}} )</span> </div>
+	               <div class="pull-right" style="display:inline-block;"> <i class="pull-right fa fa-minus-circle fa-lg text-info" style="margin-top:1%;"></i></div>
 	                  	 </div>
 	                  </div>
-	              </li>
-	          </ul>
+	              </div>
+	          </div>
 		</div>
 
 

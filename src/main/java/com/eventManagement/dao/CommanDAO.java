@@ -6,10 +6,10 @@ import com.eventManagement.utility.Message;
 
 public interface CommanDAO<E> {
 
-	public Message insert(E e);
+	public Long insert(E e);
 	public Message remove(Long id,Class<E> tempClass);
 	public List<E> getAll();
 	public E getById(Long id,Class<E> tempClass);
-	public Message update(E e);
+	public E update(E e);
 	public List<E> getAllByIsDeleted(Boolean isDeleted);
 }
