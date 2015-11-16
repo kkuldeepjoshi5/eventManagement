@@ -21,6 +21,7 @@ import com.eventManagement.entity.Event;
 import com.eventManagement.manager.EventManager;
 import com.eventManagement.utility.Message;
 import com.eventManagement.vo.EventVO;
+import com.eventManagement.vo.UserVO;
 
 @Controller
 @RequestMapping("/event")
@@ -78,7 +79,7 @@ public class EventController implements ServletContextAware {
 		if(request.getParameter("isDeleted")!=null){
 			isDeleted=Boolean.parseBoolean(request.getParameter("isDeleted"));
 		}
-		
+
 		List<Event> events=eventManager.getAllByIsDeleted(isDeleted );
 		for (Event event : events) {
 			EventVO eventVO=new EventVO(event);
@@ -95,6 +96,26 @@ public class EventController implements ServletContextAware {
 		return eventManager.update(event);
 	}
 
+	@RequestMapping(value="/beforeCreate",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> beforeCreate(HttpServletRequest request) {
+		Map<String,Object> resultMap=new HashMap<String, Object>();
+		List<UserVO> userVOs = eventManager.beforeCreate();
+		resultMap.put("AvailableUsers", userVOs);
+		return resultMap;
+	}
+
+	@RequestMapping(value="/beforeEdit",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> beforeEdit(HttpServletRequest request) {
+		Map<String,Object> resultMap=null;
+		if(request.getParameter("id")!=null){
+			Long eventID=Long.parseLong(request.getParameter("id"));
+
+			resultMap = eventManager.beforeEdit(eventID);
+		}
+		return resultMap;
+	}
 
 
 }

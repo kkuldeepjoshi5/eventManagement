@@ -45,17 +45,25 @@
 
 	 <bean lazy-init="true"  id="eventService" class="com.eventManagement.service.impl.EventServiceImpl">
 	</bean>
+	<bean lazy-init="true"  id="eventUserService" class="com.eventManagement.service.impl.EventUserServiceImpl">
+	</bean>
 	 <bean lazy-init="true"  id="userService" class="com.eventManagement.service.impl.UserServiceImpl">
 	</bean>
 	<bean lazy-init="true"  id="contactUsManager" class="com.eventManagement.manager.ContactUsManager">
 	</bean>
 
-	<bean  id="eventManager" class="com.eventManagement.manager.EventManager">
-	    <property name="eventService" ref="eventService"></property>
-	</bean>
 	<bean  id="userManager" class="com.eventManagement.manager.UserManager">
 	    <property name="userService" ref="userService"></property>
 	</bean>
+	<bean  id="eventUserManager" class="com.eventManagement.manager.EventUserManager">
+	    <property name="eventUserService" ref="eventUserService"></property>
+	</bean>
+	<bean  id="eventManager" class="com.eventManagement.manager.EventManager">
+	    <property name="eventService" ref="eventService"></property>
+	    <property name="userManager" ref="userManager"></property>
+	    <property name="eventUserManager" ref="eventUserManager"></property>
+	</bean>
+
 
 	<bean  id="contactUsController" class="com.eventManagement.controller.ContactUsController">
 	    <property name="contactUsManager" ref="contactUsManager"></property>

@@ -224,7 +224,7 @@
 	         <plugin>
 	            <groupId>com.google.appengine</groupId>
 	            <artifactId>appengine-maven-plugin</artifactId>
-	            <version>1.9.21</version>
+	            <version>1.9.28</version>
 	            <configuration>
 	              <jvmFlags>
 	                <jvmFlag>-Xdebug</jvmFlag>

@@ -41,5 +41,10 @@ public class EventUserManager{
 		return eventUserService.getAllByIsDeleted(isDeleted);
 	}
 
+	public List<EventUser> getByEventId(Long eventID) {
+
+		return eventUserService.getByEventId(eventID);
+	}
+
 
 }

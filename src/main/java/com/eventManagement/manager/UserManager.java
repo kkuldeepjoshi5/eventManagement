@@ -1,5 +1,6 @@
 package com.eventManagement.manager;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -15,15 +16,15 @@ import com.eventManagement.service.UserService;
 import com.eventManagement.utility.Message;
 
 public class UserManager{
-	
+
 	private UserService userService;
-	
-	 private static SessionFactory factory; 
+
+	 private static SessionFactory factory;
 
 	private ServletContext servletContext;
-	
+
 	private Message message=new Message();
-	
+
 	public ServletContext getServletContext() {
 		return servletContext;
 	}
@@ -50,22 +51,22 @@ public class UserManager{
 		Long userId=0L;
 	  try{
 	         factory = new AnnotationConfiguration().configure().addAnnotatedClass(User.class).buildSessionFactory();
-	      }catch (Throwable ex) { 
+	      }catch (Throwable ex) {
 	         System.err.println("Failed to create sessionFactory object." + ex);
-	         throw new ExceptionInInitializerError(ex); 
+	         throw new ExceptionInInitializerError(ex);
 	      }
 		  Session session = factory.openSession();
 	      Transaction tx = null;
 	      try{
 	         tx = session.beginTransaction();
-	       
-	         userId = (Long) session.save(user); 
+
+	         userId = (Long) session.save(user);
 	         tx.commit();
 	      }catch (HibernateException e) {
 	         if (tx!=null) tx.rollback();
-	         e.printStackTrace(); 
+	         e.printStackTrace();
 	      }finally {
-	         session.close(); 
+	         session.close();
 	      }
 	      if(userId==0L){
 	    	  message.setMessageString("error in insert record");
@@ -80,10 +81,10 @@ public class UserManager{
 		return userService.getAll();
 	}
 
-	
+
 
 	public Message update(User user) {
-		
+
 		return userService.update(user);
 	}
 
@@ -98,6 +99,16 @@ public class UserManager{
 	public List<User> getAllByIsDeleted(Boolean isDeleted) {
 		return userService.getAllByIsDeleted(isDeleted);
 	}
-	
-	
+
+	public void filterFromRole(List<User> users,String role) {
+		List<User> filteredList=new ArrayList<User>();
+		for (User user : users) {
+			if(role.equalsIgnoreCase(user.getRole())){
+				filteredList.add(user);
+			}
+		}
+		users.removeAll(filteredList);
+	}
+
+
 }

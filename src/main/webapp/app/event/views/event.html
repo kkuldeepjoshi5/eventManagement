@@ -1,7 +1,7 @@
 <style>
 .gridStyle {
     border: 1px solid rgb(212,212,212);
-    width: 100%; 
+    width: 100%;
     color:Black !important;
 }
 .editable-clear-x:before{
@@ -39,7 +39,7 @@ color:RED;
 		<h1><i class="fa fa-fire fa-lg"></i> EVENT </h1>
 	</div>
 	<div class="col-md-12 col-sm-12" style="margin-top:1%;">
-		<button class="col-md-1 btn btn-plus btn-white" data-toggle="modal" data-target="#createModel"
+		<button class="col-md-1 btn btn-plus btn-white" ng-click="beforeCreate()"
 				tooltip-placement="auto" tooltip="Create Event" tooltip-append-to-body="true">
 					<i class="fa fa-plus fa-lg text-success"></i></button>
 	</div>
@@ -50,9 +50,9 @@ color:RED;
 </div>
 
 <!-- create event pop up -->
-<div class="modal fade" id="createModel" tabindex="-1" role="dialog"
+<div class="modal fade" id="createEditModel" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog model-large">
+	<div class="modal-dialog modal-lg" style="color:Black;height: 200px;">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" >
@@ -60,7 +60,7 @@ color:RED;
 				</button>
 				<h4 class="modal-title" id="myModalLabel">Create Event</h4>
 			</div>
-			<div class="modal-body" style="color:Black;height: 200px;">
+			<div class="modal-body" >
 				<div class="profile-info-row">
 					<div class="profile-info-name">Title<sup>*</sup>:</div>
 					<div class="profile-info-value">
@@ -74,15 +74,15 @@ color:RED;
 							<input type="text" class="form-control"
 								datepicker-popup="dd/MM/yyyy" data-ng-model="newEvent.fromDate" is-open="isFromDateOpened"
 							 min-date="fromDateMin" ng-required="true" show-weeks="false"
-								close-text="Close"  ng-click="fromDateOpen($event)" /> 
-							
+								close-text="Close"  ng-click="fromDateOpen($event)" />
+
 							<div class="input-group-btn" style="vertical-align: top;">
 								<button type="button" class="btn btn-round btn-white"
 									ng-click="fromDateOpen($event)">
 									<i class="ace-icon fa fa-calendar"></i>
 								</button>
 							</div>
-						</div>	
+						</div>
 					</div>
 				</div>
 				<div class="profile-info-row">
@@ -92,15 +92,15 @@ color:RED;
 							<input type="text" class="form-control"
 								datepicker-popup="dd/MM/yyyy" data-ng-model="newEvent.toDate" is-open="isToDateOpened"
 							 min-date="toDateMin" ng-required="true" show-weeks="false"
-								close-text="Close"  ng-click="toDateOpen($event)" /> 
-							
+								close-text="Close"  ng-click="toDateOpen($event)" />
+
 							<div class="input-group-btn" style="vertical-align: top;">
 								<button type="button" class="btn btn-round btn-white"
 									ng-click="toDateOpen($event)">
 									<i class="ace-icon fa fa-calendar"></i>
 								</button>
 							</div>
-						</div>	
+						</div>
 					</div>
 				</div>
 				<div class="profile-info-row">
@@ -109,28 +109,26 @@ color:RED;
 						<input  type="text" class="form-control" required ng-required="true" ng-model="newEvent.description" placeholder="Enter description" />
 					</div>
 				</div>
-				
+
 				<!-- add user in event -->
-				<hr>
-	
 			 <ul style="list-style:none;">
 	              <li class="span3 col-md-5 col-sm-5" style='display:inline-block;'>
 	             	 <div class="widget-header widget-header-small">
 	             	 <div class="col-md-3 col-sm-3 label label-warning pull-right" style="border-radius: 4px 4px 4px 4px;height: 28px;">
 	             	 	<font size="4">{{waitList.length}}</font></div>
 						<h4 class="widget-title smaller">
-							Select Student to Add.
+							Select event staff.
 						</h4>
 					</div>
 					 <div class="thumbnail" style="height:400px;margin-top:1%;overflow:auto;" >
 	                    <div class="btn btn-info btn-round btn-draggable" ng-repeat="item in waitList" ng-animate=" {enter: 'animate-enter', leave: 'animate-leave'}  " ng-show="item.firstNameUpperCase"
 	                   	 ng-model="waitList" style="width:98%;margin:1%;" ng-click="addToNewAddList(item,$index)">
-	
-	
+
+
 	                 	<div  style="width:90%;white-space: normal; float:left;">  {{item.firstNameUpperCase}} ( {{item.enrollmentNumber}} ) </div>
 	                <div class="pull-right" style="display:inline-block;"> <i class="fa fa-plus-circle fa-lg text-info pull-right" style="margin-top:1%;"></i> </div>
 	                </div>
-	
+
 	                   </div>
 	              </li>
 	              <li class="span3 col-md-1 col-sm-1" style='display:inline-block;height:350px;padding:12% 0 0 2%;'>
@@ -147,19 +145,19 @@ color:RED;
 		             <div class="widget-header widget-header-small">
 		              <div class="col-md-3 col-sm-3 label label-warning pull-right" style="border-radius: 4px 4px 4px 4px;  height: 28px">
 	             	 	<font size="4">{{newAddedList.length}}</font></div>
-	
+
 	             	 	<div class="col-md-9 col-sm-9" style=" white-space: nowrap;height:23px;overflow: hidden;text-overflow: ellipsis;"
 							 tooltip-placement="auto" tooltip="{{batchName}}">
-	
+
 						<font size="3" class="widget-title smaller">
-							<span>Batch :{{batchName}}</span>
+							<span>Event staff</span>
 						</font>
 						</div>
 					</div>
 	                <div class="thumbnail" style="height:400px;margin-top:1%;overflow:auto;" >
 	                    <div class="btn btn-success btn-round btn-draggable" ng-repeat="item in newAddedList" ng-animate=" {enter: 'animate-enter', leave: 'animate-leave'} " ng-show="item.firstNameUpperCase"
 	                     ng-model="newAddedList"  style="width:98%;margin:1%;" ng-click="addToWaitList(item,$index)">
-	
+
 	                  	<div  style="width:90%;white-space: normal; float:left;">   {{item.firstNameUpperCase}} ( {{item.enrollmentNumber}} )</div>
 	                  <div class="pull-right" style="display:inline-block;"> <i class="pull-right fa fa-minus-circle fa-lg text-info" style="margin-top:1%;"></i></div>
 	                  	 </div>
@@ -167,14 +165,14 @@ color:RED;
 	              </li>
 	          </ul>
 		</div>
-				
-				
-				
+
+
+
 
 			<div class="modal-footer">
 				<button type="button" tooltip-placement="auto" tooltip="Save" tooltip-append-to-body="true"
 				 class="btn btn-success btn-round" data-dismiss="modal"	ng-click="saveEvent()"><i class="fa fa-save fa-lg text-info"></i></button>
-					<button type="button" tooltip-placement="auto" tooltip="Close" tooltip-append-to-body="true" 
+					<button type="button" tooltip-placement="auto" tooltip="Close" tooltip-append-to-body="true"
 					class="btn btn-danger btn-round" data-dismiss="modal" ><i class="fa fa-close fa-lg text-info"></i></button>
 			</div>
 		</div>
@@ -185,8 +183,8 @@ color:RED;
 
 <!-- delete event pop up -->
 <div class="modal fade" id="deleteModel" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
+		aria-labelledby="myModalLabel" aria-hidden="true" >
+	<div class="modal-dialog" style="color:Black;height: 200px;">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
@@ -212,6 +210,6 @@ color:RED;
 		<div class="col-md-3">
 			Title: <input type="text" class="form-control" ng-model="event.title"><br/>
 			Description: <input type="text" class="form-control" ng-model="event.des"><br/><br/>
-			
+
 			<button ng-click="saveEvent()">save Event</button>
 		</div> -->

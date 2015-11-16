@@ -17,22 +17,22 @@
     <property name="requestId" column="request_id" type="long"></property>
 
   </class>
-  
-  <class name="com.eventManagement.entity.User" table="user">  
+
+  <class name="com.eventManagement.entity.User" table="user">
       <meta attribute="class-description">       This class contains the user detail.   </meta>
     	<id name="id" type="long" column="id">   <generator class="native"/>    </id>
-            
+
     <property name="firstName" column="firstName" type="string" ></property>
-    <property name="lastName" column="lastName" type="string" ></property>  
-    <property name="email" column="email" type="string"></property>  
-    <property name="role" column="role" type="string"></property>  
-    <property name="dob" column="dob" type="date"></property>  
-    <property name="photoUrl" column="photoUrl" type="string"></property>  
+    <property name="lastName" column="lastName" type="string" ></property>
+    <property name="email" column="email" type="string"></property>
+    <property name="role" column="role" type="string"></property>
+    <property name="dob" column="dob" type="date"></property>
+    <property name="photoUrl" column="photoUrl" type="string"></property>
   	<property name="isDeleted" column="isDeleted" type="boolean"></property>
     <property name="requestId" column="request_id" type="long"></property>
-             
-  </class>  
-  <class name="com.eventManagement.entity.EventUser" table="eventuser">
+
+  </class>
+  <class name="com.eventManagement.entity.EventUser" table="eventUser">
       <meta attribute="class-description">       This class contains the event user detail.   </meta>
     	<id name="id" type="long" column="id">   <generator class="native"/>    </id>
 

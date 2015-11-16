@@ -47,7 +47,7 @@ public class EventUserServiceImpl implements EventUserService {
 	public List<EventUser> getAllByIsDeleted(Boolean isDeleted) {
 		return eventUserDAO.getAllByIsDeleted(isDeleted);
 	}
-	
+
 	@Override
 	public Message update(EventUser eventUser) {
 		return eventUserDAO.update(eventUser);
@@ -58,6 +58,11 @@ public class EventUserServiceImpl implements EventUserService {
 		return eventUserDAO.getById(eventUserId,EventUser.class);
 	}
 
-	
+	@Override
+	public List<EventUser> getByEventId(Long eventID) {
+		return eventUserDAO.getByEventId(eventID);
+	}
+
+
 
 }
