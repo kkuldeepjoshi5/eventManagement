@@ -65,6 +65,12 @@ public class EventUserServiceImpl implements EventUserService {
 		return eventUserDAO.getByEventId(eventID);
 	}
 
+	@Override
+	public List<EventUser> insertAll(List<EventUser> eventUserList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 }

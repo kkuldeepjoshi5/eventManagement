@@ -111,7 +111,16 @@ public class EventManager{
 	public Map<String, Object> beforeEdit(Long eventID) {
 		Map<String,Object> resultMap=new HashMap<String, Object>();
 		List<EventUser> availableUsers=beforeCreate();
+		List<EventUser> tempAvailableList=new ArrayList<EventUser>();
 		List<EventUser> existingUsers=eventUserManager.getByEventId(eventID);
+		for (EventUser existingEventUser : existingUsers) {
+			for(EventUser availableEventUser : availableUsers){
+				if(availableEventUser.getUserId().equals(existingEventUser.getUserId())){
+					tempAvailableList.add(availableEventUser);break;
+				}
+			}
+		}
+		availableUsers.removeAll(tempAvailableList);
 		resultMap.put("availableUsers", availableUsers);
 		resultMap.put("existingUsers", existingUsers);
 		return resultMap;

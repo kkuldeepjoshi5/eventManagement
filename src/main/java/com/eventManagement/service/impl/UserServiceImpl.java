@@ -62,4 +62,10 @@ public class UserServiceImpl implements UserService {
 		return userDAO.getUserByEmail(email);
 	}
 
+	@Override
+	public List<User> insertAll(List<User> eventUserList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

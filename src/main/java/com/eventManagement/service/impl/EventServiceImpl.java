@@ -49,7 +49,7 @@ public class EventServiceImpl implements EventService {
 	public List<Event> getAllByIsDeleted(Boolean isDeleted) {
 		return eventDAO.getAllByIsDeleted(isDeleted);
 	}
-	
+
 	@Override
 	public Event update(Event event) {
 		return eventDAO.update(event);
@@ -60,6 +60,13 @@ public class EventServiceImpl implements EventService {
 		return eventDAO.getById(eventId,Event.class);
 	}
 
-	
+	@Override
+	public List<Event> insertAll(List<Event> eventUserList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
 
 }

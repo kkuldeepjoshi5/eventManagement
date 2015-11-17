@@ -2,7 +2,6 @@ package com.eventManagement.service;
 
 import java.util.List;
 
-import com.eventManagement.entity.EventUser;
 import com.eventManagement.utility.Message;
 
 
@@ -17,9 +16,9 @@ public interface CommanService<E> {
 	public E update(E e);
 
 	public E getById(Long id);
-	
+
 	public List<E> getAllByIsDeleted(Boolean isDeleted);
 
-	List<EventUser> insertAll(List<EventUser> eventUserList);
-	
+	List<E> insertAll(List<E> eventUserList);
+
 }

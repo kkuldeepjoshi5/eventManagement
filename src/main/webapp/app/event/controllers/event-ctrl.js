@@ -28,10 +28,7 @@
 						angular.element("#deleteModel").modal("show");
 						$scope.deleteRow=row.entity;
 					};
-					$scope.editPage=function(row){
-						angular.element("#createEditModel").modal("show");
-						$scope.newEvent=row.entity;
-					};
+
 					$scope.deleteEvent=function(){
 						var obj ={	eventId:$scope.deleteRow.id	};
 						EventManager.deleteEvent($scope.eventGridData,obj,'event.delete.success');
@@ -60,19 +57,43 @@
 						}else{
 							EventManager.addToList(item,index,$scope.waitList,$scope.newAddedList);
 						}
-						
+
 						EventManager.setAddRemoveBtn($scope.waitList,$scope.newAddedList,$scope);
 					};
-					
+
 					$scope.addAll=function(type){
 						if(type=='newAdd'){
 							EventManager.transferAll($scope.newAddedList,$scope.waitList);
 						}else{
-							EventManager.transferAll($scope.waitList,$scope.newAddedList);	
+							EventManager.transferAll($scope.waitList,$scope.newAddedList);
 						}
 						EventManager.setAddRemoveBtn($scope.waitList,$scope.newAddedList,$scope);
 					};
-					
+					$scope.editPage=function(row){
+
+						$scope.newEvent=row.entity;
+						$scope.waitList=[];
+						$scope.newAddedList=[];
+						$scope.isForward=false;
+						$scope.isReverse=false;
+						EventService.beforeEdit($scope.newEvent.id,function(response){
+
+									if(response!=null && response.availableUsers!=null){
+										$scope.createrData1=angular.copy(response.availableUsers);
+										EventManager.loadList($scope.createrData1,$scope.waitList);
+										EventManager.setAddRemoveBtn($scope.waitList,$scope.newAddedList,$scope);
+									}
+									if(response!=null && response.existingUsers!=null){
+										$scope.createrData2=angular.copy(response.existingUsers);
+										EventManager.loadList($scope.createrData2,$scope.newAddedList);
+										EventManager.setAddRemoveBtn($scope.waitList,$scope.newAddedList,$scope);
+									}
+								},function(error){
+									console.log(error);
+									return null;
+								});
+						angular.element("#createEditModel").modal("show");
+					};
 					$scope.beforeCreate=function(){
 
 						$scope.newEvent=[];
@@ -83,7 +104,7 @@
 						$scope.isForward=false;
 						$scope.isReverse=false;
 						EventService.beforeCreate(function(response){
-									
+
 									if(response!=null && response.availableUsers!=null){
 										$scope.createrData=angular.copy(response.availableUsers);
 										EventManager.loadList($scope.createrData,$scope.waitList);

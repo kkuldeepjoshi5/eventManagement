@@ -6,12 +6,12 @@ insert into requester(subject,name,email,phone,message,isDeleted) values('brothe
 
 insert into user(firstName,lastName,email,role,dob,photoUrl,request_id,isDeleted) values('kuldeep','joshi','kkuldeepjoshi5@gmail','ADMIN','1992-01-19','/kuldeepjoshi.jpg',null,'N'); 
 insert into user(firstName,lastName,email,role,dob,photoUrl,request_id,isDeleted) values('raghu','birla','raghu.birla@gmail','CUSTOMER','1993-02-10','/raghu.jpg',1,'N'); 
-insert into user(firstName,lastName,email,role,dob,photoUrl,request_id,isDeleted) values('salagram','sharma','sharma.salagram1@gmail','MANAGER','1990-06-07','/salag.jpg',null,'N')
-insert into eventUser(user_id,event_id,userName,eventTitle,isDeleted) values(3,1,'salagram sharma','raman birthDay','N'); 
-insert into eventUser(user_id,event_id,userName,eventTitle,isDeleted) values(2,1,'raghu birla','raman birthDay','N'); 
-insert into eventUser(user_id,event_id,userName,eventTitle,isDeleted) values(1,1,'kuldeep joshi','raman birthDay','N'); 
-insert into eventUser(user_id,event_id,userName,eventTitle,isDeleted) values(3,2,'salagram sharma','brothers marriage','N'); 
-insert into eventUser(user_id,event_id,userName,eventTitle,isDeleted) values(1,2,'kuldeep joshi','brothers marriage','N'); 
+insert into user(firstName,lastName,email,role,dob,photoUrl,request_id,isDeleted) values('salagram','sharma','sharma.salagram1@gmail','MANAGER','1990-06-07','/salag.jpg',null,'N');
+
+insert into eventUser(user_id,event_id,userName,eventTitle,role,isDeleted) values(3,1,'salagram sharma','raman birthDay','MANAGER','N'); 
+insert into eventUser(user_id,event_id,userName,eventTitle,role,isDeleted) values(2,1,'raghu birla','raman birthDay','CUSTOMER','N'); 
+insert into eventUser(user_id,event_id,userName,eventTitle,role,isDeleted) values(3,2,'salagram sharma','brothers marriage','MANAGER','N'); 
+insert into eventUser(user_id,event_id,userName,eventTitle,role,isDeleted) values(2,2,'raghu birla','brothers marriage','CUSTOMER','N'); 
 
 
 //--- delete from event where id='1'

@@ -45,6 +45,7 @@ create table eventUser (
    event_id BIGINT  NULL,
    userName VARCHAR(100) default NULL,
    eventTitle VARCHAR(100) default NULL,
+   role VARCHAR(50) default NULL,
    isDeleted CHAR(1),
    FOREIGN KEY (user_id) REFERENCES user(id),
    FOREIGN KEY (event_id) REFERENCES event(id),
