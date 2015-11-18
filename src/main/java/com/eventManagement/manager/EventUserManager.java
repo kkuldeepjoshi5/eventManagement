@@ -40,12 +40,19 @@ public class EventUserManager{
 	}
 
 	public List<EventUser> getByEventId(Long eventID) {
-
 		return eventUserService.getByEventId(eventID);
 	}
 
 	public List<EventUser> insertAll(List<EventUser> eventUserList) {
 		return eventUserService.insertAll(eventUserList);
+	}
+
+	public List<EventUser> deleteAll(List<EventUser> deletableList) {
+		return eventUserService.deleteAll(deletableList);
+	}
+
+	public List<EventUser> updateAll(List<EventUser> deletableList) {
+		return eventUserService.updateAll(deletableList);
 	}
 
 

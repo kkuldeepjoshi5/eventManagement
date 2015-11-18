@@ -25,6 +25,10 @@ public class EventVO{
 	private Long requestId;
 	
 	private List<EventUser> eventUsers; 
+	
+	private List<EventUser> creatableEventUsers;
+	
+	private List<EventUser> deletableEventUsers; 
 
 	public EventVO(){
 
@@ -126,6 +130,22 @@ public class EventVO{
 
 	public void setEventUsers(List<EventUser> eventUsers) {
 		this.eventUsers = eventUsers;
+	}
+
+	public List<EventUser> getCreatableEventUsers() {
+		return creatableEventUsers;
+	}
+
+	public void setCreatableEventUsers(List<EventUser> creatableEventUsers) {
+		this.creatableEventUsers = creatableEventUsers;
+	}
+
+	public List<EventUser> getDeletableEventUsers() {
+		return deletableEventUsers;
+	}
+
+	public void setDeletableEventUsers(List<EventUser> deletableEventUsers) {
+		this.deletableEventUsers = deletableEventUsers;
 	}
 
 }

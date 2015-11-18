@@ -31,7 +31,7 @@
 
 					$scope.deleteEvent=function(){
 						var obj ={	eventId:$scope.deleteRow.id	};
-						EventManager.deleteEvent($scope.eventGridData,obj,'event.delete.success');
+						EventManager.deleteEvent($scope.eventGridData,obj,'event.delete.success',$scope.deleteRow);
 					};
 					$scope.gridOptions=EventManager.gridOptions;
 					$scope.currentFocused = "";
@@ -76,16 +76,21 @@
 						$scope.newAddedList=[];
 						$scope.isForward=false;
 						$scope.isReverse=false;
-						EventService.beforeEdit($scope.newEvent.id,function(response){
+						$scope.createrData=[];
+						var obj={
+							id:	$scope.newEvent.id
+						};
+						EventService.beforeEdit(obj,function(response){
 
 									if(response!=null && response.availableUsers!=null){
-										$scope.createrData1=angular.copy(response.availableUsers);
-										EventManager.loadList($scope.createrData1,$scope.waitList);
+										$scope.createrData=angular.copy(response.availableUsers);
+										EventManager.loadList($scope.createrData,$scope.waitList);
 										EventManager.setAddRemoveBtn($scope.waitList,$scope.newAddedList,$scope);
 									}
 									if(response!=null && response.existingUsers!=null){
 										$scope.createrData2=angular.copy(response.existingUsers);
 										EventManager.loadList($scope.createrData2,$scope.newAddedList);
+										$scope.newEvent.eventUsers = $scope.createrData2 ;
 										EventManager.setAddRemoveBtn($scope.waitList,$scope.newAddedList,$scope);
 									}
 								},function(error){
@@ -103,6 +108,7 @@
 						$scope.newAddedList=[];
 						$scope.isForward=false;
 						$scope.isReverse=false;
+						$scope.createrData=[];
 						EventService.beforeCreate(function(response){
 
 									if(response!=null && response.availableUsers!=null){
@@ -121,12 +127,23 @@
 						//angular.copy($scope.newEvent,eventVO);
 						var path='/rest/event/insert';
 						var eventVO={
-							title:$scope.newEvent.title,
-							description:$scope.newEvent.description,
-							fromDate:$scope.newEvent.fromDate,
-							toDate:$scope.newEvent.toDate,
-							eventUsers:EventManager.getEventUserList($scope.createrData,$scope.newAddedList)
-						};
+								title:$scope.newEvent.title,
+								description:$scope.newEvent.description,
+								fromDate:$scope.newEvent.fromDate,
+								toDate:$scope.newEvent.toDate,
+								eventUsers:EventManager.getEventUserList($scope.createrData,$scope.newAddedList)
+							};
+						if($scope.newEvent.id!=null){
+							eventVO.id=$scope.newEvent.id;
+							var newAddedDataList=EventManager.getEventUserList($scope.newEvent.eventUsers , $scope.newAddedList);
+							eventVO.creatableEventUsers=EventManager.getCreatableEventUserInEditMode($scope.createrData , $scope.newAddedList);
+							eventVO.deletableEventUsers=EventManager.getDeletableEventUserInEditMode($scope.createrData , $scope.newAddedList);
+							
+						}else{
+							eventVO.creatableEventUsers=EventManager.getEventUserList($scope.createrData,$scope.newAddedList);
+						}
+					
+						
 						console.log(eventVO);
 						EventManager.saveEvent(path,eventVO);
 					}

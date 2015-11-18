@@ -66,6 +66,18 @@ public class EventServiceImpl implements EventService {
 		return null;
 	}
 
+	@Override
+	public List<Event> deleteAll(List<Event> deletableList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Event> updateAll(List<Event> updatableList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 

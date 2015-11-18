@@ -2,6 +2,7 @@ package com.eventManagement.dao.hbImpl;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -45,5 +46,16 @@ public class EventDAOImpl extends AbstractDAOImpl<Event> implements EventDAO {
 		
 		String hql="From Event WHERE isDeleted = :isDeleted";
 		return super.getAllByIsDeleted(hql,isDeleted);
+	}
+
+	@Override
+	public Map<Long, Event> insertAll(List<Event> elist) {
+		return super.insertAll(elist);
+	}
+
+	@Override
+	public List<Event> updateAll(List<Event> updatableList) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

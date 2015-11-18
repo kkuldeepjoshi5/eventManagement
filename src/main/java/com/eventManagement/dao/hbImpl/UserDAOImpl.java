@@ -2,6 +2,7 @@ package com.eventManagement.dao.hbImpl;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -72,5 +73,11 @@ public class UserDAOImpl extends AbstractDAOImpl<User> implements UserDAO {
 			ex.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public List<User> updateAll(List<User> updatableList) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

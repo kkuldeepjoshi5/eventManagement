@@ -2,6 +2,7 @@ package com.eventManagement.dao.hbImpl;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -29,6 +30,11 @@ public class EventUserDAOImpl extends AbstractDAOImpl<EventUser> implements Even
 		return  super.insert(eventUser);
 	}
 
+	@Override
+	public Map<Long, EventUser> insertAll(List<EventUser> elist) {
+		return super.insertAll(elist);
+	}
+	
 	@Override
 	public Message remove(Long eventUserId, Class<EventUser> tempClass) {
 		return super.remove(eventUserId,tempClass);
@@ -72,5 +78,10 @@ public class EventUserDAOImpl extends AbstractDAOImpl<EventUser> implements Even
 			ex.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public List<EventUser> updateAll(List<EventUser> updatableList) {
+		return super.updateAll(updatableList);
 	}
 }

@@ -9,8 +9,8 @@
 			var isAdmin=true;
 			var data={
 					 isAdmin:true,
-					 saveEvent:function(eventVO){
-								$http.post('/rest/event/insert',eventVO)
+					 saveEvent:function(path,eventVO){
+								$http.post(path,eventVO)
 								.success(function(res){
 									alert("success::"+res);
 								})
@@ -18,10 +18,10 @@
 									alert("error::"+res);
 								});
 							},
-					deleteEvent:function(eventGridData,obj){
+					deleteEvent:function(eventGridData,obj,msg,deleteRow){
 									EventService.deleteEvent(obj,function(response){
-										i18nNotifications.removeAll();
-										i18nNotifications.pushForCurrentRoute('event.delete.success', 'success', {}, {});
+										/*i18nNotifications.removeAll();
+										i18nNotifications.pushForCurrentRoute(msg, 'success', {}, {});*/
 										var deleteIndex=eventGridData.indexOf(deleteRow);
 										eventGridData.splice(deleteIndex, 1);
 									},function(error){

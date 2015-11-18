@@ -1,6 +1,7 @@
 package com.eventManagement.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,8 +68,24 @@ public class EventUserServiceImpl implements EventUserService {
 
 	@Override
 	public List<EventUser> insertAll(List<EventUser> eventUserList) {
+		Map<Long, EventUser> results=eventUserDAO.insertAll(eventUserList);
+		eventUserList.clear();
+		for (Long eventUserId : results.keySet()) {
+			results.get(eventUserId).setId(eventUserId);
+			eventUserList.add(results.get(eventUserId));
+		}
+		return eventUserList;
+	}
+
+	@Override
+	public List<EventUser> deleteAll(List<EventUser> deletableList) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<EventUser> updateAll(List<EventUser> updatableList) {
+		return eventUserDAO.updateAll(updatableList);
 	}
 
 

@@ -66,13 +66,24 @@ public class EventController implements ServletContextAware {
 
 		System.out.println("in insert mode::");
 		Event event=new Event(eventVO);
-		event=eventManager.insert(event);
 		if(event.getId()!=null){
-			eventVO.setId(event.getId());
+			event=eventManager.update(event);
+			if(eventVO.getCreatableEventUsers()!=null && eventVO.getCreatableEventUsers().size()>0){
+				List<EventUser> eventUsers=eventManager.InsertEventUserFromEventVO(eventVO);
+			}
+			if(eventVO.getDeletableEventUsers()!=null && eventVO.getDeletableEventUsers().size()>0){
+				List<EventUser> eventUsers=eventManager.deleteEventUserFromEventVO(eventVO.getDeletableEventUsers());
+			}
+		}else{
+			event=eventManager.insert(event);
+			if(event.getId()!=null){
+				eventVO.setId(event.getId());
+			}
+			if(eventVO.getEventUsers()!=null){
+				List<EventUser> eventUsers=eventManager.InsertEventUserFromEventVO(eventVO);
+			}
 		}
-		if(eventVO.getEventUsers()!=null){
-			List<EventUser> eventUsers=eventManager.InsertEventUserFromEventVO(eventVO);
-		}
+		
 		return "save.success";
 	}
 

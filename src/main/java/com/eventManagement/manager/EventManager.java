@@ -127,12 +127,19 @@ public class EventManager{
 	}
 
 	public List<EventUser> InsertEventUserFromEventVO(EventVO eventVO) {
-		List<EventUser> eventUserList=eventVO.getEventUsers();
+		List<EventUser> eventUserList=eventVO.getCreatableEventUsers();
 		for (EventUser eventUser : eventUserList) {
 			eventUser.setEventId(eventVO.getId());
 			eventUser.setEventTitle(eventVO.getTitle());
 		}
 		return eventUserManager.insertAll(eventUserList);
+	}
+
+	public List<EventUser> deleteEventUserFromEventVO(List<EventUser> deletableList) {
+		for (EventUser eventUser : deletableList) {
+			eventUser.setIsDeleted(Boolean.TRUE);
+		}
+		return eventUserManager.updateAll(deletableList);
 	}
 
 

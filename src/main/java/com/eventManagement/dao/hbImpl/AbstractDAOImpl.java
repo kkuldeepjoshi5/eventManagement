@@ -1,6 +1,9 @@
 package com.eventManagement.dao.hbImpl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -9,6 +12,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.eventManagement.entity.Event;
+import com.eventManagement.entity.EventUser;
 import com.eventManagement.utility.Message;
 
 public abstract class AbstractDAOImpl<E> {
@@ -35,6 +39,22 @@ public abstract class AbstractDAOImpl<E> {
 		return created;
 	}
 
+	public Map<Long,E> insertAll(List<E> elist) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		Map<Long,E> createdEntities = new HashMap<Long, E>();
+		for (E e : elist) {
+			Long created= (Long) session.save(e);
+			createdEntities.put(created, e);
+		}
+
+		tx.commit();
+		session.close();
+
+		return createdEntities;
+	}
+
+	
 	public Message remove(Long id,Class<E> tempClass) {
 		Message message=new Message();
 		try {
@@ -107,4 +127,18 @@ public abstract class AbstractDAOImpl<E> {
 		
 	}
 
+	public List<E> updateAll(List<E> updatableList) {
+		List<E> updatedList=new ArrayList<E>();
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		for (E e : updatableList) {
+			session.update(e);
+			updatedList.add(e);
+		}
+		tx.commit();
+		session.close();
+		return updatedList;
+	}
+
+	
 }

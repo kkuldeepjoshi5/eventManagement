@@ -20,7 +20,7 @@
 						operation : 'beforeCreate'
 					}
 				},
-				getEventForEdit:{
+				beforeEdit:{
 					method : 'GET',
 					params : {
 						operation : 'beforeEdit'

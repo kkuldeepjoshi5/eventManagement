@@ -68,4 +68,16 @@ public class UserServiceImpl implements UserService {
 		return null;
 	}
 
+	@Override
+	public List<User> deleteAll(List<User> deletableList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> updateAll(List<User> updatableList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
