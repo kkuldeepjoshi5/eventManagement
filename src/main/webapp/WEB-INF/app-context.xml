@@ -43,15 +43,21 @@
 		<property name="suffix" value=".html" />
 	</bean>
 
+	 <bean lazy-init="true" id="searchService" class="com.eventManagement.utility.SearchService"></bean>
 	 <bean lazy-init="true"  id="eventService" class="com.eventManagement.service.impl.EventServiceImpl">
 	</bean>
 	<bean lazy-init="true"  id="eventUserService" class="com.eventManagement.service.impl.EventUserServiceImpl">
+	    <property name="searchService" ref="searchService"></property>
 	</bean>
 	 <bean lazy-init="true"  id="userService" class="com.eventManagement.service.impl.UserServiceImpl">
 	</bean>
 	<bean lazy-init="true"  id="contactUsManager" class="com.eventManagement.manager.ContactUsManager">
 	</bean>
 
+	<!-- <bean  id="searchService" class="com.eventManagement.utility.SearchService">
+	     <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean> -->
+	
 	<bean  id="userManager" class="com.eventManagement.manager.UserManager">
 	    <property name="userService" ref="userService"></property>
 	</bean>

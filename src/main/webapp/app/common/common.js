@@ -2,7 +2,6 @@
 	"use strict";
 
 	define(['common/header/header-module',
-	        'common/loading',
 	        'common/directives/tree',
 	        'common/directives/collapsetab',
 	        'common/directives/slider',
@@ -18,7 +17,7 @@
 	        'common/services/easypiechart',
 	        'common/services/uiBreadcrumbs',
 	        'common/directives/listValues'],
-	        function(header, loading, tree, collapsetab, slider, ConfigManager, RunManager, Breadcrumbs, Notifications, LocalizedMessages, I18nNotifications, RestResource, logoutTimer, LogoutTimerConfig, easyPieChart, uiBreadcrumbs, listValues) {
+	        function(header,  tree, collapsetab, slider, ConfigManager, RunManager, Breadcrumbs, Notifications, LocalizedMessages, I18nNotifications, RestResource, logoutTimer, LogoutTimerConfig, easyPieChart, uiBreadcrumbs, listValues) {
 
 		// Module for BreadCrumbs
 		var breadcrumb = 'services.breadcrumbs';
@@ -42,7 +41,7 @@
 		// Common Module which includes all common services/modules required for app
 		var moduleName = 'app.common';
 		var commonModule = angular.module(moduleName, ['angular-underscore', 'pascalprecht.translate', 'ui.grid', 'ngRoute', 'ngResource', 'ui.router', 'ui.bootstrap', 'ui.select2', 'ngIdle', 'datePicker','ngSanitize', 'textAngular'
-		                                               ,'angularFileUpload','ngDragDrop', breadcrumb, header, loading, tree, collapsetab, slider, i18nNotifications, restResource, easyPieChart, uiBreadcrumbs, listValues]);
+		                                               ,'angularFileUpload','ngDragDrop', 'ngAnimate',breadcrumb, header,tree, collapsetab, slider, i18nNotifications, restResource, easyPieChart, uiBreadcrumbs, listValues]);
 		commonModule.run(RunManager);
 		commonModule.config(ConfigManager);
 

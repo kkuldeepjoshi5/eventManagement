@@ -112,7 +112,7 @@ public class EventManager{
 		Map<String,Object> resultMap=new HashMap<String, Object>();
 		List<EventUser> availableUsers=beforeCreate();
 		List<EventUser> tempAvailableList=new ArrayList<EventUser>();
-		List<EventUser> existingUsers=eventUserManager.getByEventId(eventID);
+		List<EventUser> existingUsers=eventUserManager.getByEventIdAndIsDeleted(eventID,Boolean.FALSE);
 		for (EventUser existingEventUser : existingUsers) {
 			for(EventUser availableEventUser : availableUsers){
 				if(availableEventUser.getUserId().equals(existingEventUser.getUserId())){

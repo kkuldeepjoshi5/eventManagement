@@ -7,6 +7,6 @@ import com.eventManagement.entity.EventUser;
 
 public interface EventUserDAO extends CommanDAO<EventUser>{
 
-	public List<EventUser> getByEventId(Long eventID);
+	public List<EventUser> getByEventIdAndIsDeleted(Long eventID, Boolean isDeleted);
 
 }

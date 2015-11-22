@@ -3,15 +3,45 @@
 
 	define([], function() {
 
-		var EventManager = function(EventService,$http,i18nNotifications) {
+		var EventManager = function($q,$interval,EventService,$http,i18nNotifications) {
 			var deleteBtn='<a ng-click="grid.appScope.deleteConfirmation(row)" style="cursor:pointer;margin-left:2%" tooltip-placement="auto" tooltip="Delete" tooltip-append-to-body="true"><i class="fa fa-trash-o fa-lg text-danger"></i></a>';
 			var editBtn='<a ng-click="grid.appScope.editPage(row)" style="cursor:pointer;margin-left:2%" tooltip-placement="auto" tooltip="Edit" tooltip-append-to-body="true"><i class="fa fa-pencil-square-o fa-lg text-info"></i></a>';
 			var isAdmin=true;
+			 var fakeI18n = function( title ){
+				    var deferred = $q.defer();
+				    $interval( function() {
+				      deferred.resolve( 'col: ' + title );
+				    }, 1000, 1);
+				    return deferred.promise;
+				  };
 			var data={
+					 isValidEvent:function(event){
+						if(!_.isEmpty(event)){
+							if(_.isEmpty(event.title)){
+								alert("title name");
+								return false;
+							}else if(_.isEmpty(event.fromDate)){
+								alert("fromDate");
+								return false;
+							}else if(_.isEmpty(event.toDate)){
+								a1lert("toDate");
+								return false;
+							}else{
+								return true;
+							}
+						}else{
+							alert("required field marked with *");
+							return false;
+						}
+					 },
 					 isAdmin:true,
-					 saveEvent:function(path,eventVO){
+					 saveEvent:function(path,eventVO,gridData){
 								$http.post(path,eventVO)
 								.success(function(res){
+									if(eventVO.id==null || event.id== undefined){
+										gridData.push(res.resultVO);
+									}
+									
 									alert("success::"+res);
 								})
 								.error(function(){
@@ -77,32 +107,42 @@
 									destList.push({id:this.userId,primary:this.userName,secondry:this.role});
 								});
 							},
+					merginList:function(list1,list2){
+								$.each(list2,function(){
+									list1.push(this);
+								})
+							},
 					gridOptions : {
 							multiSelect : false,
-							enableCellEditOnFocus : true,
+							enableCellEditOnFocus : false,
+							 exporterMenuCsv: false,
+							 enableGridMenu: true,
+							 gridMenuTitleFilter: fakeI18n,
 							data : 'eventGridData',
+							
 							columnDefs : [
 									{
 										name: 's.no',
 										cellTemplate: '<div align="center" style="padding-top: 6%;" class="ngCellText">{{grid.renderContainers.body.visibleRowCache.indexOf(row) +1}}</div>',
 										enableSorting : false,
+										enableCellEdit: false,
 										width:60
 									},
 									{
 										name : 'title',
-										enableCellEdit: true,
+										enableCellEdit: false,
 										width:300
 									},
 									{
 										field : 'fromDate',
 										type: 'date',
-										enableCellEdit: true,
+										enableCellEdit: false,
 										cellFilter: 'date:"dd-MMM-yyyy"'
 									},
 									{
 										field : 'toDate',
 										type: 'date',
-										enableCellEdit: true,
+										enableCellEdit: false,
 										cellFilter: 'date:"dd-MMM-yyyy"'
 									},
 									{
@@ -121,6 +161,6 @@
 			return data;
 			};
 
-		return [ 'EventService','$http','i18nNotifications',EventManager  ];
+		return ['$q','$interval', 'EventService','$http','i18nNotifications',EventManager  ];
 	});
 }(define));

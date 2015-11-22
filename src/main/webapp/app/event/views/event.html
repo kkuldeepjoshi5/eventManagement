@@ -3,6 +3,7 @@
     border: 1px solid rgb(212,212,212);
     width: 100%;
     color:Black !important;
+    height: auto;
 }
 .editable-clear-x:before{
 	margin-top: -15px !important;
@@ -33,7 +34,30 @@ color:RED;
 	height: 36px;
 	margin:1%;
 }
+.sample-show-hide {
+  padding:10px;
+  border:1px solid black;
+  background:white;
+}
+
+.sample-show-hide {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.sample-show-hide.ng-hide {
+  opacity:0;
+}
 </style>
+ <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+  <div ng-init="checked=true">
+  <label>
+    <input type="checkbox" ng-model="checked" style="float:left; margin-right:10px;"> Is Visible...
+  </label>
+  <div class="check-element sample-show-hide" ng-show="checked" style="clear:both;">
+    Visible...
+  </div>
+</div>
 <div class="container-fluid transparent">
 	<div class="col-md-12 col-sm-12" style="border-bottom: 1px solid #eee;">
 		<h1><i class="fa fa-fire fa-lg"></i> EVENT </h1>
@@ -44,7 +68,7 @@ color:RED;
 					<i class="fa fa-plus fa-lg text-success"></i></button>
 	</div>
 	<div class="col-md-12 col-sm-12" style="margin-top:1%;">
-		<div ui-grid="gridOptions" class="gridStyle"  ui-grid-auto-resize  ui-grid-edit  ui-grid-cellnav>
+		<div ui-grid="gridOptions" class="gridStyle"  ui-grid-auto-resize ng-style="getTableHeight()" ui-grid-exporter >
     </div>
 	</div>
 </div>
@@ -111,7 +135,7 @@ color:RED;
 				</div>
 <hr>
 				<!-- add user in event -->
-			 <div class="" style="height: 445px;">
+			 <div class="" style="height: 334px;">
 			 	   <div class="col-md-1 col-sm-1" style="">
 			 		</div>
 	              <div class="col-md-5 col-sm-5" style="">
@@ -122,7 +146,7 @@ color:RED;
 							Select event staff.
 						</h4>
 					</div>
-					 <div class="thumbnail" style="height:400px;margin-top:1%;overflow:auto;" >
+					 <div class="thumbnail" style="height:300px;margin-top:1%;overflow:auto;" >
 	                    <div class="btn btn-info btn-round btn-draggable" ng-repeat="item in waitList" ng-animate=" {enter: 'animate-enter', leave: 'animate-leave'}  " ng-show="item.primary"
 	                   	 ng-model="waitList" style="width:98%;margin:1%;" ng-click="addToList(item,$index,'newAdd')">
 
@@ -133,7 +157,7 @@ color:RED;
 
 	                   </div>
 	              </div>
-	              <div class="col-md-1 col-sm-1" style="height:350px;padding:12% 0 0 2%;">
+	              <div class="col-md-1 col-sm-1" style="height:300px;padding:12% 0 0 2%;">
 		             	 <button ng-show="isForward" class="btn btn-white btn-round"
 							tooltip-placement="auto" tooltip="Add All" ng-click="addAll('newAdd')">
 							<i class="fa fa-arrow-right fa-lg text-success"></i>
@@ -153,7 +177,7 @@ color:RED;
 						</h4>
 
 					</div>
-	                <div class="thumbnail" style="height:400px;margin-top:1%;overflow:auto;" >
+	                <div class="thumbnail" style="height:300px;margin-top:1%;overflow:auto;" >
 	                    <div class="btn btn-success btn-round btn-draggable" ng-repeat="item in newAddedList" ng-animate=" {enter: 'animate-enter', leave: 'animate-leave'} " ng-show="item.primary"
 	                     ng-model="newAddedList"  style="width:98%;margin:1%;" ng-click="addToList(item,$index,'wait')">
 
@@ -169,10 +193,11 @@ color:RED;
 
 
 			<div class="modal-footer">
-				<button type="button" tooltip-placement="auto" tooltip="Save" tooltip-append-to-body="true"
-				 class="btn btn-success btn-round" data-dismiss="modal"	ng-click="saveEvent()"><i class="fa fa-save fa-lg text-info"></i></button>
 					<button type="button" tooltip-placement="auto" tooltip="Close" tooltip-append-to-body="true"
-					class="btn btn-danger btn-round" data-dismiss="modal" ><i class="fa fa-close fa-lg text-info"></i></button>
+					class="col-md-1 pull-right btn btn-danger btn-round" data-dismiss="modal" ><i class="fa fa-close fa-lg text-info"></i></button>
+				<button type="button" tooltip-placement="auto" tooltip="Save" tooltip-append-to-body="true"
+				 class="col-md-1 btn pull-right btn-success btn-round" data-dismiss="modal"	ng-click="saveEvent()"><i class="fa fa-save fa-lg text-info"></i></button>
+				
 			</div>
 		</div>
 	</div>

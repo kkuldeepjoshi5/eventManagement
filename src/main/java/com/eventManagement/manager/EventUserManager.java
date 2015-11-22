@@ -39,8 +39,8 @@ public class EventUserManager{
 		return eventUserService.getAllByIsDeleted(isDeleted);
 	}
 
-	public List<EventUser> getByEventId(Long eventID) {
-		return eventUserService.getByEventId(eventID);
+	public List<EventUser> getByEventIdAndIsDeleted(Long eventID,Boolean isDeleted) {
+		return eventUserService.getByEventIdAndIsDeletedSearch(eventID,isDeleted);
 	}
 
 	public List<EventUser> insertAll(List<EventUser> eventUserList) {

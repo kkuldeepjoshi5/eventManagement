@@ -62,29 +62,30 @@ public class EventController implements ServletContextAware {
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	@ResponseBody
-	public  String insert( @RequestBody EventVO eventVO,HttpServletRequest request){
-
+	public  Map<String,Object> insert( @RequestBody EventVO eventVO,HttpServletRequest request){
+		 Map<String,Object> resultMap= new HashMap<String, Object>();
 		System.out.println("in insert mode::");
 		Event event=new Event(eventVO);
 		if(event.getId()!=null){
 			event=eventManager.update(event);
 			if(eventVO.getCreatableEventUsers()!=null && eventVO.getCreatableEventUsers().size()>0){
-				List<EventUser> eventUsers=eventManager.InsertEventUserFromEventVO(eventVO);
+				eventManager.InsertEventUserFromEventVO(eventVO);
 			}
 			if(eventVO.getDeletableEventUsers()!=null && eventVO.getDeletableEventUsers().size()>0){
-				List<EventUser> eventUsers=eventManager.deleteEventUserFromEventVO(eventVO.getDeletableEventUsers());
+				eventManager.deleteEventUserFromEventVO(eventVO.getDeletableEventUsers());
 			}
 		}else{
 			event=eventManager.insert(event);
 			if(event.getId()!=null){
 				eventVO.setId(event.getId());
 			}
-			if(eventVO.getEventUsers()!=null){
-				List<EventUser> eventUsers=eventManager.InsertEventUserFromEventVO(eventVO);
+			if(eventVO.getCreatableEventUsers()!=null && eventVO.getCreatableEventUsers().size()>0){
+				eventManager.InsertEventUserFromEventVO(eventVO);
 			}
 		}
-		
-		return "save.success";
+		EventVO resultVO=new EventVO(event);
+		resultMap.put("resultVO", resultVO);
+		return resultMap;
 	}
 
 

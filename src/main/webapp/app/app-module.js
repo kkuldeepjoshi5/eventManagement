@@ -20,8 +20,21 @@
          * ( necessary to allow Loader splash pre-AngularJS activity to finish properly )
          */
 
-		app = angular.module(appName, ['ngRoute',/*'chieffancypants.loadingBar', */'ngAnimate',homePage,contactUs,about,gallery,ourService,profile,event,user])
-		                               .controller('AppCtrl', AppCtrl);
+		app = angular.module(appName, ['ngRoute','angular-loading-bar','ngAnimate',homePage,contactUs,about,gallery,ourService,profile,event,user])
+		                               .controller('AppCtrl', AppCtrl)
+		                               .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+		                            	  
+		                            	   //---to custmize loading bar
+		                            	   /* cfpLoadingBarProvider.includeBar = false;
+		                            	   cfpLoadingBarProvider.includeSpinner = false;
+		                            	   cfpLoadingBarProvider.spinnerTemplate = '<div><span class="fa fa-spinner">Loading...</div>';
+		                            	   cfpLoadingBarProvider.latencyThreshold = 500;
+		                            	//--- ignore a particular $http GET:
+		                            	   $http.get('/status', {
+		                            	     ignoreLoadingBar: true
+		                            	   });*/
+
+		                               	}]);
 
 
         angular.bootstrap(document.getElementsByTagName("html")[0], [appName]);

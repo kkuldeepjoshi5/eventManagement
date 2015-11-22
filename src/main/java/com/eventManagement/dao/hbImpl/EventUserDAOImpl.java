@@ -64,14 +64,15 @@ public class EventUserDAOImpl extends AbstractDAOImpl<EventUser> implements Even
 	}
 
 	@Override
-	public List<EventUser> getByEventId(Long eventID) {
+	public List<EventUser> getByEventIdAndIsDeleted(Long eventID,Boolean isDeleted) {
 		List<EventUser> list = null;
 		try {
-			String hql="From EventUser WHERE eventId = :eventId";
+			String hql="From EventUser WHERE eventId = :eventId AND isDeleted = :isDeleted";
 			Session session = this.sessionFactory.getCurrentSession();
 			Transaction trans=session.beginTransaction();
 			Query query = session.createQuery(hql);
 			query.setParameter("eventId", eventID);
+			query.setParameter("isDeleted", isDeleted);
 	         list = query.list();
 	         trans.commit();
 		} catch (Exception ex) {
