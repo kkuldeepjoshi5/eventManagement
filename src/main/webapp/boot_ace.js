@@ -26,7 +26,8 @@ var root="";
     	{ ngScenario  : root+"/lib/angular-1.4.0/angular-scenario.js"},
     	{ ngSanitize  : root+"/lib/angular-1.4.0/angular-sanitize.min.js"},
     	{ ngTouch  : root+"/lib/angular-1.4.0/angular-touch.min.js"},
-    	{ uiBootstrap: root+"/lib/bootstrap_tpls.js"},
+    	
+    	{ uiBootstrap: root+"/lib/ui-bootstrap-tpls.min.js"},
     	{ underscore : root+"/lib/underscore.js"},
     	{ loadingBar : root+"/lib/loading-bar.min.js"},
     	{ angularIdle: root+"/lib/angular-idle.js"},

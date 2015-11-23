@@ -7,18 +7,11 @@
 
 				var EventCtrl = function($scope,$http, $location, $state, $rootScope,EventData, i18nNotifications,EventService,EventManager) {
 
-					$scope.alerts = [
-					                 { type: 'danger', msg: 'Oh snap! Change a few things up and try submitting again.' },
-					                 { type: 'success', msg: 'Well done! You successfully read this important alert message.' }
-					               ];
+					$scope.notification = [];
 
-					               $scope.addAlert = function() {
-					                 $scope.alerts.push({msg: 'Another alert!'});
-					               };
-
-					               $scope.closeAlert = function(index) {
-					                 $scope.alerts.splice(index, 1);
-					               };
+					$scope.closeAlert = function(index) {
+	                
+	               };
 					               
 					$scope.fromDateOpen = function($event) {
 						$event.preventDefault();
@@ -164,7 +157,7 @@
 								fromDate:$scope.newEvent.fromDate,
 								toDate:$scope.newEvent.toDate,
 							};
-						if(!EventManager.isValidEvent(eventVO)){
+						if(!EventManager.isValidEvent(eventVO,$scope.notification)){
 							return false;
 						}
 						if($scope.newEvent.id!=null){

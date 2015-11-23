@@ -49,22 +49,13 @@ color:RED;
   opacity:0;
 }
 </style>
- <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
-  <div ng-init="checked=true">
-  <label>
-    <input type="checkbox" ng-model="checked" style="float:left; margin-right:10px;"> Is Visible...
-  </label>
-  <div class="check-element sample-show-hide" ng-show="checked" style="clear:both;">
-    Visible...
-  </div>
-</div>
 <div class="container-fluid transparent">
 	<div class="col-md-12 col-sm-12" style="border-bottom: 1px solid #eee;">
 		<h1><i class="fa fa-fire fa-lg"></i> EVENT </h1>
 	</div>
 	<div class="col-md-12 col-sm-12" style="margin-top:1%;">
 		<button class="col-md-1 btn btn-plus btn-white" ng-click="beforeCreate()"
-				tooltip-placement="auto" tooltip="Create Event" tooltip-append-to-body="true">
+				uib-tooltip-placement="auto" uib-tooltip="Create Event" uib-tooltip-append-to-body="true">
 					<i class="fa fa-plus fa-lg text-success"></i></button>
 	</div>
 	<div class="col-md-12 col-sm-12" style="margin-top:1%;">
@@ -96,7 +87,7 @@ color:RED;
 					<div class="profile-info-value">
 						<div class="input-group">
 							<input type="text" class="form-control"
-								datepicker-popup="dd/MM/yyyy" data-ng-model="newEvent.fromDate" is-open="isFromDateOpened"
+								uib-datepicker-popup="dd/MM/yyyy" data-ng-model="newEvent.fromDate" is-open="isFromDateOpened"
 							 min-date="fromDateMin" ng-required="true" show-weeks="false"
 								close-text="Close"  ng-click="fromDateOpen($event)" />
 
@@ -114,7 +105,7 @@ color:RED;
 					<div class="profile-info-value">
 						<div class="input-group">
 							<input type="text" class="form-control"
-								datepicker-popup="dd/MM/yyyy" data-ng-model="newEvent.toDate" is-open="isToDateOpened"
+								uib-datepicker-popup="dd/MM/yyyy" data-ng-model="newEvent.toDate" is-open="isToDateOpened"
 							 min-date="toDateMin" ng-required="true" show-weeks="false"
 								close-text="Close"  ng-click="toDateOpen($event)" />
 
@@ -195,8 +186,8 @@ color:RED;
 			<div class="modal-footer">
 					<button type="button" tooltip-placement="auto" tooltip="Close" tooltip-append-to-body="true"
 					class="col-md-1 pull-right btn btn-danger btn-round" data-dismiss="modal" ><i class="fa fa-close fa-lg text-info"></i></button>
-				<button type="button" tooltip-placement="auto" tooltip="Save" tooltip-append-to-body="true"
-				 class="col-md-1 btn pull-right btn-success btn-round" data-dismiss="modal"	ng-click="saveEvent()"><i class="fa fa-save fa-lg text-info"></i></button>
+				<button type="button" tooltip-placement="auto" uib-tooltip="Save" uib-tooltip-append-to-body="true"
+				 class="col-md-1 btn pull-right btn-success btn-round" ng-click="saveEvent()"><i class="fa fa-save fa-lg text-info"></i></button>
 				
 			</div>
 		</div>

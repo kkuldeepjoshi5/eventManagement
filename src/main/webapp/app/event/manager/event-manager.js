@@ -4,8 +4,8 @@
 	define([], function() {
 
 		var EventManager = function($q,$interval,EventService,$http,i18nNotifications) {
-			var deleteBtn='<a ng-click="grid.appScope.deleteConfirmation(row)" style="cursor:pointer;margin-left:2%" tooltip-placement="auto" tooltip="Delete" tooltip-append-to-body="true"><i class="fa fa-trash-o fa-lg text-danger"></i></a>';
-			var editBtn='<a ng-click="grid.appScope.editPage(row)" style="cursor:pointer;margin-left:2%" tooltip-placement="auto" tooltip="Edit" tooltip-append-to-body="true"><i class="fa fa-pencil-square-o fa-lg text-info"></i></a>';
+			var deleteBtn='<a ng-click="grid.appScope.deleteConfirmation(row)" style="cursor:pointer;margin-left:2%" uib-tooltip-placement="auto" uib-tooltip="Delete" uib-tooltip-append-to-body="true"><i class="fa fa-trash-o fa-lg text-danger"></i></a>';
+			var editBtn='<a ng-click="grid.appScope.editPage(row)" style="cursor:pointer;margin-left:2%" uib-tooltip-placement="auto" uib-tooltip="Edit" uib-tooltip-append-to-body="true"><i class="fa fa-pencil-square-o fa-lg text-info"></i></a>';
 			var isAdmin=true;
 			 var fakeI18n = function( title ){
 				    var deferred = $q.defer();
@@ -15,22 +15,27 @@
 				    return deferred.promise;
 				  };
 			var data={
-					 isValidEvent:function(event){
+					 isValidEvent:function(event,alert){
+					
 						if(!_.isEmpty(event)){
 							if(_.isEmpty(event.title)){
-								alert("title name");
+								alert.type="danger";
+								alert.msg="Please enter title.";
 								return false;
 							}else if(_.isEmpty(event.fromDate)){
-								alert("fromDate");
+								alert.type="danger";
+								alert.msg="Please enter from date.";
 								return false;
 							}else if(_.isEmpty(event.toDate)){
-								a1lert("toDate");
+								alert.type="danger";
+								alert.msg="Please enter to date.";
 								return false;
 							}else{
 								return true;
 							}
 						}else{
-							alert("required field marked with *");
+							alert.type="danger";
+							alert.msg="Please fill. Required field marked with *";
 							return false;
 						}
 					 },
@@ -50,8 +55,6 @@
 							},
 					deleteEvent:function(eventGridData,obj,msg,deleteRow){
 									EventService.deleteEvent(obj,function(response){
-										/*i18nNotifications.removeAll();
-										i18nNotifications.pushForCurrentRoute(msg, 'success', {}, {});*/
 										var deleteIndex=eventGridData.indexOf(deleteRow);
 										eventGridData.splice(deleteIndex, 1);
 									},function(error){
