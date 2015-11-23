@@ -4,7 +4,7 @@
 	http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.eventManagement</groupId>
-	<artifactId>evnetManagement</artifactId>
+	<artifactId>eventManagement</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
 	<name>event Management</name>
@@ -21,6 +21,17 @@
 	</properties>
 
 	<dependencies>
+	<!-- by heroku -->
+		 <dependency>
+	      <groupId>com.sparkjava</groupId>
+	      <artifactId>spark-core</artifactId>
+	      <version>2.2</version>
+	    </dependency>
+	    <dependency>
+	      <groupId>com.sparkjava</groupId>
+	      <artifactId>spark-template-freemarker</artifactId>
+	      <version>2.0.0</version>
+	    </dependency>
 	<!-- hibernate   -->
 		 <dependency>
             <groupId>org.hibernate</groupId>
@@ -159,11 +170,30 @@
 		<finalName>eventManagement</finalName>
  <plugins>
  <!-- heroku app -->
-      <plugin>
-        <groupId>com.heroku.sdk</groupId>
-        <artifactId>heroku-maven-plugin</artifactId>
-        <version>0.5.6</version>
-      </plugin>
+		 <plugin>
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-dependency-plugin</artifactId>
+		  <version>2.4</version>
+		  <executions>
+		    <execution>
+		      <id>copy-dependencies</id>
+		      <phase>package</phase>
+		      <goals><goal>copy-dependencies</goal></goals>
+		    </execution>
+		  </executions>
+		</plugin>
+
+	      <plugin>
+	        <groupId>com.heroku.sdk</groupId>
+	        <artifactId>heroku-maven-plugin</artifactId>
+	        <version>0.5.6</version>
+	        <configuration>
+			  <appName>murmuring-ravine-2713</appName>
+			   <!-- <processTypes>
+			     <web>java $JAVA_OPTS -cp target/classes:target/dependency/* </web>
+			  </processTypes> -->
+			</configuration>
+	      </plugin>
 
 		    <!-- Eclipse project -->
 		  <plugin>

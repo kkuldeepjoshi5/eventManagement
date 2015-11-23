@@ -23,10 +23,10 @@ public class EventUserServiceImpl implements EventUserService {
 
 	@Autowired
 	private EventUserDAO eventUserDAO;
-	
+
 	@Autowired
 	private SearchService searchService ;
-	
+
 	public SearchService getSearchService() {
 		return searchService;
 	}
@@ -83,7 +83,7 @@ public class EventUserServiceImpl implements EventUserService {
 	public List<EventUser> getByEventIdAndIsDeleted(Long eventID,Boolean isDeleted) {
 		return eventUserDAO.getByEventIdAndIsDeleted(eventID,isDeleted);
 	}
-	
+
 	public List<EventUser> getByEventIdAndIsDeletedSearch(Long eventID,Boolean isDeleted){
 		List<EventUser> eventUsers = new ArrayList<EventUser>();
 		Map<String ,Object> criteria=new HashMap<String, Object>();
@@ -93,13 +93,13 @@ public class EventUserServiceImpl implements EventUserService {
 		if(isDeleted!=null){
 			criteria.put(EventUserMetaData.IS_DELETED, isDeleted);
 		}
-		
-		
+
+
 		searchService.setSearchParams(EventUser.class.getSimpleName(), criteria, OperatorType.AND);
 		eventUsers =	searchService.doSearch();
 		return eventUsers;
 	}
-	
+
 
 	@Override
 	public List<EventUser> insertAll(List<EventUser> eventUserList) {
