@@ -9,19 +9,21 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.eventManagement.entity.EventUser;
 import com.eventManagement.enums.OperatorType;
 
 @Service
+@Transactional
 public class SearchService {
-	
+
 	private String className;
-	
+
 	private Map<String,Object> criteria;
-	
+
 	private OperatorType operatorType;
-	
+
 	@Autowired
 	 private SessionFactory sessionFactory;
 
@@ -50,7 +52,7 @@ public class SearchService {
 	}*/
 
 	/**
-	  * 
+	  *
 	  * @param className
 	  * @param criteria
 	  * @param operatorType
@@ -59,15 +61,15 @@ public class SearchService {
 		 this.className=className;
 		 this.criteria=criteria;
 		 this.operatorType=operatorType;
-		 
+
 	 }
-	 
-	 
+
+
 	 public List<EventUser> doSearch(){
 		 List<EventUser> list = null;
 			try {
 				String hql=" From "+this.getClassName();
-				
+
 				if(this.getCriteria()!=null){
 					hql+=" WHERE ";
 					for (String parameterName : this.getCriteria().keySet()) {
