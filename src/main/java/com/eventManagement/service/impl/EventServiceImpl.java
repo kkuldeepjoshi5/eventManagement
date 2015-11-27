@@ -12,7 +12,6 @@ import com.eventManagement.service.EventService;
 import com.eventManagement.utility.Message;
 
 @Service("eventService")
-@Transactional
 public class EventServiceImpl implements EventService {
 
 	@Autowired
@@ -47,7 +46,7 @@ public class EventServiceImpl implements EventService {
 	public List<Event> getAllByIsDeleted(Boolean isDeleted) {
 		return eventDAO.getAllByIsDeleted(isDeleted);
 	}
-	
+
 	@Override
 	public Message update(Event event) {
 		return eventDAO.update(event);
@@ -58,6 +57,6 @@ public class EventServiceImpl implements EventService {
 		return eventDAO.getById(eventId,Event.class);
 	}
 
-	
+
 
 }

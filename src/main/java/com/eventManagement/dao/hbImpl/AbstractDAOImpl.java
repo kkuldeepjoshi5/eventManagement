@@ -7,6 +7,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.eventManagement.entity.Event;
 import com.eventManagement.utility.Message;
@@ -52,13 +53,13 @@ public abstract class AbstractDAOImpl<E> {
 	}
 
 	public List<E> getAll(String hql) {
-		
+
 		List<E> list = null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			Transaction trans=session.beginTransaction();
+
 	         list = session.createQuery(hql).list();
-	         trans.commit();
+
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
