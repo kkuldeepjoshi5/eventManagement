@@ -7,7 +7,7 @@ CREATE TABLE event
   todate date,
   photourl character(200) DEFAULT NULL::bpchar,
   request_id bigint,
-  isdeleted character(1),
+  isdeleted boolean,
   CONSTRAINT eventid PRIMARY KEY (id)
 );
 
@@ -19,7 +19,7 @@ CREATE TABLE eventuser
   username character(100) DEFAULT NULL::bpchar,
   eventtitle character(100) DEFAULT NULL::bpchar,
   role character(50) DEFAULT NULL::bpchar,
-  isdeleted character(1),
+  isdeleted boolean,
   CONSTRAINT usereventid PRIMARY KEY (id),
   CONSTRAINT event_id FOREIGN KEY (event_id)
       REFERENCES event (id) MATCH SIMPLE
@@ -37,7 +37,7 @@ CREATE TABLE requester
   email character(200) DEFAULT NULL::bpchar,
   phone character(200) DEFAULT NULL::bpchar,
   message character(400) DEFAULT NULL::bpchar,
-  isdeleted character(1),
+  isdeleted boolean,
   CONSTRAINT requesterid PRIMARY KEY (id)
 );
 
@@ -51,7 +51,7 @@ CREATE TABLE users
   dob date,
   photourl character(200) DEFAULT NULL::bpchar,
   request_id bigint,
-  isdeleted character(1),
+  isdeleted boolean,
   CONSTRAINT usersid PRIMARY KEY (id)
 );
 

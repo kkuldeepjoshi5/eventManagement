@@ -22,7 +22,7 @@
 
 	 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
-        <property name="url" value="jdbc:postgresql://ec2-54-227-248-123.compute-1.amazonaws.com:5432/d1j3llk7ei2npp?user=hclxnlkkbcjbro&amp;password=GojWmIwKEpfyueR4RMogElJQ8E?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
+        <property name="url" value="jdbc:postgresql://ec2-54-227-248-123.compute-1.amazonaws.com:5432/d1j3llk7ei2npp?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
 
         <property name="username" value="hclxnlkkbcjbro"/>
         <property name="password" value="GojWmIwKEpfyueR4RMogElJQ8E"/>
