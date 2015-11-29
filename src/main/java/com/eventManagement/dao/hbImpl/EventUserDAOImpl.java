@@ -36,7 +36,7 @@ public class EventUserDAOImpl extends AbstractDAOImpl<EventUser> implements Even
 	}
 	
 	@Override
-	public Message remove(Long eventUserId, Class<EventUser> tempClass) {
+	public String remove(Long eventUserId, Class<EventUser> tempClass) {
 		return super.remove(eventUserId,tempClass);
 	}
 

@@ -27,7 +27,7 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public Message remove(Long eventId) {
+	public String remove(Long eventId) {
 
 		return eventDAO.remove(eventId,Event.class);
 	}

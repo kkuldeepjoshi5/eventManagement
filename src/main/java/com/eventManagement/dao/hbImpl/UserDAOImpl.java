@@ -32,7 +32,7 @@ public class UserDAOImpl extends AbstractDAOImpl<User> implements UserDAO {
 	}
 
 	@Override
-	public Message remove(Long userId, Class<User> tempClass) {
+	public String remove(Long userId, Class<User> tempClass) {
 		return super.remove(userId,tempClass);
 	}
 

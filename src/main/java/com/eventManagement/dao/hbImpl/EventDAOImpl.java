@@ -21,7 +21,7 @@ public class EventDAOImpl extends AbstractDAOImpl<Event> implements EventDAO {
 	}
 
 	@Override
-	public Message remove(Long eventId, Class<Event> tempClass) {
+	public String remove(Long eventId, Class<Event> tempClass) {
 		return super.remove(eventId,tempClass);
 	}
 

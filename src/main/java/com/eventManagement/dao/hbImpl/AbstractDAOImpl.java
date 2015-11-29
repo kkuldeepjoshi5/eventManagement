@@ -10,11 +10,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.eventManagement.entity.Event;
-import com.eventManagement.entity.EventUser;
-import com.eventManagement.utility.Message;
 
 public abstract class AbstractDAOImpl<E> {
 
@@ -56,8 +51,7 @@ public abstract class AbstractDAOImpl<E> {
 	}
 
 	
-	public Message remove(Long id,Class<E> tempClass) {
-		Message message=new Message();
+	public String remove(Long id,Class<E> tempClass) {
 		try {
 			 Session session = this.sessionFactory.getCurrentSession();
 		        E e = (E) session.load(tempClass, new Long(id));
@@ -65,9 +59,8 @@ public abstract class AbstractDAOImpl<E> {
 		            session.delete(e);
 		        }
 		} catch (Exception ex) {
-			message.setMessageString(ex.getMessage());
 		}
-		return message;
+		return "remove successfully";
 	}
 
 	public List<E> getAll(String hql) {

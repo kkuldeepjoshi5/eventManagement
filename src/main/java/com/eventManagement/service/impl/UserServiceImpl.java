@@ -4,13 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.eventManagement.dao.UserDAO;
 import com.eventManagement.entity.User;
 import com.eventManagement.service.UserService;
 import com.eventManagement.utility.Message;
 
-@Service
+@Service("userService")
+@Transactional
 public class UserServiceImpl implements UserService {
 
 	@Autowired
@@ -25,7 +27,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Message remove(Long userId) {
+	public String remove(Long userId) {
 
 		return userDAO.remove(userId,User.class);
 	}

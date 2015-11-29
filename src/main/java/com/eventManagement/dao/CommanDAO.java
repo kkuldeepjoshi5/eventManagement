@@ -9,7 +9,7 @@ import com.eventManagement.utility.Message;
 public interface CommanDAO<E> {
 
 	public Long insert(E e);
-	public Message remove(Long id,Class<E> tempClass);
+	public String remove(Long id,Class<E> tempClass);
 	public List<E> getAll();
 	public E getById(Long id,Class<E> tempClass);
 	public E update(E e);

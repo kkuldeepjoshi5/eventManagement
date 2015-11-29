@@ -8,7 +8,7 @@ import com.eventManagement.utility.Message;
 
 public interface CommanService<E> {
 
-	public Message remove(Long id);
+	public String remove(Long id);
 	
 	public List<E> deleteAll(List<E> deletableList);
 

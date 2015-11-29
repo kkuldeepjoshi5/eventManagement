@@ -46,7 +46,7 @@ public class EventUserServiceImpl implements EventUserService {
 	}
 
 	@Override
-	public Message remove(Long eventUserId) {
+	public String remove(Long eventUserId) {
 
 		return eventUserDAO.remove(eventUserId,EventUser.class);
 	}
