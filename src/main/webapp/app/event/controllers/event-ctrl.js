@@ -37,15 +37,7 @@
 
 					
 					 $scope.getTableHeight = function() {
-					       var rowHeight = 30; // your row height
-					       var headerHeight = 50; // your header height
-					       var dataLen=10;
-					       if($scope.eventGridData!=null){
-					    	   dataLen= $scope.eventGridData.length;
-					       }
-					       return {
-					          height: ( dataLen* rowHeight + headerHeight) + "px"
-					       };
+						return  EventManager.setTableHeight($scope.eventGridData);
 					    };
 					
 					$scope.deleteEvent=function(){
@@ -176,7 +168,7 @@
 						
 						console.log(eventVO);
 						
-					}
+					};
 
 				};
 				return [ '$scope','$http', '$location', '$state', '$rootScope', 'EventData','i18nNotifications','EventService','EventManager', EventCtrl ];

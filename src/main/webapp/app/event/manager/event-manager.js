@@ -22,11 +22,11 @@
 								alert.type="danger";
 								alert.msg="Please enter title.";
 								return false;
-							}else if(_.isEmpty(event.fromDate)){
+							}else if(event.fromDate==null || event.fromDate==undefined){
 								alert.type="danger";
 								alert.msg="Please enter from date.";
 								return false;
-							}else if(_.isEmpty(event.toDate)){
+							}else if(event.toDate==null || event.toDate==undefined){
 								alert.type="danger";
 								alert.msg="Please enter to date.";
 								return false;
@@ -49,7 +49,7 @@
 									
 									alert("success::"+res);
 								})
-								.error(function(){
+								.error(function(res){
 									alert("error::"+res);
 								});
 							},
@@ -114,6 +114,17 @@
 								$.each(list2,function(){
 									list1.push(this);
 								})
+							},
+					setTableHeight:function(gridData){
+								 var rowHeight = 30; // your row height
+							       var headerHeight = 50; // your header height
+							       var dataLen=10;
+							       if(gridData !=null){
+							    	   dataLen= gridData.length;
+							       }
+							       return {
+							          height: ( dataLen* rowHeight + headerHeight) + "px"
+							       };
 							},
 					gridOptions : {
 							multiSelect : false,

@@ -12,7 +12,7 @@
 			function(common, UserRoute, UserCtrl,UserManager, UserService,RequesterCtrl,RequesterManager,RequesterService) {
 
 		var moduleName = 'user';
-		angular.module(moduleName, [common, 'ui.grid', 'ui.grid.edit', 'ui.grid.cellNav', 'restResource', 'services.i18nNotifications'])
+		angular.module(moduleName, [common,'ui.grid.exporter', 'ui.grid.autoResize','ui.grid.selection','ui.grid.edit', 'ui.grid.cellNav'])
 				.config(UserRoute)
 				.controller('UserCtrl', UserCtrl)
 				.controller('RequesterCtrl', RequesterCtrl)
@@ -23,4 +23,4 @@
 		return moduleName;
 	});
 
-}(define));
+}(define));	

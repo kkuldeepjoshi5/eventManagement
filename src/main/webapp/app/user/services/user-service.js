@@ -14,16 +14,16 @@
 						operation : 'getAll'
 					}
 				},
-				getUserForEdit:{
+				beforeCreate:{
+					method : 'GET',
+					params : {
+						operation : 'beforeCreate'
+					}
+				},
+				beforeEdit:{
 					method : 'GET',
 					params : {
 						operation : 'beforeEdit'
-					}
-				},
-				getUserForProfile:{
-					method : 'GET',
-					params : {
-						operation : 'showDetail.do'
 					}
 				},
 				deleteUser:{
