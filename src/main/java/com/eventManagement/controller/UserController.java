@@ -47,13 +47,14 @@ public class UserController implements ServletContextAware  {
 
 	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
 	@ResponseBody
-	public  Message delete(HttpServletRequest request) {
+	public  String delete(HttpServletRequest request) {
 		try{
 			Long userId =Long.parseLong(request.getParameter("userId"));
-			return userManager.delete(userId);
+			userManager.delete(userId);
+			return "delete.success";
 		}catch(Exception e){
 			e.printStackTrace();
-			return (new Message("Exception:"+e));
+			return null;
 		}
 
 	}
@@ -91,10 +92,11 @@ public class UserController implements ServletContextAware  {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public @ResponseBody Message update(@RequestBody UserVO userVO) {
+	public @ResponseBody String update(@RequestBody UserVO userVO) {
 
 		User user=new User(userVO);
-		return userManager.update(user);
+		userManager.update(user);
+		return "update.success";
 	}
 	
 	@RequestMapping(value = "/loginAction", method = RequestMethod.POST)

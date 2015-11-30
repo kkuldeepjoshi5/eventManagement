@@ -1,16 +1,15 @@
 package com.eventManagement.dao.hbImpl;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-
-import com.eventManagement.entity.Event;
-import com.eventManagement.utility.Message;
 
 public abstract class AbstractDAOImpl<E> {
 
@@ -22,24 +21,37 @@ public abstract class AbstractDAOImpl<E> {
         return sessionFactory.getCurrentSession();
     }
 
-	public Message insert(E e)  {
-		Message message=new Message();
-		message.setMessageString("fail to insert data...");
+	public Long insert(E e)  {
+		Long created=null;
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			Transaction trans=session.beginTransaction();
-			session.save(e);
+			 created= (Long) session.save(e);
 			trans.commit();
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			message.setMessageString(ex.getMessage());
 		}
 
-		return message;
+		return created;
 	}
 
-	public Message remove(Long id,Class<E> tempClass) {
-		Message message=new Message();
+	public Map<Long,E> insertAll(List<E> elist) {
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		Map<Long,E> createdEntities = new HashMap<Long, E>();
+		for (E e : elist) {
+			Long created= (Long) session.save(e);
+			createdEntities.put(created, e);
+		}
+
+		tx.commit();
+		session.close();
+
+		return createdEntities;
+	}
+
+	
+	public String remove(Long id,Class<E> tempClass) {
 		try {
 			 Session session = this.sessionFactory.getCurrentSession();
 		        E e = (E) session.load(tempClass, new Long(id));
@@ -47,9 +59,8 @@ public abstract class AbstractDAOImpl<E> {
 		            session.delete(e);
 		        }
 		} catch (Exception ex) {
-			message.setMessageString(ex.getMessage());
 		}
-		return message;
+		return "remove successfully";
 	}
 
 	public List<E> getAll(String hql) {
@@ -96,19 +107,32 @@ public abstract class AbstractDAOImpl<E> {
 
 
 
-	public Message update(E e) {
-		Message message=new Message();
-		message.setMessageString("fail to update data...");
+	public E update(E e) {
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			Transaction trans=session.beginTransaction();
-	        session.update(e);
+			session.update(e);
 	        trans.commit();
+	        return e;
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			message.setMessageString(ex.getMessage());
+			return null;
 		}
-		return message;
+		
 	}
 
+	public List<E> updateAll(List<E> updatableList) {
+		List<E> updatedList=new ArrayList<E>();
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		for (E e : updatableList) {
+			session.update(e);
+			updatedList.add(e);
+		}
+		tx.commit();
+		session.close();
+		return updatedList;
+	}
+
+	
 }

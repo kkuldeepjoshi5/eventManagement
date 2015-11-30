@@ -14,16 +14,16 @@
 						operation : 'getAll'
 					}
 				},
-				getEventForEdit:{
+				beforeCreate:{
+					method : 'GET',
+					params : {
+						operation : 'beforeCreate'
+					}
+				},
+				beforeEdit:{
 					method : 'GET',
 					params : {
 						operation : 'beforeEdit'
-					}
-				},
-				getEventForProfile:{
-					method : 'GET',
-					params : {
-						operation : 'showDetail.do'
 					}
 				},
 				deleteEvent:{

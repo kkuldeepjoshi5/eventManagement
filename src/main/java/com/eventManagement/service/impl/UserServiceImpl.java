@@ -4,13 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.eventManagement.dao.UserDAO;
 import com.eventManagement.entity.User;
 import com.eventManagement.service.UserService;
 import com.eventManagement.utility.Message;
 
-@Service
+@Service("userService")
+@Transactional
 public class UserServiceImpl implements UserService {
 
 	@Autowired
@@ -25,15 +27,16 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Message remove(Long userId) {
+	public String remove(Long userId) {
 
 		return userDAO.remove(userId,User.class);
 	}
 
 	@Override
-	public Message insert(User user) {
-		System.out.println("in service");
-		return userDAO.insert(user);
+	public User insert(User user) {
+		Long id= userDAO.insert(user);
+		user.setId(id);
+		return user;
 	}
 
 	@Override
@@ -42,7 +45,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Message update(User user) {
+	public User update(User user) {
 		return userDAO.update(user);
 	}
 
@@ -59,6 +62,24 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getUserByEmail(String email) {
 		return userDAO.getUserByEmail(email);
+	}
+
+	@Override
+	public List<User> insertAll(List<User> eventUserList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> deleteAll(List<User> deletableList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> updateAll(List<User> updatableList) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

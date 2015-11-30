@@ -14,7 +14,9 @@ public class EventUser {
 
 	private String userName;
 
-	private Boolean isDeleted;
+	private Boolean isDeleted=Boolean.FALSE;
+	
+	private String role;
 
 	public EventUser(){
 
@@ -66,5 +68,13 @@ public class EventUser {
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 }

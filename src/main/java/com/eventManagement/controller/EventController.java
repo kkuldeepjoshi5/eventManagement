@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.ServletContextAware;
 
 import com.eventManagement.entity.Event;
+import com.eventManagement.entity.EventUser;
 import com.eventManagement.manager.EventManager;
-import com.eventManagement.utility.Message;
 import com.eventManagement.vo.EventVO;
 
 @Controller
@@ -48,24 +48,44 @@ public class EventController implements ServletContextAware {
 
 	@RequestMapping(value = "/delete", method = RequestMethod.DELETE)
 	@ResponseBody
-	public  Message delete(HttpServletRequest request) {
+	public  String delete(HttpServletRequest request) {
 		try{
 			Long eventId =Long.parseLong(request.getParameter("eventId"));
-			return eventManager.delete(eventId);
+			Event event=eventManager.delete(eventId);
+			return "delete.success";
 		}catch(Exception e){
 			e.printStackTrace();
-			return (new Message("Exception:"+e));
+			return ("Exception:"+e);
 		}
 
 	}
 
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
 	@ResponseBody
-	public  Message insert( @RequestBody EventVO eventVO,HttpServletRequest request){
-
+	public  Map<String,Object> insert( @RequestBody EventVO eventVO,HttpServletRequest request){
+		 Map<String,Object> resultMap= new HashMap<String, Object>();
 		System.out.println("in insert mode::");
 		Event event=new Event(eventVO);
-		return eventManager.insert(event);
+		if(event.getId()!=null){
+			event=eventManager.update(event);
+			if(eventVO.getCreatableEventUsers()!=null && eventVO.getCreatableEventUsers().size()>0){
+				eventManager.InsertEventUserFromEventVO(eventVO);
+			}
+			if(eventVO.getDeletableEventUsers()!=null && eventVO.getDeletableEventUsers().size()>0){
+				eventManager.deleteEventUserFromEventVO(eventVO.getDeletableEventUsers());
+			}
+		}else{
+			event=eventManager.insert(event);
+			if(event.getId()!=null){
+				eventVO.setId(event.getId());
+			}
+			if(eventVO.getCreatableEventUsers()!=null && eventVO.getCreatableEventUsers().size()>0){
+				eventManager.InsertEventUserFromEventVO(eventVO);
+			}
+		}
+		EventVO resultVO=new EventVO(event);
+		resultMap.put("resultVO", resultVO);
+		return resultMap;
 	}
 
 
@@ -78,7 +98,7 @@ public class EventController implements ServletContextAware {
 		if(request.getParameter("isDeleted")!=null){
 			isDeleted=Boolean.parseBoolean(request.getParameter("isDeleted"));
 		}
-		
+
 		List<Event> events=eventManager.getAllByIsDeleted(isDeleted );
 		for (Event event : events) {
 			EventVO eventVO=new EventVO(event);
@@ -89,12 +109,33 @@ public class EventController implements ServletContextAware {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public @ResponseBody Message update(@RequestBody EventVO eventVO) {
+	public @ResponseBody String update(@RequestBody EventVO eventVO) {
 
 		Event event=new Event(eventVO);
-		return eventManager.update(event);
+		event=eventManager.update(event);
+		return "update.success";
 	}
 
+	@RequestMapping(value="/beforeCreate",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> beforeCreate(HttpServletRequest request) {
+		Map<String,Object> resultMap=new HashMap<String, Object>();
+		List<EventUser> eventUser = eventManager.beforeCreate();
+		resultMap.put("availableUsers", eventUser);
+		return resultMap;
+	}
+
+	@RequestMapping(value="/beforeEdit",method=RequestMethod.GET)
+	@ResponseBody
+	public Map<String,Object> beforeEdit(HttpServletRequest request) {
+		Map<String,Object> resultMap=null;
+		if(request.getParameter("id")!=null){
+			Long eventID=Long.parseLong(request.getParameter("id"));
+
+			resultMap = eventManager.beforeEdit(eventID);
+		}
+		return resultMap;
+	}
 
 
 }

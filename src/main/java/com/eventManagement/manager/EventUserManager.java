@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.eventManagement.entity.EventUser;
 import com.eventManagement.service.EventUserService;
-import com.eventManagement.utility.Message;
 
 public class EventUserManager{
 
@@ -18,13 +17,13 @@ public class EventUserManager{
 		this.eventUserService = eventUserService;
 	}
 
-	public Message delete(Long eventUserId) {
+	public EventUser delete(Long eventUserId) {
 		EventUser eventUser=eventUserService.getById(eventUserId);
 		eventUser.setIsDeleted(Boolean.TRUE);
 		return eventUserService.update(eventUser);
 	}
 
-	public Message insert(EventUser eventUser) {
+	public EventUser insert(EventUser eventUser) {
 		return eventUserService.insert(eventUser);
 	}
 
@@ -32,13 +31,28 @@ public class EventUserManager{
 		return eventUserService.getAll();
 	}
 
-	public Message update(EventUser eventUser) {
-
+	public EventUser update(EventUser eventUser) {
 		return eventUserService.update(eventUser);
 	}
 
 	public List<EventUser> getAllByIsDeleted(Boolean isDeleted) {
 		return eventUserService.getAllByIsDeleted(isDeleted);
+	}
+
+	public List<EventUser> getByEventIdAndIsDeleted(Long eventID,Boolean isDeleted) {
+		return eventUserService.getByEventIdAndIsDeletedSearch(eventID,isDeleted);
+	}
+
+	public List<EventUser> insertAll(List<EventUser> eventUserList) {
+		return eventUserService.insertAll(eventUserList);
+	}
+
+	public List<EventUser> deleteAll(List<EventUser> deletableList) {
+		return eventUserService.deleteAll(deletableList);
+	}
+
+	public List<EventUser> updateAll(List<EventUser> deletableList) {
+		return eventUserService.updateAll(deletableList);
 	}
 
 

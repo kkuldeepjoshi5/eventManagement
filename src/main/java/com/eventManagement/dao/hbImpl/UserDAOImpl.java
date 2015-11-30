@@ -2,6 +2,7 @@ package com.eventManagement.dao.hbImpl;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -26,12 +27,12 @@ public class UserDAOImpl extends AbstractDAOImpl<User> implements UserDAO {
 	 }
 
 	@Override
-	public Message insert(User user) {
+	public Long insert(User user) {
 		return super.insert(user);
 	}
 
 	@Override
-	public Message remove(Long userId, Class<User> tempClass) {
+	public String remove(Long userId, Class<User> tempClass) {
 		return super.remove(userId,tempClass);
 	}
 
@@ -47,7 +48,7 @@ public class UserDAOImpl extends AbstractDAOImpl<User> implements UserDAO {
 	}
 
 	@Override
-	public Message update(User user) {
+	public User update(User user) {
 		return super.update(user);
 	}
 
@@ -72,5 +73,11 @@ public class UserDAOImpl extends AbstractDAOImpl<User> implements UserDAO {
 			ex.printStackTrace();
 		}
 		return list;
+	}
+
+	@Override
+	public List<User> updateAll(List<User> updatableList) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

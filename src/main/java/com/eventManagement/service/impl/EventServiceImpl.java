@@ -12,6 +12,7 @@ import com.eventManagement.service.EventService;
 import com.eventManagement.utility.Message;
 
 @Service("eventService")
+@Transactional
 public class EventServiceImpl implements EventService {
 
 	@Autowired
@@ -26,15 +27,17 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public Message remove(Long eventId) {
+	public String remove(Long eventId) {
 
 		return eventDAO.remove(eventId,Event.class);
 	}
 
 	@Override
-	public Message insert(Event event) {
+	public Event insert(Event event) {
 		System.out.println("in service");
-		return eventDAO.insert(event);
+		Long id=eventDAO.insert(event);
+		event.setId(id);
+		return event;
 	}
 
 	@Override
@@ -48,7 +51,7 @@ public class EventServiceImpl implements EventService {
 	}
 
 	@Override
-	public Message update(Event event) {
+	public Event update(Event event) {
 		return eventDAO.update(event);
 	}
 
@@ -56,6 +59,25 @@ public class EventServiceImpl implements EventService {
 	public Event getById(Long eventId) {
 		return eventDAO.getById(eventId,Event.class);
 	}
+
+	@Override
+	public List<Event> insertAll(List<Event> eventUserList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Event> deleteAll(List<Event> deletableList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Event> updateAll(List<Event> updatableList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 
