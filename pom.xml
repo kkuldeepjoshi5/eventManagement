@@ -184,7 +184,7 @@
 			<artifactId>maven-eclipse-plugin</artifactId>
 			<version>2.9</version>
 			<configuration>
-			 <packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
+			
 			        <!-- Always download and attach dependencies source code -->
 				<downloadSources>true</downloadSources>
 				<downloadJavadocs>false</downloadJavadocs>
@@ -207,13 +207,13 @@
 		  </plugin>
 
 		  <!-- For Maven Tomcat Plugin -->
-		  <plugin>
+		 <!--  <plugin>
 		        <artifactId>maven-war-plugin</artifactId>
 		        <version>2.6</version>
 		        <configuration>
 		          <packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
 		        </configuration>
-	      </plugin>
+	      </plugin> -->
 		 <plugin>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-maven-plugin</artifactId>
