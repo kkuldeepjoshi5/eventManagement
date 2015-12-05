@@ -9,8 +9,8 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	 <context:property-placeholder location="classpath*:META-INF/spring/*.properties"/>
-     
+	 <context:property-placeholder location="/WEB-INF/spring/*.properties"/>
+
  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="${database.driverClassName}"/>
         <property name="url" value="${database.url}"/>
@@ -41,8 +41,8 @@
 
 	</bean>
 
-	
-	
+
+
 
 	 <bean lazy-init="true"  id="eventService" class="com.eventManagement.service.impl.EventServiceImpl">
 	</bean>
@@ -52,11 +52,11 @@
 	</bean>
 	<bean lazy-init="true"  id="contactUsManager" class="com.eventManagement.manager.ContactUsManager">
 	</bean>
-	
+
 	<bean  id="eventUserManager" class="com.eventManagement.manager.EventUserManager">
 	     <property name="eventUserService" ref="eventUserService"></property>
 	</bean>
-	
+
 	<bean  id="userManager" class="com.eventManagement.manager.UserManager">
 	    <property name="userService" ref="userService"></property>
 	</bean>
@@ -66,7 +66,7 @@
 	    <property name="userManager" ref="userManager"></property>
 	     <property name="eventUserManager" ref="eventUserManager"></property>
 	</bean>
-	
+
 	<bean  id="contactUsController" class="com.eventManagement.controller.ContactUsController">
 	    <property name="contactUsManager" ref="contactUsManager"></property>
 	</bean>
