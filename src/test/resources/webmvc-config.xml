@@ -11,9 +11,8 @@
 
 		<mvc:annotation-driven />
 		
-		<context:component-scan base-package="com" use-default-filters="false">
-		    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-		</context:component-scan>
+		<context:component-scan base-package="com.eventManagement.controller" />
+		<context:component-scan base-package="com.eventManagement" />
 		
 	<bean id="viewResolver"	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"	value="org.springframework.web.servlet.view.JstlView" />
@@ -88,23 +87,24 @@
 	</bean>
 	<bean lazy-init="true"  id="eventUserDao" class="com.eventManagement.dao.hbImpl.EventUserDaoImpl">
 	</bean>
-	 <bean   id="eventService" class="com.eventManagement.service.impl.EventServiceImpl">
-	     <property name="eventDao" ref="eventDao"></property>
-	</bean>
+	
 	<bean lazy-init="true"  id="userDao" class="com.eventManagement.dao.hbImpl.UserDaoImpl">
 	</bean>
 	<bean lazy-init="true"  id="searchService" class="com.eventManagement.utility.SearchService">
 	</bean>
+	<bean lazy-init="true"  id="contactUsManager" class="com.eventManagement.manager.ContactUsManager">
+	</bean>
 	
-	 
+	  <bean   id="eventService" class="com.eventManagement.service.impl.EventServiceImpl">
+	     <property name="eventDao" ref="eventDao"></property>
+	</bean>
 	 <bean  id="userService" class="com.eventManagement.service.impl.UserServiceImpl">
 	     <property name="userDao" ref="userDao"></property>
 	</bean>
 	<bean   id="eventUserService" class="com.eventManagement.service.impl.EventUserServiceImpl">
 	     <property name="eventUserDao" ref="eventUserDao"></property>
 	</bean>
-	<bean lazy-init="true"  id="contactUsManager" class="com.eventManagement.manager.ContactUsManager">
-	</bean>
+	
 	
 	<bean  id="eventUserManager" class="com.eventManagement.manager.EventUserManager">
 	     <property name="eventUserService" ref="eventUserService"></property>
@@ -130,12 +130,6 @@
 	<bean  id="userController" class="com.eventManagement.controller.UserController">
 	    <property name="userManager" ref="userManager"></property>
 	</bean>
-	
-	<bean  id="userController" class="com.eventManagement.controller.UserController">
-	    <property name="userManager" ref="userManager"></property>
-	</bean>
-	
-	
 	
 	
 </beans>

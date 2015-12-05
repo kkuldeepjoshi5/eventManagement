@@ -21,10 +21,8 @@ import com.eventManagement.utility.SearchService;
 @Transactional
 public class EventUserServiceImpl implements EventUserService {
 
-	@Autowired
 	private EventUserDAO eventUserDAO;
 
-	@Autowired
 	private SearchService searchService ;
 
 	public SearchService getSearchService() {

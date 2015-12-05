@@ -37,10 +37,8 @@ public class EventController implements ServletContextAware {
 		this.eventManager = eventManager;
 	}
 
-	@Autowired
 	private ServletContext servletContext;
 
-	@Override
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;
 

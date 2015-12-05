@@ -17,7 +17,15 @@ public abstract class AbstractDAOImpl<E> {
 	 @Autowired
     private SessionFactory sessionFactory;
 
-    protected Session getSession(){
+    public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
+	protected Session getSession(){
         return sessionFactory.getCurrentSession();
     }
 

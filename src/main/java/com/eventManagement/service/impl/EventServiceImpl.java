@@ -3,6 +3,7 @@ package com.eventManagement.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,7 +16,7 @@ import com.eventManagement.utility.Message;
 @Transactional
 public class EventServiceImpl implements EventService {
 
-	@Autowired
+	
 	private EventDAO eventDAO;
 
 	public EventDAO getEventDAO() {

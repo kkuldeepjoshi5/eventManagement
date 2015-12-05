@@ -84,24 +84,12 @@
 	
 	<!-- <bean  id="eventDaoImpl" class="com.eventManagement.dao.hbImpl.EventDAOImpl"></bean>
 	 -->
-	<bean lazy-init="true"  id="eventDao" class="com.eventManagement.dao.hbImpl.EventDaoImpl">
+
+	 <bean lazy-init="true"  id="eventService" class="com.eventManagement.service.impl.EventServiceImpl">
 	</bean>
-	<bean lazy-init="true"  id="eventUserDao" class="com.eventManagement.dao.hbImpl.EventUserDaoImpl">
+	 <bean lazy-init="true"  id="userService" class="com.eventManagement.service.impl.UserServiceImpl">
 	</bean>
-	 <bean   id="eventService" class="com.eventManagement.service.impl.EventServiceImpl">
-	     <property name="eventDao" ref="eventDao"></property>
-	</bean>
-	<bean lazy-init="true"  id="userDao" class="com.eventManagement.dao.hbImpl.UserDaoImpl">
-	</bean>
-	<bean lazy-init="true"  id="searchService" class="com.eventManagement.utility.SearchService">
-	</bean>
-	
-	 
-	 <bean  id="userService" class="com.eventManagement.service.impl.UserServiceImpl">
-	     <property name="userDao" ref="userDao"></property>
-	</bean>
-	<bean   id="eventUserService" class="com.eventManagement.service.impl.EventUserServiceImpl">
-	     <property name="eventUserDao" ref="eventUserDao"></property>
+	<bean lazy-init="true"  id="eventUserService" class="com.eventManagement.service.impl.EventUserServiceImpl">
 	</bean>
 	<bean lazy-init="true"  id="contactUsManager" class="com.eventManagement.manager.ContactUsManager">
 	</bean>
@@ -130,12 +118,5 @@
 	<bean  id="userController" class="com.eventManagement.controller.UserController">
 	    <property name="userManager" ref="userManager"></property>
 	</bean>
-	
-	<bean  id="userController" class="com.eventManagement.controller.UserController">
-	    <property name="userManager" ref="userManager"></property>
-	</bean>
-	
-	
-	
-	
+
 </beans>

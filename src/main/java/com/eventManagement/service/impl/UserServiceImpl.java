@@ -15,7 +15,7 @@ import com.eventManagement.utility.Message;
 @Transactional
 public class UserServiceImpl implements UserService {
 
-	@Autowired
+	
 	private UserDAO userDAO;
 
 	public UserDAO getUserDAO() {
