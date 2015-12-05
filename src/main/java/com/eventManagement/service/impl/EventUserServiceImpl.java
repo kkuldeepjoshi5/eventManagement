@@ -27,23 +27,7 @@ public class EventUserServiceImpl implements EventUserService {
 	@Autowired
 	private SearchService searchService ;
 
-	public SearchService getSearchService() {
-		return searchService;
-	}
-
-	public void setSearchService(SearchService searchService) {
-		this.searchService = searchService;
-	}
-
 	private EventUserMetaData entityMetaData;
-
-	public EventUserDAO getEventUserDAO() {
-		return eventUserDAO;
-	}
-
-	public void setEventUserDAO(EventUserDAO eventUserDAO) {
-		this.eventUserDAO = eventUserDAO;
-	}
 
 	@Override
 	public String remove(Long eventUserId) {

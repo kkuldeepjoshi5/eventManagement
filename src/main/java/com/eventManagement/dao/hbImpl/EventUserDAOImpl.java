@@ -18,13 +18,6 @@ import com.eventManagement.utility.Message;
 @Repository("eventUserDao")
 public class EventUserDAOImpl extends AbstractDAOImpl<EventUser> implements EventUserDAO {
 
-	 @Autowired
-	 private SessionFactory sessionFactory;
-
-	 protected Session getSession(){
-		   return sessionFactory.getCurrentSession();
-	 }
-
 	@Override
 	public Long insert(EventUser eventUser) {
 		return  super.insert(eventUser);
@@ -34,7 +27,7 @@ public class EventUserDAOImpl extends AbstractDAOImpl<EventUser> implements Even
 	public Map<Long, EventUser> insertAll(List<EventUser> elist) {
 		return super.insertAll(elist);
 	}
-	
+
 	@Override
 	public String remove(Long eventUserId, Class<EventUser> tempClass) {
 		return super.remove(eventUserId,tempClass);
@@ -68,7 +61,7 @@ public class EventUserDAOImpl extends AbstractDAOImpl<EventUser> implements Even
 		List<EventUser> list = null;
 		try {
 			String hql="From EventUser WHERE eventId = :eventId AND isDeleted = :isDeleted";
-			Session session = this.sessionFactory.getCurrentSession();
+			Session session =sessionFactory.getCurrentSession();
 			Transaction trans=session.beginTransaction();
 			Query query = session.createQuery(hql);
 			query.setParameter("eventId", eventID);

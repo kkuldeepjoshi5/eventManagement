@@ -10,11 +10,9 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 		<mvc:annotation-driven />
-		
-		<context:component-scan base-package="com" use-default-filters="false">
-		    <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-		</context:component-scan>
-		
+
+		<context:component-scan base-package="com" />
+
 	<bean id="viewResolver"	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"	value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/webapp/" />
@@ -22,7 +20,7 @@
 	</bean>
 
 	 <!-- <context:property-placeholder location="/WEB-INF/spring/database.properties"/> -->
-<!--  
+<!--
 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="${database.driverClassName}"/>
         <property name="url" value="${database.url}"/>
@@ -35,8 +33,8 @@
         <property name="numTestsPerEvictionRun" value="3"/>
         <property name="minEvictableIdleTimeMillis" value="1800000"/>
         <property name="validationQuery" value="SELECT version();"/>
-    </bean>	 -->	
-      <!-- 
+    </bean>	 -->
+      <!--
  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="org.postgresql.Driver"/>
         <property name="url" value="jdbc:postgresql://localhost:5432/partymanagement?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory"/>
@@ -50,20 +48,14 @@
         <property name="minEvictableIdleTimeMillis" value="1800000"/>
         <property name="validationQuery" value="SELECT version();"/>
     </bean> -->
-    
-  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-        <property name="driverClassName" value="org.postgresql.Driver"/>
-        <property name="url" value="jdbc:postgresql://localhost:5432/postgres"/>
-        <property name="username" value="postgres"/>
-        <property name="password" value="postgres#123"/>
-        <property name="testOnBorrow" value="true"/>
-        <property name="testOnReturn" value="true"/>
-        <property name="testWhileIdle" value="true"/>
-        <property name="timeBetweenEvictionRunsMillis" value="1800000"/>
-        <property name="numTestsPerEvictionRun" value="3"/>
-        <property name="minEvictableIdleTimeMillis" value="1800000"/>
-        <property name="validationQuery" value="SELECT version();"/>
-    </bean>
+
+  <bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/eventmanagement" />
+		<property name="username" value="root" />
+		<property name="password" value="mysql" />
+	</bean>
 
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -81,35 +73,21 @@
 
 	</bean>
 
-	
-	<!-- <bean  id="eventDaoImpl" class="com.eventManagement.dao.hbImpl.EventDAOImpl"></bean>
-	 -->
-	<bean lazy-init="true"  id="eventDao" class="com.eventManagement.dao.hbImpl.EventDaoImpl">
-	</bean>
-	<bean lazy-init="true"  id="eventUserDao" class="com.eventManagement.dao.hbImpl.EventUserDaoImpl">
-	</bean>
-	 <bean   id="eventService" class="com.eventManagement.service.impl.EventServiceImpl">
-	     <property name="eventDao" ref="eventDao"></property>
-	</bean>
-	<bean lazy-init="true"  id="userDao" class="com.eventManagement.dao.hbImpl.UserDaoImpl">
-	</bean>
 	<bean lazy-init="true"  id="searchService" class="com.eventManagement.utility.SearchService">
-	</bean>
-	
-	 
-	 <bean  id="userService" class="com.eventManagement.service.impl.UserServiceImpl">
-	     <property name="userDao" ref="userDao"></property>
-	</bean>
-	<bean   id="eventUserService" class="com.eventManagement.service.impl.EventUserServiceImpl">
-	     <property name="eventUserDao" ref="eventUserDao"></property>
 	</bean>
 	<bean lazy-init="true"  id="contactUsManager" class="com.eventManagement.manager.ContactUsManager">
 	</bean>
-	
+
+	 <bean lazy-init="true"    id="eventService" class="com.eventManagement.service.impl.EventServiceImpl"></bean>
+
+	 <bean lazy-init="true"  id="userService" class="com.eventManagement.service.impl.UserServiceImpl"></bean>
+	<bean lazy-init="true"  id="eventUserService" class="com.eventManagement.service.impl.EventUserServiceImpl"></bean>
+
+
 	<bean  id="eventUserManager" class="com.eventManagement.manager.EventUserManager">
 	     <property name="eventUserService" ref="eventUserService"></property>
 	</bean>
-	
+
 	<bean  id="userManager" class="com.eventManagement.manager.UserManager">
 	    <property name="userService" ref="userService"></property>
 	</bean>
@@ -119,7 +97,7 @@
 	    <property name="userManager" ref="userManager"></property>
 	     <property name="eventUserManager" ref="eventUserManager"></property>
 	</bean>
-	
+
 	<bean  id="contactUsController" class="com.eventManagement.controller.ContactUsController">
 	    <property name="contactUsManager" ref="contactUsManager"></property>
 	</bean>
@@ -130,12 +108,6 @@
 	<bean  id="userController" class="com.eventManagement.controller.UserController">
 	    <property name="userManager" ref="userManager"></property>
 	</bean>
-	
-	<bean  id="userController" class="com.eventManagement.controller.UserController">
-	    <property name="userManager" ref="userManager"></property>
-	</bean>
-	
-	
-	
-	
+
+
 </beans>

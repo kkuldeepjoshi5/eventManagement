@@ -11,15 +11,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 
+
 public abstract class AbstractDAOImpl<E> {
 
 
-	 @Autowired
-    private SessionFactory sessionFactory;
+	@Autowired
+	public SessionFactory sessionFactory;
 
-    protected Session getSession(){
-        return sessionFactory.getCurrentSession();
-    }
 
 	public Long insert(E e)  {
 		Long created=null;
@@ -36,7 +34,7 @@ public abstract class AbstractDAOImpl<E> {
 	}
 
 	public Map<Long,E> insertAll(List<E> elist) {
-		Session session = sessionFactory.openSession();
+		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		Map<Long,E> createdEntities = new HashMap<Long, E>();
 		for (E e : elist) {
@@ -50,7 +48,7 @@ public abstract class AbstractDAOImpl<E> {
 		return createdEntities;
 	}
 
-	
+
 	public String remove(Long id,Class<E> tempClass) {
 		try {
 			 Session session = this.sessionFactory.getCurrentSession();
@@ -118,12 +116,12 @@ public abstract class AbstractDAOImpl<E> {
 			ex.printStackTrace();
 			return null;
 		}
-		
+
 	}
 
 	public List<E> updateAll(List<E> updatableList) {
 		List<E> updatedList=new ArrayList<E>();
-		Session session = sessionFactory.openSession();
+		Session session = this.sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		for (E e : updatableList) {
 			session.update(e);
@@ -134,5 +132,5 @@ public abstract class AbstractDAOImpl<E> {
 		return updatedList;
 	}
 
-	
+
 }

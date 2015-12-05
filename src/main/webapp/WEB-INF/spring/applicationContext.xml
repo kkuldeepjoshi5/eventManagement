@@ -1,16 +1,20 @@
-<?xml version="1.0" encoding="UTF-8"?>
- <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-3.2.xsd
-		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
-
+<!-- <?xml version="1.0" encoding="UTF-8"?> 
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:aop="http://www.springframework.org/schema/aop" 
+    xmlns:context="http://www.springframework.org/schema/context" 
+    xmlns:jee="http://www.springframework.org/schema/jee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd 
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd       
+              http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd    
+                   http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd">
+  
+	
 	 <context:property-placeholder location="/WEB-INF/spring/*.properties"/>
-
+      <context:spring-configured/> 
+      	<context:component-scan base-package="com" />
+		
+      
  <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="${database.driverClassName}"/>
         <property name="url" value="${database.url}"/>
@@ -41,8 +45,8 @@
 
 	</bean>
 
-
-
+	
+	
 
 	 <bean lazy-init="true"  id="eventService" class="com.eventManagement.service.impl.EventServiceImpl">
 	</bean>
@@ -52,11 +56,11 @@
 	</bean>
 	<bean lazy-init="true"  id="contactUsManager" class="com.eventManagement.manager.ContactUsManager">
 	</bean>
-
+	
 	<bean  id="eventUserManager" class="com.eventManagement.manager.EventUserManager">
 	     <property name="eventUserService" ref="eventUserService"></property>
 	</bean>
-
+	
 	<bean  id="userManager" class="com.eventManagement.manager.UserManager">
 	    <property name="userService" ref="userService"></property>
 	</bean>
@@ -66,7 +70,7 @@
 	    <property name="userManager" ref="userManager"></property>
 	     <property name="eventUserManager" ref="eventUserManager"></property>
 	</bean>
-
+	
 	<bean  id="contactUsController" class="com.eventManagement.controller.ContactUsController">
 	    <property name="contactUsManager" ref="contactUsManager"></property>
 	</bean>
@@ -78,3 +82,4 @@
 	    <property name="userManager" ref="userManager"></property>
 	</bean>
 </beans>
+ -->

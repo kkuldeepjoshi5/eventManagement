@@ -36,10 +36,8 @@ public class UserController implements ServletContextAware  {
 		this.userManager = userManager;
 	}
 
-	@Autowired
 	private ServletContext servletContext;
 
-	@Override
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;
 

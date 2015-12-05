@@ -4,16 +4,19 @@ package com.eventManagement.dao.hbImpl;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.eventManagement.dao.EventDAO;
 import com.eventManagement.entity.Event;
 import com.eventManagement.utility.Message;
 
-@Repository("eventDao")
+@Component("eventDao")
+@Transactional
 public class EventDAOImpl extends AbstractDAOImpl<Event> implements EventDAO {
-
-
 
 	@Override
 	public Long insert(Event event) {
@@ -43,7 +46,7 @@ public class EventDAOImpl extends AbstractDAOImpl<Event> implements EventDAO {
 
 	@Override
 	public List<Event> getAllByIsDeleted(Boolean isDeleted) {
-		
+
 		String hql="From Event WHERE isDeleted = :isDeleted";
 		return super.getAllByIsDeleted(hql,isDeleted);
 	}

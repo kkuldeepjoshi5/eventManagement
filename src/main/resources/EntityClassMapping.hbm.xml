@@ -18,7 +18,7 @@
 
   </class>
 
-  <class name="com.eventManagement.entity.User" table="users">
+  <class name="com.eventManagement.entity.User" table="user">
       <meta attribute="class-description">       This class contains the user detail.   </meta>
     	<id name="id" type="long" column="id">   <generator class="increment"/>    </id>
 

@@ -19,12 +19,6 @@ import com.eventManagement.utility.Message;
 public class UserDAOImpl extends AbstractDAOImpl<User> implements UserDAO {
 
 
-	 @Autowired
-	 private SessionFactory sessionFactory;
-	
-	 protected Session getSession(){
-		   return sessionFactory.getCurrentSession();
-	 }
 
 	@Override
 	public Long insert(User user) {
@@ -77,6 +71,12 @@ public class UserDAOImpl extends AbstractDAOImpl<User> implements UserDAO {
 
 	@Override
 	public List<User> updateAll(List<User> updatableList) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Map<Long, User> insertAll(List<User> elist) {
 		// TODO Auto-generated method stub
 		return null;
 	}

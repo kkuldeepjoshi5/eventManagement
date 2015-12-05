@@ -18,10 +18,10 @@ import com.eventManagement.utility.Mail;
 public class ContactUsController implements ServletContextAware {
 
 	
-	@Autowired
+	
 	private ServletContext servletContext;
 
-	@Override
+	
 	public void setServletContext(ServletContext servletContext) {
 		this.servletContext = servletContext;
 
